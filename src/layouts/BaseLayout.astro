@@ -1,0 +1,76 @@
+---
+// ↓ Importamos nuestro Componentes Básicos de nuestro Portfolio
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<!doctype html>
+<!-- ! Doctype: Define el tipo de documento HTML y su versión -->
+<html lang="es">
+  <!-- ! En la etiqueta <html> debe ir todo nuestro código HTML sin excepción -->
+  <!-- * Lang: Define el idioma del documento HTML -->
+  <!-- ? Dentro de HTML se divide en 2 grandes partes: el <head> y el <body> -->
+  <head>
+    <!-- ! Contiene información sobre el documento (metadatos, enlaces CSS, etc) -->
+    <title>Portafolio Personal - José Luis - Frontend Developer JR</title>
+    <!-- * Title: Es el título que aparecerá en nuestra página en la pestaña del navegador -->
+    <meta
+      name="description"
+      content="Portafolio de José Luis, un estudiante en Ingeniería en Sistemas Computacionales con un interés temprano enfocado en el desarrollo de páginas web FrontEnd, con ganas de maximizar sus habilidades en HTML y CSS"
+    />
+    <!-- * Description: Es la descripción que aparecerá en nuestro página web cuando sea buscada por motores de búsqueda como Google, tiene que ver mucho la parte de optimizar el SEO de la página -->
+
+    <meta charset="UTF-8" />
+    <!-- ? Meta: Define metadatos sobre el documento y la codificación que se usará -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- ? Viewport Width: Adapta la página web según el ancho del dispositivo en cuestión -->
+    <meta name="robots" content="index, follow" />
+    <!-- ? Robots: Indica a los motores de búsqueda cómo rastrear e indexar la página (indexar la página y seguir los enlaces) -->
+    <meta name="theme-color" content="#0f0f17" />
+    <!-- ? Theme-Color: Define el color de la barra de título del navegador en dispositivos móviles -->
+
+    <link rel="icon" type="image/png" href="images/maletin.png" />
+    <!-- * Link: En este caso, nos encargamos de poner el favicon de nuestra página web; el logo que aparecerá en la pestaña del navegador -->
+
+    <link rel="alternate" href="https://kat404.github.io/en" hreflang="en" />
+    <!-- * Alternate: En este caso, nos encargamos de poner el enlace alternativo de nuestra página web para el idioma Inglés -->
+    <link
+      rel="canonical"
+      href="https://kat404.github.io/FrontEnd-Aprendizaje"
+    />
+    <!-- * Canonical: Señala a los motores de búsqueda cuál es la versión principal del sitio web para evitar duplicados -->
+
+    <!-- ! Open Graph: Modelo que permite la buena visualización de nuestro contenido en redes sociales -->
+    <!--
+    * Property: Define la propiedad del Open Graph
+    * Content: Define el contenido de la propiedad del Open Graph
+    ? Title: Define el título de la página web
+    ? Description: Define la descripción de la página web
+    ? Image: Define la imagen de la página web
+    ? URL: Define la URL de la página web
+    ? Type: Define el tipo de la página web
+    ? Locale: Define el idioma de la página web
+    -->
+    <meta
+      property="og:title"
+      content="Portafolio Personal - José Luis Ramírez Sánchez"
+    />
+    <meta
+      property="og:description"
+      content="Portafolio de José Luis, un estudiante en Ingeniería en Sistemas Computacionales con un interés temprano enfocado en el desarrollo de páginas web FrontEnd, con ganas de maximizar sus habilidades en HTML y CSS"
+    />
+    <!-- <meta
+      property="og:image"
+      content="https://kat404.github.io/FrontEnd-Aprendizaje/images/maletin.png"
+    /> -->
+    <meta property="og:url" content="https://kat404.github.io/Portfolio" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_MX" />
+  </head>
+  <body>
+    <!-- ! Body: Representa el contenido del documento HTML que se quiera ver y renderizar -->
+    <Header />
+    <slot />
+    <Footer />
+  </body>
+</html>

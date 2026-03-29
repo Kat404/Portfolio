@@ -4,14 +4,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout>
-  <main role="main">
+  <main>
     <!-- 
     ! Main: Representa el contenido principal del documento HTML, suele ser único y diferenciable, además de que solo puede haber una etique <main> en un archivo HTML
-    ? Notas: EL <main> no se deben incluir elementos que se repitan en varias páginas, como el encabezado <header> o el pie de página <footer>, únicamente debe ir el contenido específico y condicional de esa página en cuestión
+    ? Notas: El <main> no se deben incluir elementos que se repitan en varias páginas, como el encabezado <header> o el pie de página <footer>, únicamente debe ir el contenido específico y condicional de esa página en cuestión
     ? Notas Adicionales: A veces es preferible usar HTML semántico en vez de usar divs y spans para facilitar la accesibilidad y la comprensión de los motores de búsqueda aunque su uso no está prohibido para nada
     ? Role: Define el rol del elemento, en este caso, el rol del <main> es "main", este sirve para que los motores de búsqueda y los lectores de pantalla puedan identificar el contenido principal de la página web
     -->
-    <section>
+    <section aria-labelledby="sobre-mi">
       <header>
         <h2 id="sobre-mi">Sobre Mí</h2>
       </header>
@@ -22,7 +22,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </p>
     </section>
 
-    <section>
+    <section aria-labelledby="mi-vida">
       <header>
         <h2 id="mi-vida">Mi Vida</h2>
       </header>
@@ -32,7 +32,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         me gustan mucho los sistemas operativos y me quiero enfocar en el desarrollo
         frontend.
       </p>
-      <p id="aficiones">Algunos de mis gustos o aficiones son:</p>
+      <h3 id="aficiones">Algunos de mis gustos o aficiones son:</h3>
       <ul>
         <!-- * Ul: Representa una lista no ordenada -->
         <li>Sistemas Operativos: Linux (Debian, Fedora, Arch)</li>
@@ -62,35 +62,39 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </aside>
     </section>
 
-    <section>
+    <section aria-labelledby="mis-proyectos">
       <header>
         <h2 id="mis-proyectos">Mis Proyectos</h2>
       </header>
       <ul>
         <li class="list-project">
           <!-- * Class: Nos ayuda a darle una clase a un elemento -->
-          <a href="https://github.com/Kat404/linux_security.conf"
-            >Configuración Out-of-the-Box</a
+          <a
+            href="https://github.com/Kat404/linux_security.conf"
+            rel="noreferrer">Configuración Out-of-the-Box</a
           >
           para mejorar la seguridad nativa de Linux mediante System-d
         </li>
         <li class="list-project">
-          <a href="https://github.com/Kat404/ZSH-Terminal">ZSH-Terminal</a>:
-          Guía para principiantes usando la shell ZSH
+          <a href="https://github.com/Kat404/ZSH-Terminal" rel="noreferrer"
+            >ZSH-Terminal</a
+          >: Guía para principiantes usando la shell ZSH
         </li>
         <li class="list-project">
-          <a href="https://github.com/Kat404/FISH-Terminal">FISH-Terminal</a>:
-          Guía para principiantes usando la shell FISH
+          <a href="https://github.com/Kat404/FISH-Terminal" rel="noreferrer"
+            >FISH-Terminal</a
+          >: Guía para principiantes usando la shell FISH
         </li>
         <li class="list-project">
-          <a href="https://github.com/Kat404/dotfiles">Dotfiles</a>:
-          Configuración personal para sistemas operativos Linux y demás
+          <a href="https://github.com/Kat404/dotfiles" rel="noreferrer"
+            >Dotfiles</a
+          >: Configuración personal para sistemas operativos Linux y demás
           configuraciones para mucho software que utilizo
         </li>
       </ul>
     </section>
 
-    <section>
+    <section aria-labelledby="tecnologias-de-interes">
       <!-- * Section: Se usa para abarcar secciones genéricas de un documento -->
       <!-- <article> -->
       <!-- * Article: Funciona como un bloque independiente de información, si se saca de su contexto, este sigue permaneciendo con su sentido, se puede usar comúmente en un post de un blog, un comentario o producto -->
@@ -98,7 +102,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <h2 id="tecnologias-de-interes">Tecnologías de Interés</h2>
       </header>
       <p>Fundamentalmente son las básicas dentro del desarrollo web:</p>
-      <ol type="1">
+      <ol>
         <!--
         * <ol> tiene muchas opciones de atributos como:
           -> type="" (1, A, a, I, i): Cambia la viñeta inicial de la lista
@@ -106,20 +110,16 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           -> start="": Podemos modificar el valor inicial de la lista
         -->
         <li>HTML</li>
-        <li value="2">CSS</li>
-        <!-- ? Podemos usar el atributo value="*" para darle un valor específico a un elemento de nuestra lista -->
+        <li>CSS</li>
         <li>JavaScript</li>
       </ol>
-      <footer>
-        <small
-          >"Todo aprendizaje lleva tiempo, sudor y esfuerzo. Es un largo camino
-          pero no imposible de cursar"</small
-        >
-      </footer>
-      <!-- </article> -->
+      <p class="quote">
+        "Todo aprendizaje lleva tiempo, sudor y esfuerzo. Es un largo camino
+        pero no imposible de cursar"
+      </p>
     </section>
 
-    <section>
+    <section aria-labelledby="curiosidades">
       <header>
         <h2 id="curiosidades">Curiosidades sobre Mí</h2>
       </header>

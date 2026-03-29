@@ -1,3 +1,8 @@
+---
+// ↓ Creamos una "const" que se encargará de siempre tener actualizado el año del Copyright
+const year = new Date().getFullYear();
+---
+
 <footer>
   <!-- * Footer: Nos permite tener un pie de página en nuestra web -->
   <!-- ? Suele ser común el derecho de copyright en las páginas webs, especialmente en empresas -->
@@ -6,15 +11,28 @@
     ! No se recomienda usar para imágenes que se van a ver a primera vista en cuanto se entre a la página
     ? Se recomienda usarlo en imágenes en la parte inferior para UX y rendimiento en memoria
   -->
-  <p>© 2025 José Luis Ramírez Sánchez. Todos los derechos reservados.</p>
-  <p>
-    <a href="mailto:xocemyst@tutamail.com"> 📬 Envíame un correo </a>
-    <!-- ? mailto: Abre el cliente de correo del usuario y autocompleta el destinatario, útil si se usa el correo -->
-    <a href="tel:+5218112345678"> 📲 Llámame </a>
-    <!-- ? tel: Abre el cliente de teléfono/llamada del usuario y autocompleta el número, útil en ventas y soporte -->
-    <a href="https://wa.me/5218112345678?text=Hola" target="_blank"
-      >💬 Whatsapp
-    </a>
-    <!-- ? wa.me: Abre el WhatsApp del usuario y autocompleta el número con el mensaje deseado -->
-  </p>
+  <p>© {year} José Luis Ramírez Sánchez. Todos los derechos reservados.</p>
+  <address>
+    <p>
+      <a href="mailto:xocemyst@tutamail.com">
+        <span aria-hidden="true">📬</span>
+        Envíame un correo
+      </a>
+      <!-- ? mailto: Abre el cliente de correo del usuario y autocompleta el destinatario, útil si se usa el correo -->
+      <a href="tel:+5218112345678">
+        <span aria-hidden="true">📲</span>
+        Llámame
+      </a>
+      <!-- ? tel: Abre el cliente de teléfono/llamada del usuario y autocompleta el número, útil en ventas y soporte -->
+      <a
+        href="https://wa.me/5218112345678?text=Hola"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <span aria-hidden="true">💬</span>
+        Whatsapp
+      </a>
+      <!-- ? wa.me: Abre el WhatsApp del usuario y autocompleta el número con el mensaje deseado -->
+    </p>
+  </address>
 </footer>

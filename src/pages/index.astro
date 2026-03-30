@@ -11,9 +11,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     ? Notas Adicionales: A veces es preferible usar HTML semántico en vez de usar divs y spans para facilitar la accesibilidad y la comprensión de los motores de búsqueda aunque su uso no está prohibido para nada
     ? Role: Define el rol del elemento, en este caso, el rol del <main> es "main", este sirve para que los motores de búsqueda y los lectores de pantalla puedan identificar el contenido principal de la página web
     -->
-    <section aria-labelledby="sobre-mi">
+    <section id="sobre-mi" aria-labelledby="sobre-mi">
       <header>
-        <h2 id="sobre-mi">Sobre Mí</h2>
+        <h2>Sobre Mí</h2>
       </header>
       <p>
         <!-- * P: Representa un párrafo -->
@@ -22,9 +22,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </p>
     </section>
 
-    <section aria-labelledby="mi-vida">
+    <section id="mi-vida" aria-labelledby="mi-vida">
       <header>
-        <h2 id="mi-vida">Mi Vida</h2>
+        <h2>Mi Vida</h2>
       </header>
       <p>
         Actualmente soy un estudiante en Ingeniería en Sistemas Computacionales,<br
@@ -62,9 +62,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </aside>
     </section>
 
-    <section aria-labelledby="mis-proyectos">
+    <section id="mis-proyectos" aria-labelledby="mis-proyectos">
       <header>
-        <h2 id="mis-proyectos">Mis Proyectos</h2>
+        <h2>Mis Proyectos</h2>
       </header>
       <ul>
         <li class="list-project">
@@ -94,12 +94,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </ul>
     </section>
 
-    <section aria-labelledby="tecnologias-de-interes">
-      <!-- * Section: Se usa para abarcar secciones genéricas de un documento -->
-      <!-- <article> -->
-      <!-- * Article: Funciona como un bloque independiente de información, si se saca de su contexto, este sigue permaneciendo con su sentido, se puede usar comúmente en un post de un blog, un comentario o producto -->
+    <section
+      id="tecnologias-de-interes"
+      aria-labelledby="tecnologias-de-interes"
+    >
       <header>
-        <h2 id="tecnologias-de-interes">Tecnologías de Interés</h2>
+        <h2>Tecnologías de Interés</h2>
       </header>
       <p>Fundamentalmente son las básicas dentro del desarrollo web:</p>
       <ol>
@@ -119,9 +119,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </p>
     </section>
 
-    <section aria-labelledby="curiosidades">
+    <section id="curiosidades" aria-labelledby="curiosidades">
       <header>
-        <h2 id="curiosidades">Curiosidades sobre Mí</h2>
+        <h2>Curiosidades sobre Mí</h2>
       </header>
       <details open>
         <summary>¿Cuál es tu color favorito?</summary>

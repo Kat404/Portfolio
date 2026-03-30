@@ -59,4 +59,21 @@ Este documento sirve como bitácora de los aprendizajes técnicos y las decision
 - **`role` redundantes:** No es necesario poner `role="main"` en un `<main>` o `role="navigation"` en un `<nav>`, ya que son sus funciones nativas implícitas.
 
 ---
-*En este proyecto, hemos priorizado la calidad del código y la accesibilidad por encima de lo visual en esta fase temprana.*
+
+## 🎨 6. Introducción y Fundamentos de CSS
+
+### ¿Qué es CSS y cuál es su rol?
+- **Separación de responsabilidades:** Mientras HTML define la "estructura y huesos" de la página, CSS (Cascading Style Sheets) se encarga de la presentación visual y estética.
+- **Cascada y Especificidad:** CSS aplica los estilos basándose en el orden de lectura y en qué tan específico es un selector (ej. un selector con `#id` tiene más prioridad que uno con `.clase` o simplemente una etiqueta `p`).
+
+### Variables CSS (`:root`)
+- **Declaración Global:** Usando la pseudoclase `:root` (que representa la etiqueta `<html>`), declaramos variables personalizadas (Custom Properties) que estarán disponibles en todo el documento. Es el equivalente a declarar constantes en un lenguaje de programación.
+- **Ventajas y Tema:** Permiten mantener consistencia a lo largo de todo el código (ej. implementando la paleta de colores de *Catppuccin*). Si necesitas cambiar el tono de un elemento, modificas la variable en `:root` y automáticamente se actualiza todo tu portafolio sin tener que buscar línea por línea.
+- **Sintaxis:** Se declaran con dos guiones `--nombre-variable: valor;` y se aplican usando la función `var(--nombre-variable)`.
+
+### Tipografía y la regla `@font-face`
+- **Auto-alojamiento (Self-hosting):** Para evitar depender de servicios externos y garantizar privacidad y velocidad, las fuentes se guardan y sirven localmente desde `/public/fonts/`.
+- **Formato WOFF2:** Es el estándar moderno de fuentes web. Utiliza compresión Brotli, reduciendo drásticamente el peso comparado con un `.ttf` tradicional, lo que mejora los tiempos de carga (un factor clave para el SEO y la Experiencia de Usuario).
+- **Unificación de la Familia Tipográfica:** Al usar la regla `@font-face`, preparamos múltiples archivos individuales de fuentes (Ligera, Regular, Negrita, Cursiva) y las agrupamos bajo un mismo `font-family` (ej. `"Maple Mono NF"`). Gracias a esto, el navegador es inteligente: si pones `font-weight: bold;` en tu CSS, sabrá exactamente qué archivo `.woff2` descargar y pintar, evitando aplastar o "fingir" la negrita (*faux bold*).
+
+---

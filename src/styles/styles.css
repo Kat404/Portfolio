@@ -1,0 +1,148 @@
+/* ! Hoja de Estilos CSS */
+
+/* * Definimos los colores 'root' del Portfolio */
+:root {
+  --color-base: oklch(0.2429 0.0304 283.91); /* ? Catppuccin Base */
+  --color-base-darker: oklch(
+    0.2155 0.0254 284.06
+  ); /* ? Catppucin Base + Darker */
+  --color-base-darkest: oklch(
+    0.1828 0.0204 284.2
+  ); /* ? Catppuccin Base más oscuro de todos */
+  --color-text: oklch(0.8787 0.0426 272.28); /* ? Texto */
+  --color-subtext: oklch(0.8168 0.0403 272.86); /* ? Subtexto */
+  --color-subtext-zero: oklch(0.751 0.0396 273.93); /* ? Subtexto más oscuro */
+  --color-text-blue: oklch(0.7664 0.1113 259.88); /* ? Texto en azul */
+  --color-text-lavender: oklch(0.8166 0.091 277.31); /* ? Texto en lavada */
+}
+
+/* * Font-faces para Maple Mono NF */
+
+@font-face {
+  font-family: "Maple Mono NF";
+  src: url(/fonts/MapleMono-Light.ttf.woff2) format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Maple Mono NF";
+  src: url(/fonts/MapleMono-LightItalic.ttf.woff2) format("woff2");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Maple Mono NF";
+  src: url(/fonts/MapleMono-Regular.ttf.woff2) format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Maple Mono NF";
+  src: url(/fonts/MapleMono-Italic.ttf.woff2) format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Maple Mono NF";
+  src: url(/fonts/MapleMono-Medium.ttf.woff2) format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Maple Mono NF";
+  src: url(/fonts/MapleMono-MediumItalic.ttf.woff2) format("woff2");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Maple Mono NF";
+  src: url(/fonts/MapleMono-SemiBold.ttf.woff2) format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Maple Mono NF";
+  src: url(/fonts/MapleMono-SemiBoldItalic.ttf.woff2) format("woff2");
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Maple Mono NF";
+  src: url(/fonts/MapleMono-Bold.ttf.woff2) format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Maple Mono NF";
+  src: url(/fonts/MapleMono-BoldItalic.ttf.woff2) format("woff2");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Maple Mono NF";
+  src: url(/fonts/MapleMono-ExtraBold.ttf.woff2) format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Maple Mono NF";
+  src: url(/fonts/MapleMono-ExtraBoldItalic.ttf.woff2) format("woff2");
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* * ↓ Definimos cambios globales dentro del <body> */
+body {
+  background-color: var(--color-base);
+}
+
+/* * ↓ Definimos cambios específicos a nuestros títulos y subtítulos */
+body h2,
+h3,
+h4 {
+  color: var(--color-text);
+  font-family: "Maple Mono NF";
+  font-weight: 700;
+}
+
+/* * ↓ Definimos cambios específicos a nuestro texto, listas y demás contenido */
+body p,
+ul,
+ol,
+details {
+  color: var(--color-subtext);
+  font-family: "Maple Mono NF";
+  font-weight: 400;
+}
+
+/* * ↓ Definimos cambios específicos a nuestras redirecciones y enlaces */
+body a {
+  color: var(--color-text-blue);
+  font-family: "Maple Mono NF";
+  font-weight: 500;
+  font-style: italic;
+}
+
+#titulo-principal {
+  color: var(--color-text-lavender);
+  font-family: "Maple Mono NF";
+  font-weight: 800;
+  font-style: italic;
+}

@@ -15,12 +15,14 @@ Este proyecto es un portafolio personal minimalista construido con **Astro**. Su
 ```text
 Portfolio/
 ├── public/              # Recursos estáticos (imágenes, iconos)
+│   ├── fonts/           # Fuentes tipográficas web (WOFF2)
 │   ├── images/          # Imágenes
-│   └──icons/            # Íconos & Logos
+│   └── icons/           # Íconos & Logos
 ├── src/
 │   ├── components/      # Fragmentos de UI (Header, Footer)
 │   ├── layouts/         # Plantillas Base (BaseLayout)
-│   └── pages/           # Página Web Base y Contenidos (index.astro)
+│   ├── pages/           # Página Web Base y Contenidos (index.astro)
+│   └── styles/          # Hojas de estilo globales (CSS)
 ├── README.md            # Documentación general
 └── NOTES.md             # Apuntes y retroalimentación
 ```
@@ -55,7 +57,11 @@ Análisis de accesibilidad, semántica y SEO.
 
 ### ⏳ Pendientes & Futuras Mejoras
 
-- [ ] **Estilización CSS** — Implementar el diseño visual centrado en la UX.
+- [ ] **Diseño Responsivo & Layout Base** — Limitar el ancho de lectura (max-width), centrar el contenido y asegurar espaciados (paddings/margins) consistentes.
+- [ ] **Sistema de Tipografía Mejorado** — Ajustar alturas de línea (line-height), jerarquía visual de tamaños (clamp/rem) e interlineado para legibilidad en fuentes monospace.
+- [ ] **Navegación (Header & Nav)** — Convertir el menú de navegación en una barra flexible (Flexbox), horizontal y fija (sticky) para facilitar el recorrido.
+- [ ] **Tarjetas de Proyectos (Cards)** — Transformar las listas de proyectos en tarjetas interactivas con efectos de hover (elevación/transición).
+- [ ] **Micro-interacciones y Animaciones** — Scroll suave (smooth scrolling), transiciones sutiles en botones/enlaces, y personalización de los acordeones (`<details>`).
 - [ ] **Internacionalización** — Activar la versión en Inglés (`hreflang`).
 - [ ] **Optimización de Assets** — Asegurar que `/public/images/` contenga todas las assets locales.
 
@@ -63,6 +69,7 @@ Análisis de accesibilidad, semántica y SEO.
 
 ### 📜 Historial de Versiones
 
+- **v1.3.0 (30/03/26):** Implementación básica de CSS (con colores tipo Catppucin y fuente NF).
 - **v1.2.0 (29/03/26):** Implementación de metadatos sociales (Twitter Cards/OG) y corrección de accesibilidad en emojis.
 - **v1.1.0 (29/03/26):** Reestructuración semántica global. Se aplicó `aria-labelledby` y se corrigió la jerarquía de títulos.
 - **v1.0.0 (28/03/26):** Migración exitosa de HTML puro a estructura modular en Astro con Layouts.

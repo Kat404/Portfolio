@@ -8,7 +8,7 @@ Este proyecto es un portafolio personal minimalista construido con **Astro**. Su
 ## 🛠️ Tecnologías Usadas
 - **Astro 6.1.1** — Framework web para optimizar el rendimiento.
 - **HTML5** — Estructura semántica avanzada.
-- **CSS3** — Diseño visual (próximamente).
+- **CSS3** — Diseño visual.
 - **Bun** — Runtime y gestor de paquetes.
 
 ## 🗂️ Estructura del Proyecto
@@ -69,6 +69,7 @@ Análisis de accesibilidad, semántica y SEO.
 
 ### 📜 Historial de Versiones
 
+- **v1.3.1 (30/03/26):** Correción mínima dentro del README.md.
 - **v1.3.0 (30/03/26):** Implementación básica de CSS (con colores tipo Catppucin y fuente NF).
 - **v1.2.0 (29/03/26):** Implementación de metadatos sociales (Twitter Cards/OG) y corrección de accesibilidad en emojis.
 - **v1.1.0 (29/03/26):** Reestructuración semántica global. Se aplicó `aria-labelledby` y se corrigió la jerarquía de títulos.

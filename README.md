@@ -3,15 +3,18 @@
 Frontend Developer JR | Estudiante de Ingeniería en Sistemas Computacionales.
 
 ## 📋 Descripción
+
 Este proyecto es un portafolio personal minimalista construido con **Astro**. Su objetivo es servir como base de aprendizaje en desarrollo web modular, manteniendo un enfoque en HTML semántico y CSS puro.
 
 ## 🛠️ Tecnologías Usadas
-- **Astro 6.1.1** — Framework web para optimizar el rendimiento.
+
+- **Astro 6.1.2** — Framework web para optimizar el rendimiento.
 - **HTML5** — Estructura semántica avanzada.
 - **CSS3** — Diseño visual.
 - **Bun** — Runtime y gestor de paquetes.
 
 ## 🗂️ Estructura del Proyecto
+
 ```text
 Portfolio/
 ├── public/              # Recursos estáticos (imágenes, iconos)
@@ -28,6 +31,7 @@ Portfolio/
 ```
 
 ## 🚀 Inicio Rápido
+
 ```bash
 # Instalar dependencias
 bun install
@@ -41,7 +45,7 @@ bun dev
 ## 🗺️ Roadmap & Estado del Proyecto
 
 Análisis de accesibilidad, semántica y SEO.
-Última gran revisión: **29/03/2026**.
+Última gran revisión: **30/03/2026**.
 
 ### 🌟 Mejoras Implementadas
 
@@ -58,7 +62,7 @@ Análisis de accesibilidad, semántica y SEO.
 ### ⏳ Pendientes & Futuras Mejoras
 
 - [ ] **Diseño Responsivo & Layout Base** — Limitar el ancho de lectura (max-width), centrar el contenido y asegurar espaciados (paddings/margins) consistentes.
-- [ ] **Sistema de Tipografía Mejorado** — Ajustar alturas de línea (line-height), jerarquía visual de tamaños (clamp/rem) e interlineado para legibilidad en fuentes monospace.
+- [x] **Sistema de Tipografía Mejorado** — Ajustar alturas de línea (line-height), jerarquía visual de tamaños (clamp/rem) e interlineado para legibilidad en fuentes monospace. (Implementado vía `@font-face` y WOFF2).
 - [ ] **Navegación (Header & Nav)** — Convertir el menú de navegación en una barra flexible (Flexbox), horizontal y fija (sticky) para facilitar el recorrido.
 - [ ] **Tarjetas de Proyectos (Cards)** — Transformar las listas de proyectos en tarjetas interactivas con efectos de hover (elevación/transición).
 - [ ] **Micro-interacciones y Animaciones** — Scroll suave (smooth scrolling), transiciones sutiles en botones/enlaces, y personalización de los acordeones (`<details>`).
@@ -69,6 +73,7 @@ Análisis de accesibilidad, semántica y SEO.
 
 ### 📜 Historial de Versiones
 
+- **v1.4.0 (30/03/26):** Refactor CSS integral (variables `:root`, colores `oklch`, arquitectura Modular) y optimización de fuentes auto-alojadas.
 - **v1.3.1 (30/03/26):** Correción mínima dentro del README.md.
 - **v1.3.0 (30/03/26):** Implementación básica de CSS (con colores tipo Catppucin y fuente NF).
 - **v1.2.0 (29/03/26):** Implementación de metadatos sociales (Twitter Cards/OG) y corrección de accesibilidad en emojis.

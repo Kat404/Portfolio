@@ -1,6 +1,12 @@
 ---
 // ↓ Importamos nuestro Layout Base
 import BaseLayout from "../layouts/BaseLayout.astro";
+// ↓ Importamos Componentes Modularizados
+import Bienvenido from "../components/Bienvenido.astro";
+import MiVida from "../components/MiVida.astro";
+import MisProyectos from "../components/MisProyectos.astro";
+import TecnologiasInteres from "../components/TecnologiasInteres.astro";
+import Curiosidades from "../components/Curiosidades.astro";
 ---
 
 <BaseLayout>
@@ -11,142 +17,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     ? Notas Adicionales: A veces es preferible usar HTML semántico en vez de usar divs y spans para facilitar la accesibilidad y la comprensión de los motores de búsqueda aunque su uso no está prohibido para nada
     ? Role: Define el rol del elemento, en este caso, el rol del <main> es "main", este sirve para que los motores de búsqueda y los lectores de pantalla puedan identificar el contenido principal de la página web
     -->
-    <section id="sobre-mi" aria-labelledby="sobre-mi">
-      <header>
-        <h2>Sobre Mí</h2>
-      </header>
-      <p>
-        <!-- * P: Representa un párrafo -->
-        Bienvenido a mi portafolio personal. Aquí encontrarás información sobre mis
-        <strong>proyectos</strong>, habilidades y experiencia profesional.
-      </p>
-    </section>
+    <Bienvenido />
 
-    <section id="mi-vida" aria-labelledby="mi-vida">
-      <header>
-        <h2>Mi Vida</h2>
-      </header>
-      <p>
-        Actualmente soy un estudiante en Ingeniería en Sistemas Computacionales,<br
-        />
-        me gustan mucho los sistemas operativos y me quiero enfocar en el desarrollo
-        frontend.
-      </p>
-      <h3 id="aficiones">Algunos de mis gustos o aficiones son:</h3>
-      <ul>
-        <!-- * Ul: Representa una lista no ordenada -->
-        <li>Sistemas Operativos: Linux (Debian, Fedora, Arch)</li>
-        <!-- * Li: Representa un elemento de lista -->
-        <li>
-          Desarrollo Web (Aprendizaje Temprano): HTML y CSS, con ganas de
-          dominar frameworks para front como Astro con HTMX y frameworks de CSS
-          como Bootstrap o TailwindCSS
-        </li>
-        <li>
-          Mejoramiento de la seguridad y privacidad de sistemas y navegadores:
-          AdBlockers, Firewalls, etc.
-        </li>
-      </ul>
-      <aside>
-        <!-- ? Aside: Sirve para catalogar contenido no relevante conforme al contenido original, es como si fuese un extra, también lo podríamos ver como un contenido indirectamente relacionado -->
-        <header>
-          <h3 id="mis-gustos">Mis Gustos</h3>
-        </header>
-        <p>Dentro de mis gustos personales están:</p>
-        <ul>
-          <li>El helado de vainilla</li>
-          <li>Los gatos, <em>obviamente</em></li>
-          <li>Programar y aprender</li>
-          <li>Hacer ejercicio casual</li>
-        </ul>
-      </aside>
-    </section>
+    <MiVida />
 
-    <section id="mis-proyectos" aria-labelledby="mis-proyectos">
-      <header>
-        <h2>Mis Proyectos</h2>
-      </header>
-      <ul>
-        <li class="list-project">
-          <!-- * Class: Nos ayuda a darle una clase a un elemento -->
-          <a
-            href="https://github.com/Kat404/linux_security.conf"
-            rel="noreferrer">Configuración Out-of-the-Box</a
-          >
-          para mejorar la seguridad nativa de Linux mediante System-d
-        </li>
-        <li class="list-project">
-          <a href="https://github.com/Kat404/ZSH-Terminal" rel="noreferrer"
-            >ZSH-Terminal</a
-          >: Guía para principiantes usando la shell ZSH
-        </li>
-        <li class="list-project">
-          <a href="https://github.com/Kat404/FISH-Terminal" rel="noreferrer"
-            >FISH-Terminal</a
-          >: Guía para principiantes usando la shell FISH
-        </li>
-        <li class="list-project">
-          <a href="https://github.com/Kat404/dotfiles" rel="noreferrer"
-            >Dotfiles</a
-          >: Configuración personal para sistemas operativos Linux y demás
-          configuraciones para mucho software que utilizo
-        </li>
-      </ul>
-    </section>
+    <MisProyectos />
 
-    <section
-      id="tecnologias-de-interes"
-      aria-labelledby="tecnologias-de-interes"
-    >
-      <header>
-        <h2>Tecnologías de Interés</h2>
-      </header>
-      <p>Fundamentalmente son las básicas dentro del desarrollo web:</p>
-      <ol>
-        <!--
-        * <ol> tiene muchas opciones de atributos como:
-          -> type="" (1, A, a, I, i): Cambia la viñeta inicial de la lista
-          -> reversed: Hace que la lista tenga un sentido inverso
-          -> start="": Podemos modificar el valor inicial de la lista
-        -->
-        <li>HTML</li>
-        <li>CSS</li>
-        <li>JavaScript</li>
-      </ol>
-      <p class="quote">
-        "Todo aprendizaje lleva tiempo, sudor y esfuerzo. Es un largo camino
-        pero no imposible de cursar"
-      </p>
-    </section>
+    <TecnologiasInteres />
 
-    <section id="curiosidades" aria-labelledby="curiosidades">
-      <header>
-        <h2>Curiosidades sobre Mí</h2>
-      </header>
-      <details open>
-        <summary>¿Cuál es tu color favorito?</summary>
-        <p>
-          Mi color favorito es el negro aunque también me encanta el color azul.
-          Dentro de Internet, me encanta la paleta de colores de Catppuccin, se
-          me hacen unos colores muy estéticos y bonitos.
-        </p>
-      </details>
-      <details>
-        <summary>¿Qué navegador usas?</summary>
-        <p>
-          Actualmente uso <strong>Firefox</strong> aunque con la polémica acerca de
-          su nuevo CEO y la integración de la IA sobre Firefox me hace dudar sobre
-          si seguir utilizándolo aunque sea mi navegador favorito.
-        </p>
-      </details>
-      <details>
-        <summary>¿Cuál es tu sabor de helado favorito?</summary>
-        <p>
-          Soy muy variado, me gusta desde el chocolate y sus variantes, la
-          vainilla, el café, mamey, coco, etc. Mientras sea helado sé que me
-          gustará mucho.
-        </p>
-      </details>
-    </section>
+    <Curiosidades />
   </main>
 </BaseLayout>

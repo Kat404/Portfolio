@@ -1,22 +1,26 @@
-/* ! Hoja de Estilos CSS */
+/* ! Hoja de Estilos Principal del Portafolio */
 
-/* * Definimos los colores 'root' del Portfolio */
+/* ======================== VARIABLES GLOBALES (ROOT) ======================== */
+/* * Definimos los colores base del Portfolio usando oklch para mayor precisión */
 :root {
   --color-base: oklch(0.2429 0.0304 283.91); /* ? Catppuccin Base */
   --color-base-darker: oklch(
     0.2155 0.0254 284.06
-  ); /* ? Catppucin Base + Darker */
+  ); /* ? Catppucin Base Darker */
   --color-base-darkest: oklch(
     0.1828 0.0204 284.2
   ); /* ? Catppuccin Base más oscuro de todos */
-  --color-text: oklch(0.8787 0.0426 272.28); /* ? Texto */
+
+  --color-text: oklch(0.8787 0.0426 272.28); /* ? Texto principal */
   --color-subtext: oklch(0.8168 0.0403 272.86); /* ? Subtexto */
   --color-subtext-zero: oklch(0.751 0.0396 273.93); /* ? Subtexto más oscuro */
-  --color-text-blue: oklch(0.7664 0.1113 259.88); /* ? Texto en azul */
-  --color-text-lavender: oklch(0.8166 0.091 277.31); /* ? Texto en lavada */
+
+  --color-text-blue: oklch(0.7664 0.1113 259.88); /* ? Texto en azul pálido */
+  --color-text-lavender: oklch(0.8166 0.091 277.31); /* ? Texto en lavanda */
 }
 
-/* * Font-faces para Maple Mono NF */
+/* ======================== TIPOGRAFÍAS (FONT-FACES) ======================== */
+/* * Tipografía principal: Maple Mono NF (Ligth, Regular, Medium, SemiBold, Bold, ExtraBold) */
 
 @font-face {
   font-family: "Maple Mono NF";
@@ -108,12 +112,16 @@
   font-display: swap;
 }
 
-/* * ↓ Definimos cambios globales dentro del <body> */
+/* ======================== ESTILOS GLOBALES BASE (TAGS HTML) ======================== */
+/* ? Contiene estilos base que aplican a las etiquetas nativas de HTML (body, h1-h4, p, a, etc.) */
+
+/* ? ↓ Fondo principal del documento */
 body {
   background-color: var(--color-base);
+  text-align: center;
 }
 
-/* * ↓ Definimos cambios específicos a nuestros títulos y subtítulos */
+/* ? ↓ Definimos cambios específicos a nuestros títulos y subtítulos */
 body h2,
 h3,
 h4 {
@@ -122,17 +130,17 @@ h4 {
   font-weight: 700;
 }
 
-/* * ↓ Definimos cambios específicos a nuestro texto, listas y demás contenido */
+/* ? ↓ Definimos cambios específicos a nuestro texto, listas y demás contenido */
 body p,
 ul,
-ol,
-details {
+li {
   color: var(--color-subtext);
   font-family: "Maple Mono NF";
   font-weight: 400;
+  text-align: justify;
 }
 
-/* * ↓ Definimos cambios específicos a nuestras redirecciones y enlaces */
+/* ? ↓ Definimos cambios específicos a nuestras redirecciones y enlaces */
 body a {
   color: var(--color-text-blue);
   font-family: "Maple Mono NF";
@@ -140,9 +148,46 @@ body a {
   font-style: italic;
 }
 
+/* ======================== ESTILOS DE ELEMENTOS ESPECÍFICOS Y CLASES ======================== */
+/* ? Contiene estilos aplicados puntualmente mediante clases (.class) o ID (#id) a componentes */
+
+/* ? ↓ Título principal del Portfolio */
 #titulo-principal {
   color: var(--color-text-lavender);
   font-family: "Maple Mono NF";
   font-weight: 800;
   font-style: italic;
+}
+
+/* ? ↓ Sección de curiosidades (details/summary) */
+#curiosidades summary {
+  color: var(--color-text);
+  font-family: "Maple Mono NF";
+  font-weight: 500;
+}
+
+#curiosidades p {
+  color: var(--color-subtext);
+  font-family: "Maple Mono NF";
+  font-weight: 400;
+}
+
+/* ? ↓ Estilado para textos de citas en el cuerpo */
+.quote {
+  color: var(--color-text);
+  font-family: "Maple Mono NF";
+  font-style: italic;
+  font-weight: 700;
+}
+
+/* ? ↓ Estilado para descripción de tecnologías (listas de definición) */
+#tecnologias-de-interes dd {
+  color: var(--color-subtext-zero);
+}
+
+/* ======================== ESTILOS DEL FOOTER ======================== */
+/* ? ↓ Centrado de textos y alineación de enlaces del Footer */
+footer p,
+address {
+  text-align: center;
 }

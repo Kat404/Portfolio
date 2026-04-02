@@ -8,10 +8,11 @@ Este proyecto es un portafolio personal minimalista construido con **Astro**. Su
 
 ## 🛠️ Tecnologías Usadas
 
-- **Astro 6.1.2** — Framework web para optimizar el rendimiento.
+- **Astro 6.1.3** — Framework web para optimizar el rendimiento.
 - **HTML5** — Estructura semántica avanzada.
 - **CSS3** — Diseño visual.
 - **Bun** — Runtime y gestor de paquetes.
+- **Wrangler** - Plataforma de Desarrollo para Cloudflare
 
 ## 🗂️ Estructura del Proyecto
 

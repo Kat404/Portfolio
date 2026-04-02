@@ -1,33 +1,34 @@
 ---
 // ↓ Creamos una "const" que se encargará de siempre tener actualizado el año del Copyright
 const year = new Date().getFullYear();
+// ↓ Importamos los Lucide Icons que vamos a usar dentro de nuestro Footer
+import { MessageSquareLock, MailPlus } from "@lucide/astro";
 ---
 
 <footer>
   <!-- * Footer: Nos permite tener un pie de página en nuestra web -->
   <!-- ? Suele ser común el derecho de copyright en las páginas webs, especialmente en empresas -->
-  <!--
-    * El lazy loading en imágenes es importante para mejorar el rendimiento de las páginas web
-    ! No se recomienda usar para imágenes que se van a ver a primera vista en cuanto se entre a la página
-    ? Se recomienda usarlo en imágenes en la parte inferior para UX y rendimiento en memoria
-  -->
-  <p>© {year} José Luis Ramírez Sánchez. Todos los derechos reservados.</p>
+  <p class="copyright">
+    © {year} José Luis Ramírez Sánchez. Todos los derechos reservados.
+  </p>
   <address>
     <p>
       <a
         href="mailto:xocemyst@duck.com"
         aria-label="Enviar un correo electrónico a xocemyst@duck.com"
+        rel="noreferrer noopener"
       >
-        <span aria-hidden="true">📬</span>
+        <MailPlus size={14} stroke-width={3} />
         Envíame un correo
       </a>
       <!-- ? mailto: Abre el cliente de correo del usuario y autocompleta el destinatario, útil si se usa el correo -->
       <a
         href="https://smp9.simplex.im/a#rMR3mX4XndQhxJgJ_qcma1NKD_uQ0PisFCCe_tAmXTw"
+        aria-label="Contacta conmigo mediante mensajería privada y segura SimpleX"
         target="_blank"
-        rel="noreferrer"
+        rel="noreferrer noopener"
       >
-        <span aria-hidden="true">💬</span>
+        <MessageSquareLock size={14} stroke-width={3} />
         SimpleX
       </a>
       <!-- ? smp9.simplex.im: Conecta al visitante con mi usuario de SimpleX para mensajería segura y privada -->

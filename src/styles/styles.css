@@ -15,8 +15,12 @@
   --color-subtext: oklch(0.8168 0.0403 272.86); /* ? Subtexto */
   --color-subtext-zero: oklch(0.751 0.0396 273.93); /* ? Subtexto más oscuro */
 
-  --color-text-blue: oklch(0.7664 0.1113 259.88); /* ? Texto en azul pálido */
+  --color-text-blue: oklch(0.7664 0.1113 259.88); /* ? Texto en azul */
   --color-text-lavender: oklch(0.8166 0.091 277.31); /* ? Texto en lavanda */
+  --color-text-sky: oklch(0.8467 0.0833 210.25); /* ? Texto en azul claro */
+  --color-text-mauve: oklch(
+    0.7871 0.1187 304.77
+  ); /* ? Texto en púrpura suave */
 }
 
 /* ======================== TIPOGRAFÍAS (FONT-FACES) ======================== */
@@ -115,74 +119,79 @@
 /* ======================== ESTILOS GLOBALES BASE (TAGS HTML) ======================== */
 /* ? Contiene estilos base que aplican a las etiquetas nativas de HTML (body, h1-h4, p, a, etc.) */
 
-/* ? ↓ Fondo principal del documento */
+/* ? ↓ Fondo principal del documento y fuente por defecto */
 body {
   background-color: var(--color-base);
+  color: var(--color-text);
+  font-family: "Maple Mono NF", monospace;
+  text-align: left;
+}
+
+/* ? ↓ Títulos y subtítulos destacan más claros */
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 700;
   text-align: center;
 }
 
-/* ? ↓ Definimos cambios específicos a nuestros títulos y subtítulos */
-body h2,
-h3,
-h4 {
-  color: var(--color-text);
-  font-family: "Maple Mono NF";
-  font-weight: 700;
-}
-
-/* ? ↓ Definimos cambios específicos a nuestro texto, listas y demás contenido */
-body p,
-ul,
-li {
-  color: var(--color-subtext);
-  font-family: "Maple Mono NF";
-  font-weight: 400;
-  text-align: justify;
-}
-
-/* ? ↓ Definimos cambios específicos a nuestras redirecciones y enlaces */
-body a {
+/* ? ↓ Enlaces con estilo diferenciado */
+a {
   color: var(--color-text-blue);
-  font-family: "Maple Mono NF";
   font-weight: 500;
   font-style: italic;
+  text-decoration: none;
+}
+
+/* ? ↓ Animación de subrayado al pasar el mouse */
+a:hover {
+  text-decoration: underline;
 }
 
 /* ======================== ESTILOS DE ELEMENTOS ESPECÍFICOS Y CLASES ======================== */
-/* ? Contiene estilos aplicados puntualmente mediante clases (.class) o ID (#id) a componentes */
+/* ? Contiene estilos aplicados puntualmente mediante clases (.class) */
 
 /* ? ↓ Título principal del Portfolio */
-#titulo-principal {
+.titulo-principal {
   color: var(--color-text-lavender);
-  font-family: "Maple Mono NF";
   font-weight: 800;
   font-style: italic;
 }
 
-/* ? ↓ Sección de curiosidades (details/summary) */
-#curiosidades summary {
-  color: var(--color-text);
-  font-family: "Maple Mono NF";
-  font-weight: 500;
+/* ? ↓ Clases utilitarias generales */
+.indice {
+  text-align: center;
 }
 
-#curiosidades p {
-  color: var(--color-subtext);
-  font-family: "Maple Mono NF";
-  font-weight: 400;
-}
-
-/* ? ↓ Estilado para textos de citas en el cuerpo */
-.quote {
-  color: var(--color-text);
-  font-family: "Maple Mono NF";
+.subrayado {
+  text-decoration: underline;
   font-style: italic;
-  font-weight: 700;
 }
 
-/* ? ↓ Estilado para descripción de tecnologías (listas de definición) */
-#tecnologias-de-interes dd {
+.quote {
+  color: var(--color-text-sky);
+  font-style: italic;
+  font-weight: 600;
+  text-align: center;
+}
+
+.copyright {
   color: var(--color-subtext-zero);
+  font-weight: 300;
+  font-style: italic;
+}
+
+/* ? ↓ Contenido secundario (descripciones, explicaciones y detalles) */
+.curiosidades-contenido,
+.descripcion,
+.tech-description {
+  color: var(--color-subtext);
+}
+
+.curiosidades-summary {
+  font-weight: 500;
+  cursor: pointer;
 }
 
 /* ======================== ESTILOS DEL FOOTER ======================== */

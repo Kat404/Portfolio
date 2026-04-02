@@ -1,30 +1,78 @@
+---
+// ↓ Importamos los Lucide Icons que vamos a usar dentro de nuestro Header
+import {
+  ChevronRight,
+  ChevronLeft,
+  User,
+  House,
+  HeartHandshake,
+  NotebookPen,
+  FolderCode,
+  Rocket,
+  Cat,
+  GitBranch,
+  UserRoundSearch,
+} from "@lucide/astro";
+---
+
 <header>
   <!-- * Header: Representa el encabezado del documento HTML, usualmente suele ser replicable y genérico dentro del abanico de la página web -->
-  <h1 id="titulo-principal">Portafolio Personal - José Luis Ramírez Sánchez</h1>
+  <h1 class="titulo-principal">
+    <ChevronRight size={20} stroke-width={10} />
+    Portafolio Personal
+    <ChevronLeft size={20} stroke-width={10} />
+    <br />
+    José Luis Ramírez Sánchez
+  </h1>
 
-  <nav id="indice" aria-label="Índice de Contenido">
+  <nav id="indice" class="indice" aria-label="Índice de Contenido">
     <!-- ? Nav: Nos permite tener un sistema de navegación en nuestra web, puede verse como un índice propio e integrado -->
-    <a href="#sobre-mi">Sobre mí</a>
-    <a href="#mi-vida">Mi Vida</a>
-    <a href="#mis-gustos">Mis Gustos</a>
-    <a href="#aficiones">Aficiones</a>
-    <a href="#mis-proyectos">Mis Proyectos</a>
-    <a href="#tecnologias-de-interes">Tecnologías de Interés</a>
-    <a href="#curiosidades">Curiosidades</a>
+    <a href="#bienvenido">
+      <House size={13} stroke-width={3} />
+      Inicio
+    </a>
+    <a href="#mi-vida">
+      <User size={13} stroke-width={3} />
+      Mi Vida
+    </a>
+    <a href="#aficiones">
+      <NotebookPen size={13} stroke-width={3} />
+      Aficiones
+    </a>
+    <a href="#mis-gustos">
+      <HeartHandshake size={13} stroke-width={3} />
+      Mis Gustos
+    </a>
+    <a href="#mis-proyectos">
+      <FolderCode size={13} stroke-width={3} />
+      Mis Proyectos
+    </a>
+    <a href="#tecnologias-de-interes">
+      <Rocket size={13} stroke-width={3} />
+      Tecnologías de Interés
+    </a>
+    <a href="#curiosidades">
+      <Cat size={13} stroke-width={3} />
+      Curiosidades
+    </a>
   </nav>
-  <nav id="indice-redes-sociales" aria-label="Redes Sociales">
+  <nav id="indice-redes-sociales" class="indice" aria-label="Redes Sociales">
     <a
       href="https://github.com/Kat404"
       target="_blank"
-      rel="noreferrer"
-      aria-label="Perfil de GitHub">GitHub</a
+      rel="noreferrer noopener"
+      aria-label="Perfil de GitHub"
     >
+      <GitBranch size={13} stroke-width={3} /> GitHub
+    </a>
     <a
       href="https://www.reddit.com/user/Kat_404"
       target="_blank"
-      rel="noreferrer"
-      aria-label="Perfil de Reddit">Reddit</a
+      rel="noreferrer noopener"
+      aria-label="Perfil de Reddit"
     >
+      <UserRoundSearch size={13} stroke-width={3} /> Reddit
+    </a>
   </nav>
   <!-- ? targer="_blank" significa que redirigirá a la página seleccionable pero en una Nueva Pestaña -->
   <!--

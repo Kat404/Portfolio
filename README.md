@@ -73,6 +73,7 @@ Análisis de accesibilidad, semántica y SEO.
 
 ### 📜 Historial de Versiones
 
+- **v1.5.0 (01/04/26):** Modularización revertida, añadición de íconos Lucide, ajustes al CSS.
 - **v1.4.0 (30/03/26):** Refactor CSS integral (variables `:root`, colores `oklch`, arquitectura Modular) y optimización de fuentes auto-alojadas.
 - **v1.3.1 (30/03/26):** Correción mínima dentro del README.md.
 - **v1.3.0 (30/03/26):** Implementación básica de CSS (con colores tipo Catppucin y fuente NF).

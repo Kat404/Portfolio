@@ -1,30 +1,235 @@
 ---
 // ↓ Importamos nuestro Layout Base
 import BaseLayout from "../layouts/BaseLayout.astro";
-// ↓ Importamos Componentes Modularizados
-import Bienvenido from "../components/Bienvenido.astro";
-import MiVida from "../components/MiVida.astro";
-import MisProyectos from "../components/MisProyectos.astro";
-import TecnologiasInteres from "../components/TecnologiasInteres.astro";
-import Curiosidades from "../components/Curiosidades.astro";
 ---
 
 <BaseLayout>
   <main>
-    <!-- 
-    ! Main: Representa el contenido principal del documento HTML, suele ser único y diferenciable, además de que solo puede haber una etique <main> en un archivo HTML
-    ? Notas: El <main> no se deben incluir elementos que se repitan en varias páginas, como el encabezado <header> o el pie de página <footer>, únicamente debe ir el contenido específico y condicional de esa página en cuestión
-    ? Notas Adicionales: A veces es preferible usar HTML semántico en vez de usar divs y spans para facilitar la accesibilidad y la comprensión de los motores de búsqueda aunque su uso no está prohibido para nada
-    ? Role: Define el rol del elemento, en este caso, el rol del <main> es "main", este sirve para que los motores de búsqueda y los lectores de pantalla puedan identificar el contenido principal de la página web
-    -->
-    <Bienvenido />
+    <section id="bienvenido">
+      <header>
+        <h2>¡Bienvenido!</h2>
+      </header>
+      <p>
+        Bienvenido a mi portafolio personal. Aquí encontrarás información sobre
+        mis
+        <strong>proyectos</strong>, habilidades y experiencia profesional además
+        de poder conocerme un poco más. ¿Estás listo?
+      </p>
+    </section>
 
-    <MiVida />
+    <section id="mi-vida">
+      <header>
+        <h2>Mi Vida</h2>
+      </header>
+      <p>
+        Actualmente soy un <em>estudiante</em> en <strong
+          >Ingeniería en Sistemas Computacionales</strong
+        >, me gustan mucho los Sistemas Operativos, en especial los tipo <strong
+          >UNIX</strong
+        >, me quiero enfocar en el desarrollo FrontEnd, diseño web y todo lo que
+        tenga que ver con la UI/UX de Interfaces Gráficas para usuarios modernos
+        y exigentes.
+      </p>
+      <h3 id="aficiones">Aficiones y Enfoques</h3>
+      <ul>
+        <li>
+          Sistemas Operativos: <span class="descripcion"
+            >Linux (Arch Linux), FreeBSD & próximamente OpenBSD.</span
+          >
+        </li>
+        <li>
+          Desarrollo Web (Aprendizaje Temprano): <span class="descripcion"
+            >HTML y CSS, con determinación para dominar frameworks para FrontEnd
+            como <strong>Astro</strong> con React y frameworks de CSS como Bootstrap
+            o TailwindCSS.</span
+          >
+        </li>
+        <li>
+          Mejoramiento de la seguridad & privacidad de sistemas y navegadores:
+          <span class="descripcion"
+            >AdBlockers, Firewalls, Sandboxing, etc.</span
+          >
+        </li>
+      </ul>
 
-    <MisProyectos />
+      <aside id="mis-gustos">
+        <header>
+          <h3>Mis Gustos</h3>
+        </header>
+        <p>Dentro de mis gustos personales están:</p>
+        <ul>
+          <li class="descripcion">El helado de vainilla y café</li>
+          <li class="descripcion">Los gatos <em>obviamente</em></li>
+          <li class="descripcion">Programar y aprender cada día más y más</li>
+          <li class="descripcion">
+            Hacer ejercicio de manera casual pero constante
+          </li>
+        </ul>
+      </aside>
+    </section>
 
-    <TecnologiasInteres />
+    <section id="mis-proyectos">
+      <header>
+        <h2>Mis Proyectos</h2>
+      </header>
+      <ul>
+        <li class="list-project">
+          <a
+            href="https://github.com/Kat404/linux_security.conf"
+            target="_blank"
+            rel="noopener noreferrer">Configuración Out-of-the-Box</a
+          >
+          para mejorar la seguridad nativa de Linux mediante <em>systemd</em>
+        </li>
+        <li class="list-project">
+          <a
+            href="https://github.com/Kat404/ZSH-Terminal"
+            target="_blank"
+            rel="noopener noreferrer">ZSH-Terminal</a
+          >: Guía básica para el uso y personalización de la shell <strong
+            >Zsh</strong
+          >
+        </li>
+        <li class="list-project">
+          <a
+            href="https://github.com/Kat404/FISH-Terminal"
+            target="_blank"
+            rel="noopener noreferrer">FISH-Terminal</a
+          >: Guía básica para el uso y personalización de la shell <strong
+            >Fish</strong
+          >
+        </li>
+        <li class="list-project">
+          <a
+            href="https://github.com/Kat404/dotfiles"
+            target="_blank"
+            rel="noopener noreferrer">Dotfiles</a
+          >: Configuración personal para sistemas operativos Linux y demás
+          configuraciones para mucho software que utilizo para desarrollar y
+          vivir Linux de manera <em>Awesome</em>
+        </li>
+        <li class="list-project">
+          <a
+            href="https://github.com/JoseAlbertRuiL/Quinta-Dalam"
+            target="_blank"
+            rel="noopener noreferrer">Hotel Quinta Dalam</a
+          >: Sitio web Hotelero personalizado para cliente en Michoacán, México.
+          Desarrollado en pares usando Astro, React & JS nativo. Primer proyecto
+          real de manera formal.
+        </li>
+      </ul>
+    </section>
 
-    <Curiosidades />
+    <section id="tecnologias-de-interes">
+      <header>
+        <h2>Tecnologías de Interés</h2>
+      </header>
+      <p>Fundamentalmente son las básicas dentro del desarrollo web:</p>
+      <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+      </ul>
+      <p>
+        Fuera de los lenguajes de marcado, estilo y programación "básicos", me
+        encanta estar aprendiendo acerca de:
+      </p>
+      <ul>
+        <li>
+          <strong>Framework Principal:</strong>
+          <span class="subrayado">Astro</span>, me encanta el hecho de poder
+          modular, crear y usar componentes, layouts y diferentes recursos para
+          el proyecto en el que esté trabajando o en futuros proyectos.
+        </li>
+        <li>
+          <strong>Librería Popular:</strong>
+          <span class="subrayado">React</span>, me gusta la idea de poner
+          implementar y complementar las diferentes capacidades y ventajas de
+          Astro con un toque moderno, portable y con un transfondo sumamente
+          comercial y con mucha documentación aunque su complejidad sea
+          relativamente alta al principio.
+        </li>
+        <li>
+          <strong>Framework CSS:</strong>
+          <span class="subrayado">TailwindCSS/UnoCSS/PicoCSS</span>, no solo
+          existen frameworks para cuestiones de lógica, organización y
+          optimización de un proyecto web, si no que, también existen frameworks
+          para poder crear, modificar y mantener cientas de líneas CSS con mayor
+          facilidad. Esos son los frameworks que más me interesa aprender. ¿Por
+          qué?
+        </li>
+      </ul>
+      <dl>
+        <dt>
+          <strong> TailwindCSS: </strong>
+        </dt>
+        <dd class="tech-description">
+          El más moderno y capaz de todos, tiene un ecosistema (shadcn, DaisyUI)
+          y uso increíble dentro de la industria, con su número motor en Rust
+          desde la versión v4.x la velocidad ya no es algo secundario dentro de
+          este framework.
+        </dd>
+
+        <dt>
+          <strong> UnoCSS: </strong>
+        </dt>
+        <dd class="tech-description">
+          Dentro de un mundo lleno de bloatware y runtimes <em>pesados</em>,
+          UnoCSS aparece como una opción <strong>atómica</strong> y verdaderamente
+          extremadamente
+          <strong>rápida</strong>, generando un bundle pequeño y optimizando
+          todo al máximo, aunque si capacidad atómica suena interesante y
+          desafiante, me gustaría echarle un vistazo más tarde.
+        </dd>
+
+        <dt>
+          <strong> PicoCSS: </strong>
+        </dt>
+        <dd class="tech-description">
+          Ligereza y rendimiento en su máximo esplendor, un framework <strong
+            >classless</strong
+          >, Pico utiliza las etiquetas nativas de HTML para aplicar el estilo.
+          Muy bueno para proyectos donde el desarrollo del HTML es prioridad.
+        </dd>
+      </dl>
+      <blockquote class="quote">
+        "Todo aprendizaje lleva tiempo, sudor y esfuerzo. Es un largo camino
+        pero no imposible de cursar"
+      </blockquote>
+    </section>
+
+    <section id="curiosidades">
+      <header>
+        <h2>Curiosidades sobre Mí</h2>
+      </header>
+      <details open>
+        <summary class="curiosidades-summary"
+          >¿Cuál es tu color favorito?</summary
+        >
+        <p class="curiosidades-contenido">
+          Mi color favorito es el negro aunque también me encanta el color azul.
+          Dentro de Internet, me encanta la paleta de colores de Catppuccin, se
+          me hacen unos colores muy estéticos y bonitos.
+        </p>
+      </details>
+      <details>
+        <summary class="curiosidades-summary">¿Qué navegador usas?</summary>
+        <p class="curiosidades-contenido">
+          Actualmente uso <strong>Firefox</strong> aunque con la polémica acerca de
+          su nuevo CEO y la integración de la IA sobre Firefox me hace dudar sobre
+          si seguir utilizándolo aunque sea mi navegador favorito.
+        </p>
+      </details>
+      <details>
+        <summary class="curiosidades-summary"
+          >¿Cuál es tu sabor de helado favorito?</summary
+        >
+        <p class="curiosidades-contenido">
+          Soy muy variado, me gusta desde el chocolate y sus variantes, la
+          vainilla, el café, mamey, coco, etc. Mientras sea helado sé que me
+          gustará mucho.
+        </p>
+      </details>
+    </section>
   </main>
 </BaseLayout>

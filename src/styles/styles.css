@@ -144,11 +144,6 @@ a {
   text-decoration: none;
 }
 
-/* ? ↓ Animación de subrayado al pasar el mouse */
-a:hover {
-  text-decoration: underline;
-}
-
 /* ======================== ESTILOS DE ELEMENTOS ESPECÍFICOS Y CLASES ======================== */
 /* ? Contiene estilos aplicados puntualmente mediante clases (.class) */
 

@@ -12,7 +12,7 @@ Este proyecto es un portafolio personal minimalista construido con **Astro**. Su
 - **HTML5** — Estructura semántica avanzada.
 - **CSS3** — Diseño visual.
 - **Bun** — Runtime y gestor de paquetes.
-- **Wrangler** - Plataforma de Desarrollo para Cloudflare
+- **Wrangler** — Plataforma de Desarrollo para Cloudflare
 
 ## 🗂️ Estructura del Proyecto
 
@@ -74,6 +74,7 @@ Análisis de accesibilidad, semántica y SEO.
 
 ### 📜 Historial de Versiones
 
+- **v1.6.0 (02/04/26):** Integración inicial de animaciones, transiciones y apariciones usando CSS & JS.
 - **v1.5.0 (01/04/26):** Modularización revertida, añadición de íconos Lucide, ajustes al CSS.
 - **v1.4.0 (30/03/26):** Refactor CSS integral (variables `:root`, colores `oklch`, arquitectura Modular) y optimización de fuentes auto-alojadas.
 - **v1.3.1 (30/03/26):** Correción mínima dentro del README.md.

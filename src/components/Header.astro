@@ -11,13 +11,14 @@ import {
   Rocket,
   Cat,
   GitBranch,
+  FolderGit2,
   UserRoundSearch,
 } from "@lucide/astro";
 ---
 
 <header>
   <!-- * Header: Representa el encabezado del documento HTML, usualmente suele ser replicable y genérico dentro del abanico de la página web -->
-  <h1 class="titulo-principal">
+  <h1 class="titulo-principal hidden-item">
     <ChevronRight size={20} stroke-width={10} />
     Portafolio Personal
     <ChevronLeft size={20} stroke-width={10} />
@@ -25,7 +26,7 @@ import {
     José Luis Ramírez Sánchez
   </h1>
 
-  <nav id="indice" class="indice" aria-label="Índice de Contenido">
+  <nav id="indice" class="indice hidden" aria-label="Índice de Contenido">
     <!-- ? Nav: Nos permite tener un sistema de navegación en nuestra web, puede verse como un índice propio e integrado -->
     <a href="#bienvenido">
       <House size={13} stroke-width={3} />
@@ -56,7 +57,11 @@ import {
       Curiosidades
     </a>
   </nav>
-  <nav id="indice-redes-sociales" class="indice" aria-label="Redes Sociales">
+  <nav
+    id="indice-redes-sociales"
+    class="indice hidden"
+    aria-label="Redes Sociales"
+  >
     <a
       href="https://github.com/Kat404"
       target="_blank"
@@ -64,6 +69,15 @@ import {
       aria-label="Perfil de GitHub"
     >
       <GitBranch size={13} stroke-width={3} /> GitHub
+    </a>
+    <a
+      href="https://codeberg.org/Kat404"
+      target="_blank"
+      rel="noreferrer noopener"
+      aria-label="Perfil de Codeberg"
+    >
+      <FolderGit2 size={13} stroke-width={3} />
+      Codeberg
     </a>
     <a
       href="https://www.reddit.com/user/Kat_404"

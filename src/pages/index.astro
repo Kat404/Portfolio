@@ -5,7 +5,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 <BaseLayout>
   <main>
-    <section id="bienvenido">
+    <section id="bienvenido" class="hidden">
       <header>
         <h2>¡Bienvenido!</h2>
       </header>
@@ -17,7 +17,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </p>
     </section>
 
-    <section id="mi-vida">
+    <section id="mi-vida" class="hidden">
       <header>
         <h2>Mi Vida</h2>
       </header>
@@ -52,7 +52,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         </li>
       </ul>
 
-      <aside id="mis-gustos">
+      <aside id="mis-gustos" class="hidden">
         <header>
           <h3>Mis Gustos</h3>
         </header>
@@ -68,7 +68,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </aside>
     </section>
 
-    <section id="mis-proyectos">
+    <section id="mis-proyectos" class="hidden">
       <header>
         <h2>Mis Proyectos</h2>
       </header>
@@ -114,13 +114,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             target="_blank"
             rel="noopener noreferrer">Hotel Quinta Dalam</a
           >: Sitio web Hotelero personalizado para cliente en Michoacán, México.
-          Desarrollado en pares usando Astro, React & JS nativo. Primer proyecto
-          real de manera formal.
+          Desarrollado en pares usando Astro, React & JS nativo.
+          <span class="subrayado">
+            Primer proyecto real en un ámbito formal.
+          </span>
         </li>
       </ul>
     </section>
 
-    <section id="tecnologias-de-interes">
+    <section id="tecnologias-de-interes" class="hidden">
       <header>
         <h2>Tecnologías de Interés</h2>
       </header>
@@ -198,7 +200,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </blockquote>
     </section>
 
-    <section id="curiosidades">
+    <section id="curiosidades" class="hidden">
       <header>
         <h2>Curiosidades sobre Mí</h2>
       </header>

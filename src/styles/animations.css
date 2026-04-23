@@ -67,7 +67,7 @@ a::after {
   content: "";
   position: absolute;
   left: 5%; /* Empieza con un pequeño margen interno para no tocar el borde */
-  bottom: -4px; /* Un pelín más abajo para que "respire" más el icono */
+  bottom: -2px; /* Un pelín más abajo para que "respire" más el icono */
   width: 90%; /* No llega al 100% para no cruzar toda el área con el icono */
   height: 2px;
   background-color: currentColor;

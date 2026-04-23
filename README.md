@@ -8,7 +8,7 @@ Este proyecto es un portafolio personal minimalista construido con **Astro**. Su
 
 ## 🛠️ Tecnologías Usadas
 
-- **Astro 6.1.3** — Framework web para optimizar el rendimiento.
+- **Astro 6.x** — Framework web para optimizar el rendimiento.
 - **HTML5** — Estructura semántica avanzada.
 - **CSS3** — Diseño visual.
 - **Bun** — Runtime y gestor de paquetes.
@@ -62,9 +62,14 @@ Análisis de accesibilidad, semántica y SEO.
 
 ### ⏳ Pendientes & Futuras Mejoras
 
-- [ ] **Diseño Responsivo & Layout Base** — Limitar el ancho de lectura (max-width), centrar el contenido y asegurar espaciados (paddings/margins) consistentes.
 - [x] **Sistema de Tipografía Mejorado** — Ajustar alturas de línea (line-height), jerarquía visual de tamaños (clamp/rem) e interlineado para legibilidad en fuentes monospace. (Implementado vía `@font-face` y WOFF2).
-- [ ] **Navegación (Header & Nav)** — Convertir el menú de navegación en una barra flexible (Flexbox), horizontal y fija (sticky) para facilitar el recorrido.
+- [ ] **Diseño Responsivo & Layout Base** — Limitar el ancho de lectura (max-width), centrar el contenido y asegurar espaciados (paddings/margins) consistentes.
+- [ ] **Refactorización de Navegación (Header UI/UX Avanzado)** — Evolucionar el menú estático hacia una experiencia interactiva premium:
+  - [x] **Arquitectura de Contención:** Implementar un *wrapper* lógico con `max-width` para evitar desbordamientos en resoluciones ultrawide y centrar la estructura de lectura.
+  - [ ] **Flujo y Persistencia (Flexbox & Sticky):** Migrar el layout usando `display: flex` (`justify-content: space-between`) y anclarlo dinámicamente con `position: sticky; top: 0; z-index: 50;` para acceso continuo.
+  - [ ] **Estética de Renderizado (Glassmorphism):** Usar variables de entorno (Mocha Base/Mantle) con canal Alpha (transparencia, ej. `color-mix`) y delegar el desenfoque de fondo al motor de renderizado mediante `backdrop-filter: blur(12px);`.
+  - [ ] **Micro-interacciones & Feedback Visual:** Orquestar animaciones con `transition: all 0.3s ease;`. Aplicar en estados `:hover` mutaciones de color a acentos (Mocha Mauve/Sapphire) y traslaciones espaciales (`transform: translateY(-2px)`).
+  - [ ] **Ingeniería Responsiva (Mobile-First/Graceful Degradation):** Gestionar el desbordamiento en dispositivos móviles mediante Media Queries (`@media`). Estudiar la conversión a `flex-direction: column`, uso de menú tipo "Hamburguesa", o desbordamiento controlado con `overflow-x: auto;`.
 - [ ] **Tarjetas de Proyectos (Cards)** — Transformar las listas de proyectos en tarjetas interactivas con efectos de hover (elevación/transición).
 - [ ] **Micro-interacciones y Animaciones** — Scroll suave (smooth scrolling), transiciones sutiles en botones/enlaces, y personalización de los acordeones (`<details>`).
 - [ ] **Internacionalización** — Activar la versión en Inglés (`hreflang`).

@@ -144,6 +144,14 @@ a {
   text-decoration: none;
 }
 
+header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: rgba(30, 30, 46, 0.85);
+  backdrop-filter: blur(12px);
+}
+
 /* ======================== ESTILOS DE ELEMENTOS ESPECÍFICOS Y CLASES ======================== */
 /* ? Contiene estilos aplicados puntualmente mediante clases (.class) */
 
@@ -155,8 +163,36 @@ a {
 }
 
 /* ? ↓ Clases utilitarias generales */
+.header-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column; /* Apila el título arriba y la navegación abajo */
+  align-items: center; /* Centra ambos grandes bloques en el eje transversal */
+  justify-content: center;
+  gap: 1.5rem; /* Separación lógica entre el Título y el bloque de Navegación */
+  padding: 1rem 0; /* Espacio vertical */
+}
+
+.nav-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+
 .indice {
-  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.5rem;
+}
+
+.indice a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .subrayado {

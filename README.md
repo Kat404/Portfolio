@@ -50,13 +50,13 @@ Análisis de accesibilidad, semántica y SEO.
 
 ### 🌟 Mejoras Implementadas
 
-| Categoría | Mejora Realizada | Impacto |
-| :--- | :--- | :--- |
-| **Arquitectura** | Modularización en Layouts y Componentes | Mantenibilidad |
-| **Semántica** | Corrección de jerarquía de encabezados (H1-H2) | SEO / Accesibilidad |
-| **Accesibilidad** | Uso de `aria-labelledby` y `aria-hidden` | Lectores de pantalla |
-| **SEO** | Metaetiquetas Open Graph y Twitter Cards | Presencia en redes |
-| **Buenas Prácticas** | Limpieza de atributos de presentación y lógica dinámica | Código limpio |
+| Categoría            | Mejora Realizada                                        | Impacto              |
+| :------------------- | :------------------------------------------------------ | :------------------- |
+| **Arquitectura**     | Modularización en Layouts y Componentes                 | Mantenibilidad       |
+| **Semántica**        | Corrección de jerarquía de encabezados (H1-H2)          | SEO / Accesibilidad  |
+| **Accesibilidad**    | Uso de `aria-labelledby` y `aria-hidden`                | Lectores de pantalla |
+| **SEO**              | Metaetiquetas Open Graph y Twitter Cards                | Presencia en redes   |
+| **Buenas Prácticas** | Limpieza de atributos de presentación y lógica dinámica | Código limpio        |
 
 ---
 
@@ -65,9 +65,9 @@ Análisis de accesibilidad, semántica y SEO.
 - [x] **Sistema de Tipografía Mejorado** — Ajustar alturas de línea (line-height), jerarquía visual de tamaños (clamp/rem) e interlineado para legibilidad en fuentes monospace. (Implementado vía `@font-face` y WOFF2).
 - [ ] **Diseño Responsivo & Layout Base** — Limitar el ancho de lectura (max-width), centrar el contenido y asegurar espaciados (paddings/margins) consistentes.
 - [ ] **Refactorización de Navegación (Header UI/UX Avanzado)** — Evolucionar el menú estático hacia una experiencia interactiva premium:
-  - [x] **Arquitectura de Contención:** Implementar un *wrapper* lógico con `max-width` para evitar desbordamientos en resoluciones ultrawide y centrar la estructura de lectura.
-  - [ ] **Flujo y Persistencia (Flexbox & Sticky):** Migrar el layout usando `display: flex` (`justify-content: space-between`) y anclarlo dinámicamente con `position: sticky; top: 0; z-index: 50;` para acceso continuo.
-  - [ ] **Estética de Renderizado (Glassmorphism):** Usar variables de entorno (Mocha Base/Mantle) con canal Alpha (transparencia, ej. `color-mix`) y delegar el desenfoque de fondo al motor de renderizado mediante `backdrop-filter: blur(12px);`.
+  - [x] **Arquitectura de Contención:** Implementar un _wrapper_ lógico con `max-width` para evitar desbordamientos en resoluciones ultrawide y centrar la estructura de lectura.
+  - [x] **Flujo y Persistencia (Flexbox & Sticky):** Migrar el layout usando `display: flex` (`justify-content: center`) y anclarlo dinámicamente con `position: sticky; top: 0; z-index: 50;` para acceso continuo.
+  - [x] **Estética de Renderizado (Glassmorphism):** Usar variables de entorno (Mocha Base/Mantle) con canal Alpha (transparencia, ej. `color-mix`) y delegar el desenfoque de fondo al motor de renderizado mediante `backdrop-filter: blur(12px);`.
   - [ ] **Micro-interacciones & Feedback Visual:** Orquestar animaciones con `transition: all 0.3s ease;`. Aplicar en estados `:hover` mutaciones de color a acentos (Mocha Mauve/Sapphire) y traslaciones espaciales (`transform: translateY(-2px)`).
   - [ ] **Ingeniería Responsiva (Mobile-First/Graceful Degradation):** Gestionar el desbordamiento en dispositivos móviles mediante Media Queries (`@media`). Estudiar la conversión a `flex-direction: column`, uso de menú tipo "Hamburguesa", o desbordamiento controlado con `overflow-x: auto;`.
 - [ ] **Tarjetas de Proyectos (Cards)** — Transformar las listas de proyectos en tarjetas interactivas con efectos de hover (elevación/transición).
@@ -79,6 +79,7 @@ Análisis de accesibilidad, semántica y SEO.
 
 ### 📜 Historial de Versiones
 
+- **v1.7.0 (02/05/26):** Correción de semántica, mejora visual y de animaciones. Preparando animaciones extras.
 - **v1.6.0 (02/04/26):** Integración inicial de animaciones, transiciones y apariciones usando CSS & JS.
 - **v1.5.0 (01/04/26):** Modularización revertida, añadición de íconos Lucide, ajustes al CSS.
 - **v1.4.0 (30/03/26):** Refactor CSS integral (variables `:root`, colores `oklch`, arquitectura Modular) y optimización de fuentes auto-alojadas.
@@ -89,4 +90,5 @@ Análisis de accesibilidad, semántica y SEO.
 - **v1.0.0 (28/03/26):** Migración exitosa de HTML puro a estructura modular en Astro con Layouts.
 
 ---
-*Para detalles técnicos sobre por qué se hicieron estos cambios, consulta el archivo [NOTES.md](./NOTES.md).*
+
+_Para detalles técnicos sobre por qué se hicieron estos cambios, consulta el archivo [NOTES.md](./NOTES.md)._

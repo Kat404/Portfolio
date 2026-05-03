@@ -119,6 +119,11 @@
 /* ======================== ESTILOS GLOBALES BASE (TAGS HTML) ======================== */
 /* ? Contiene estilos base que aplican a las etiquetas nativas de HTML (body, h1-h4, p, a, etc.) */
 
+html {
+  scroll-padding-top: 110px;
+  scroll-behavior: smooth;
+}
+
 /* ? ↓ Fondo principal del documento y fuente por defecto */
 body {
   background-color: var(--color-base);
@@ -144,12 +149,16 @@ a {
   text-decoration: none;
 }
 
-header {
-  position: sticky;
+.header-site {
+  /* position: sticky; */
   top: 0;
   z-index: 50;
   background-color: rgba(30, 30, 46, 0.85);
   backdrop-filter: blur(12px);
+  will-change: background-color, padding;
+  transition:
+    background-color 0.4s ease,
+    padding 0.4s ease;
 }
 
 /* ======================== ESTILOS DE ELEMENTOS ESPECÍFICOS Y CLASES ======================== */
@@ -193,6 +202,11 @@ header {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+.nav-text {
+  display: inline-block;
+  white-space: nowrap;
 }
 
 .subrayado {

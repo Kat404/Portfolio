@@ -16,7 +16,7 @@ import {
 } from "@lucide/astro";
 ---
 
-<header>
+<header class="header-site">
   <!-- * Header: Representa el encabezado del documento HTML, usualmente suele ser replicable y genérico dentro del abanico de la página web -->
   <div class="header-wrapper">
     <h1 class="titulo-principal hidden-item">
@@ -32,31 +32,31 @@ import {
         <!-- ? Nav: Nos permite tener un sistema de navegación en nuestra web, puede verse como un índice propio e integrado -->
         <a href="#bienvenido">
           <House size={13} stroke-width={3} />
-          Inicio
+          <span class="nav-text"> Inicio </span>
         </a>
         <a href="#mi-vida">
           <User size={13} stroke-width={3} />
-          Mi Vida
+          <span class="nav-text"> Mi Vida </span>
         </a>
         <a href="#aficiones">
           <NotebookPen size={13} stroke-width={3} />
-          Aficiones
+          <span class="nav-text"> Aficiones </span>
         </a>
         <a href="#mis-gustos">
           <HeartHandshake size={13} stroke-width={3} />
-          Mis Gustos
+          <span class="nav-text"> Mis Gustos </span>
         </a>
         <a href="#mis-proyectos">
           <FolderCode size={13} stroke-width={3} />
-          Mis Proyectos
+          <span class="nav-text"> Mis Proyectos </span>
         </a>
         <a href="#tecnologias-de-interes">
           <Rocket size={13} stroke-width={3} />
-          Tecnologías de Interés
+          <span class="nav-text"> Tecnologías de Interés </span>
         </a>
         <a href="#curiosidades">
           <Cat size={13} stroke-width={3} />
-          Curiosidades
+          <span class="nav-text"> Curiosidades </span>
         </a>
       </nav>
       <nav
@@ -70,7 +70,8 @@ import {
           rel="noreferrer noopener"
           aria-label="Perfil de GitHub"
         >
-          <GitBranch size={13} stroke-width={3} /> GitHub
+          <GitBranch size={13} stroke-width={3} />
+          <span class="nav-text"> GitHub </span>
         </a>
         <a
           href="https://codeberg.org/Kat404"
@@ -79,7 +80,7 @@ import {
           aria-label="Perfil de Codeberg"
         >
           <FolderGit2 size={13} stroke-width={3} />
-          Codeberg
+          <span class="nav-text"> Codeberg </span>
         </a>
         <a
           href="https://www.reddit.com/user/Kat_404"
@@ -87,7 +88,8 @@ import {
           rel="noreferrer noopener"
           aria-label="Perfil de Reddit"
         >
-          <UserRoundSearch size={13} stroke-width={3} /> Reddit
+          <UserRoundSearch size={13} stroke-width={3} />
+          <span class="nav-text"> Reddit </span>
         </a>
       </nav>
     </div>
@@ -100,3 +102,23 @@ import {
     ? noreferrer: Define que no se envíe información del navegador al enlace, bueno por motivos de privacidad
   -->
 </header>
+<script>
+  const header = document.querySelector(".header-site");
+  let ticking = false;
+
+  window.addEventListener("scroll", () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        // Histéresis: Activamos en 80px, desactivamos en 30px.
+        // Esto evita el glitch de "TV antigua" al cambiar de tamaño el layout.
+        if (window.scrollY > 50) {
+          header.classList.add("scrolled");
+        } else if (window.scrollY < 30) {
+          header.classList.remove("scrolled");
+        }
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+</script>

@@ -3,27 +3,31 @@
 /* ? ↓ Clase para ocultar elementos enteros (sin importar sus hijos) */
 .js-enabled .hidden-item {
   opacity: 0;
-  transform: translateY(20px);
-  transition: all 2s ease-out;
+  translate: 0 20px;
+  transition:
+    opacity 1.5s ease-out,
+    translate 5s ease-out;
 }
 
 /* ? ↓ Al revelar, reaparece el elemento individual a su estado normal */
 .js-enabled .hidden-item.reveal {
   opacity: 1;
-  transform: translateY(0);
+  translate: 0 0;
 }
 
 /* ? ↓ Clase para ocultar los hijos (efecto cascada o staggering) */
 .js-enabled .hidden > * {
   opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.6s ease-out;
+  translate: 0 20px;
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
 }
 
 /* ? ↓ Clase para revelar o que aparezcan los hijos en cascada */
 .js-enabled .reveal > * {
   opacity: 1;
-  transform: translateY(0);
+  translate: 0 0;
 }
 
 /* ? ↓ Los hijos dentro de la sección 'hidden' van apareciendo poco a poco */
@@ -58,9 +62,12 @@
   transition-delay: 1s;
 }
 
+/* ? Mantenemos el color definido en styles.css */
 a {
   position: relative;
-  /* ? Mantenemos el color definido en styles.css */
+  transition:
+    color 0.1s ease,
+    transform 0.1s ease;
 }
 
 a::after {
@@ -81,4 +88,9 @@ a:hover::after {
   transform: scaleX(
     1
   ); /* Regresa a su 100% (del 90% definido arriba) en hover */
+}
+
+a:hover {
+  color: var(--color-mauve, #cba6f7);
+  transform: translateY(-2px);
 }

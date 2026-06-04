@@ -8,19 +8,27 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "bun run build && wrangler dev",
+    "preview": "aube run build && wrangler dev",
     "astro": "astro",
     "generate-types": "wrangler types",
-    "deploy": "bun run build && wrangler deploy"
+    "deploy": "aube run build && wrangler deploy"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^13.3.0",
-    "@lucide/astro": "^1.14.0",
-    "astro": "^6.2.1",
+    "@astrojs/cloudflare": "^13.6.1",
+    "@lucide/astro": "^1.17.0",
+    "astro": "^6.4.3",
     "prettier-plugin-astro": "^0.14.1",
-    "wrangler": "^4.87.0"
+    "wrangler": "^4.97.0"
   },
   "overrides": {
-    "vite": "^7"
+    "vite": "^7",
+    "tinyclip": "0.1.10"
+  },
+  "aube": {
+    "allowBuilds": {
+      "esbuild": true,
+      "sharp": true,
+      "workerd": true
+    }
   }
 }

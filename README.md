@@ -11,7 +11,7 @@ Este proyecto es un portafolio personal minimalista construido con **Astro**. Su
 - **Astro 6.x** — Framework web para optimizar el rendimiento.
 - **HTML5** — Estructura semántica avanzada.
 - **CSS3** — Diseño visual.
-- **Bun** — Runtime y gestor de paquetes.
+- **Aube** — Gestor de paquetes de NodeJS de alto rendimiento.
 - **Wrangler** — Plataforma de Desarrollo para Cloudflare
 
 ## 🗂️ Estructura del Proyecto
@@ -35,10 +35,10 @@ Portfolio/
 
 ```bash
 # Instalar dependencias
-bun install
+aube install
 
 # Iniciar servidor de desarrollo
-bun dev
+aube run dev
 ```
 
 ---

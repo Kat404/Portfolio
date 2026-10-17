@@ -18,22 +18,10 @@
 }
 
 /* ======================== TIPOGRAFÍAS (FONT-FACES) ======================== */
-/* * Tipografía principal: Maple Mono NF (Ligth, Regular, Medium, SemiBold, Bold, ExtraBold) */
-
-@font-face {
-  font-family: "Maple Mono NF";
-  src: url(/fonts/MapleMono-Light.ttf.woff2) format("woff2");
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Maple Mono NF";
-  src: url(/fonts/MapleMono-LightItalic.ttf.woff2) format("woff2");
-  font-weight: 300;
-  font-style: italic;
-  font-display: swap;
-}
+/* * Tipografía principal: Maple Mono NF.
+  * Solo se declaran los pesos 400 y 700 (normal e itálica): son los únicos que
+  * pide el CSS. Cada peso extra son ~80 KB que el navegador descarga y nadie lee.
+  * Si agregas un peso nuevo, decláralo aquí Y úsalo en una regla. */
 
 @font-face {
   font-family: "Maple Mono NF";
@@ -49,37 +37,6 @@
   font-style: italic;
   font-display: swap;
 }
-
-@font-face {
-  font-family: "Maple Mono NF";
-  src: url(/fonts/MapleMono-Medium.ttf.woff2) format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Maple Mono NF";
-  src: url(/fonts/MapleMono-MediumItalic.ttf.woff2) format("woff2");
-  font-weight: 500;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Maple Mono NF";
-  src: url(/fonts/MapleMono-SemiBold.ttf.woff2) format("woff2");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Maple Mono NF";
-  src: url(/fonts/MapleMono-SemiBoldItalic.ttf.woff2) format("woff2");
-  font-weight: 600;
-  font-style: italic;
-  font-display: swap;
-}
-
 @font-face {
   font-family: "Maple Mono NF";
   src: url(/fonts/MapleMono-Bold.ttf.woff2) format("woff2");
@@ -91,21 +48,6 @@
   font-family: "Maple Mono NF";
   src: url(/fonts/MapleMono-BoldItalic.ttf.woff2) format("woff2");
   font-weight: 700;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Maple Mono NF";
-  src: url(/fonts/MapleMono-ExtraBold.ttf.woff2) format("woff2");
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Maple Mono NF";
-  src: url(/fonts/MapleMono-ExtraBoldItalic.ttf.woff2) format("woff2");
-  font-weight: 800;
   font-style: italic;
   font-display: swap;
 }
@@ -127,6 +69,14 @@ body {
 }
 
 /* ? ↓ Títulos y subtítulos destacan más claros */
+/* ? ↓ Ancho máximo de lectura: sin esto los párrafos ocupan la pantalla completa (170 caracteres por línea) */
+main {
+  max-width: 60rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+/* ? ↓ Títulos y subtítulos destacan más claros */
 h1,
 h2,
 h3,
@@ -138,7 +88,7 @@ h4 {
 /* ? ↓ Enlaces con estilo diferenciado */
 a {
   color: var(--color-text-blue);
-  font-weight: 500;
+  font-weight: 400;
   font-style: italic;
   text-decoration: none;
 }
@@ -161,7 +111,7 @@ a {
 /* ? ↓ Título principal del Portfolio */
 .titulo-principal {
   color: var(--color-text-lavender);
-  font-weight: 800;
+  font-weight: 700;
   font-style: italic;
 }
 
@@ -211,13 +161,13 @@ a {
 .quote {
   color: var(--color-text-sky);
   font-style: italic;
-  font-weight: 600;
+  font-weight: 700;
   text-align: center;
 }
 
 .copyright {
   color: var(--color-subtext-zero);
-  font-weight: 300;
+  font-weight: 400;
   font-style: italic;
 }
 
@@ -229,8 +179,94 @@ a {
 }
 
 .curiosidades-summary {
-  font-weight: 500;
+  font-weight: 400;
   cursor: pointer;
+}
+
+/* ? ↓ Tarjetas de proyecto: rejilla que se reacomoda sola, rol arriba y enlaces al pie */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  gap: 1.25rem;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--color-base-darkest);
+  border-radius: 0.75rem;
+  background-color: var(--color-base-darker);
+}
+
+/* ? ↓ Captura del proyecto: encabezado visual de la tarjeta, siempre 16:10 */
+.project-shot {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-base-darkest);
+}
+
+/* ? ↓ Sección "Qué hago": el enunciado de la oferta, arriba del pliegue */
+.servicio-lead {
+  color: var(--color-text);
+  font-size: 1.1rem;
+}
+
+.servicio-lista {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.servicio-contacto {
+  padding-top: 0.5rem;
+  border-top: 1px dashed var(--color-base-darkest);
+}
+
+.stack-lista {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.project-title {
+  margin: 0;
+  color: var(--color-text-lavender);
+  text-align: left;
+}
+
+/* ? ↓ El rol y los hechos van en tono secundario para no competir con el título */
+.project-role,
+.project-facts {
+  margin: 0;
+  color: var(--color-subtext);
+}
+
+.project-facts {
+  display: grid;
+  gap: 0.25rem;
+  padding-left: 1.2rem;
+  font-size: 0.9rem;
+}
+
+.project-facts strong {
+  color: var(--color-text-mauve);
+}
+
+.project-card code {
+  color: var(--color-text-sky);
+}
+
+/* ? ↓ `margin-top: auto` empuja los enlaces al fondo y alinea todas las tarjetas */
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin: auto 0 0;
+  padding-top: 0.6rem;
+  border-top: 1px dashed var(--color-base-darkest);
 }
 
 /* ======================== ESTILOS DEL FOOTER ======================== */
@@ -238,4 +274,28 @@ a {
 footer p,
 address {
   text-align: center;
+}
+
+/* ======================== PANTALLAS ANGOSTAS ======================== */
+/* ? ↓ Smartphone (≤ 40rem): el índice se compacta y las tarjetas pierden padding */
+@media (max-width: 40rem) {
+  .indice {
+    gap: 0.35rem 0.85rem;
+  }
+
+  .nav-text {
+    font-size: 0.82rem;
+  }
+
+  .header-wrapper {
+    gap: 1rem;
+  }
+
+  .titulo-principal {
+    font-size: 1.55rem;
+  }
+
+  .project-card {
+    padding: 0.85rem 0.9rem;
+  }
 }

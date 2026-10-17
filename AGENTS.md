@@ -25,3 +25,18 @@ release. Add a tool name to select part of the graph. For example, run
 - [ ] If setup, runtime, or package-manager behavior looks wrong, run `vp env doctor` and include its output when asking for help.
 
 <!--VITE PLUS END-->
+
+<!--ODD START-->
+
+# ODD — Organic Driven Development
+
+Este repo trabaja bajo ODD. **Lee [`odd/PROTOCOL.md`](odd/PROTOCOL.md) antes de
+escribir código**: los 7 pasos en orden, el criterio small/large, el formato del
+documento de feature (`odd/tasks/<feature>.md`), la política RED→GREEN, los 6
+items high-risk y la línea `Risk:` obligatoria.
+
+Resumen: request read-only = read-only. Task small = inline, sin artefactos.
+Task large = documento en `odd/tasks/` antes del primer write, work-unit commits,
+y cierre reportando también lo que falló.
+
+<!--ODD END-->

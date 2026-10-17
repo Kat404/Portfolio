@@ -26,17 +26,95 @@ release. Add a tool name to select part of the graph. For example, run
 
 <!--VITE PLUS END-->
 
-<!--ODD START-->
+# AGENTS.md — Bitácora de Ejecución
 
-# ODD — Organic Driven Development
+## Contexto
 
-Este repo trabaja bajo ODD. **Lee [`odd/PROTOCOL.md`](odd/PROTOCOL.md) antes de
-escribir código**: los 7 pasos en orden, el criterio small/large, el formato del
-documento de feature (`odd/tasks/<feature>.md`), la política RED→GREEN, los 6
-items high-risk y la línea `Risk:` obligatoria.
+Portafolio personal estático: **HTML semántico, CSS puro y TypeScript nativo** sobre
+Vite+ y Cloudflare Workers. Sin framework de UI, sin animación de scroll, sin
+dependencia que no se justifique. El budget es **1.19 kB de JavaScript**: es una
+decisión de diseño, no un dato que relajar. Un mantenedor; los agentes no deben
+adivinar el tooling.
 
-Resumen: request read-only = read-only. Task small = inline, sin artefactos.
-Task large = documento en `odd/tasks/` antes del primer write, work-unit commits,
-y cierre reportando también lo que falló.
+**La voz es lo más importante del proyecto.** Los comentarios explicativos en
+español del código y el copy de la página son la identidad del repo, no relleno
+(S7 de `odd/tasks/portfolio-repositioning.md`). Todo artefacto versionado —código,
+comentarios, commits, docs, tests— va en español neutro, sin jerga ni persona.
 
-<!--ODD END-->
+**Stack:** Vite+ (Vite, Rolldown, Vitest, Oxlint, Oxfmt) · TypeScript nativo ·
+happy-dom · wrangler · pnpm · Codegraph.
+
+### Qué es dato y qué es invención
+
+Al reportar o proponer, no mezcles las dos categorías. Cuando afieces un hecho
+del portfolio (commits, páginas, métricas, versiones), cítalo de donde viene: el
+repositorio, `package.json`, `git rev-list`, o un `curl`. Si no lo sabes,
+pregunta; no rellenes para que la pantalla se vea completa.
+
+## Patrones y Guía de Ejecución
+
+### Búsqueda e Indexado de Código
+
+- **Al empezar la sesión, corre `codegraph status` y lee el aviso de versión.** Si dice `⚠ Index was built by vX.Y.Z; re-index to pick up this engine's improvements`, el índice se construyó con un Codegraph viejo aunque diga "Index is up to date". Pídele al mantenedor autorización para reindexar (`codegraph index`, reconstrucción completa, o `codegraph sync` si el propio aviso lo sugiere) y espera su respuesta. La indexación es suya: no la corras por tu cuenta, y no sigas usando el índice viejo como si estuviera al día.
+- Siempre que requieras y quieras buscar cualquier fragmento de código haz de _Codegraph_ tú método principal y favorito. Codegraph permite indexar y buscar de manera semántica y natural porciones de código grande.
+- Para búsqueda menos extensa y con un alcance más específico haz uso de _ripgrep_ (mediante 'rg') como una mejora exponencial de rendimiento de _grep_.
+- Como último recurso haz uso de _grep_.
+- `.codegraph/` ya se autoexcluye de git: su `.gitignore` ignora todo menos él mismo, así que la base nunca se sube. El `.gitignore` sí se versiona.
+
+### Datos & Privacidad
+
+- Siempre que vayas a tratar con datos personales pregunta al usuario mantenedor qué se deberían hacer con dichos datos, debido a que sería un riesgo grave a la privacidad subirlos en remoto.
+- Cumple el requisito anterior aún si los datos no parecen ser completamente personales o que involucren a primeras o terceras personas.
+- `~/Trabajo` contiene repos de cliente que pagan. **Capturar o publicar material suyo requiere autorización explícita del mantenedor cada vez**, no solo del hecho de que el sitio sea público.
+
+### Comandos: usa los que existen
+
+| Comando          | Qué hace                                                                              |
+| ---------------- | ------------------------------------------------------------------------------------- |
+| `vp check`       | Formato, lint y tipos en un solo gate. **El default antes de cerrar cualquier cosa.** |
+| `vp check --fix` | Lo anterior, escribiendo los cambios.                                                 |
+| `vp test`        | Vitest con `happy-dom`. 15 tests que fijan el copy y la estructura del `index.html`.  |
+| `vp build`       | Bundle de producción. Confirma que el JS sigue en 1.19 kB.                            |
+| `vp dev`         | Servidor de desarrollo.                                                               |
+| `vp install`     | Tras traer cambios remotos, y antes de empezar.                                       |
+
+`vp` es el CLI único: `vp dev` y `vp run dev` **pueden no ser lo mismo**. Los
+scripts de `package.json` (`build`, `preview`, `deploy`) existen y no se
+sobrescriben. Una receta que no aparece ahí no existe y no la debes inventar en
+un reporte.
+
+### Prohibido lo remoto
+
+`pnpm deploy` y `wrangler deploy` despliegan a producción. Requieren autorización
+explícita del mantenedor **cada vez**, sin excepción. Una autorización de una
+corrida anterior no autoriza la siguiente, y "el plan lo pedía" tampoco.
+
+Igual de remoto, aunque no destruya nada: `git push`. Piden autorización en los
+mismos términos. El resto del trabajo es local.
+
+### Capturas: no instales nada
+
+El Chromium de Playwright **ya está en la máquina** (`~/.cache/ms-playwright/`,
+lo dejaron los repos de Hotel-Casa-Noria y OpenSIM). El repo no tiene
+Playwright como dependencia y no debe añadirla. Capturas con:
+
+```bash
+CHROME=~/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome
+"$CHROME" --headless=new --no-sandbox --disable-gpu --hide-scrollbars \
+  --virtual-time-budget=4000 --screenshot=out.png --window-size=1280,800 URL
+```
+
+**Trampa:** ese modo no dispara `IntersectionObserver`, así que las secciones con
+`.hidden` salen en blanco. Para ver más abajo del pliegue hace falta Playwright
+con scroll programático.
+
+### Actualización & Seguimiento
+
+- **Toda task de este repo pasa por ODD.** Lee [`odd/README.md`](odd/README.md) antes de escribir código: los 7 pasos, el criterio small/large, el formato del documento de feature, la política RED→GREEN y la línea `Risk:` obligatoria. Un request de análisis o plan es **read-only** salvo que el autor pida implementación.
+- Cualquier cambio de código pasa por `vp check` y `vp test`, más `vp build` si toca el bundle. **El bundle debe seguir en 1.19 kB** (S10): una dependencia nueva se justifica contra ese baseline o no entra.
+- Al avanzar en tareas o planeaciones, actualiza `odd/` si hay un plan ODD para lo que ya ejecutaste.
+- Guarda y/o actualiza en memoria Engram lo anterior. Este paso es _obligatorio_ se tenga o no una planeación ODD.
+
+## Disclaimer
+
+Ver `README.md` para el propósito del proyecto.

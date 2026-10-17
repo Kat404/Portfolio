@@ -4,6 +4,11 @@ import { describe, expect, it, vi } from "vite-plus/test";
 
 const FIXTURE = `
   <header class="header-site"></header>
+  <nav class="idioma">
+    <button type="button" class="idioma-btn is-active" data-lang="es" aria-current="true">ES</button>
+    <button type="button" class="idioma-btn" data-lang="en" aria-current="false">EN</button>
+    <span class="idioma-nota" role="status" hidden>Todavía no hay versión en inglés.</span>
+  </nav>
   <main>
     <section id="bienvenido" class="hidden"><p>hola</p></section>
     <aside id="mis-gustos" class="hidden"></aside>
@@ -37,6 +42,8 @@ window.requestAnimationFrame = (cb: FrameRequestCallback) => {
   return frames.length;
 };
 document.body.innerHTML = FIXTURE;
+// ! `innerHTML` no toca los atributos de `<html>`: el lang real viene del documento
+document.documentElement.lang = "es";
 vi.stubGlobal("IntersectionObserver", FakeIntersectionObserver);
 await import("./main.ts");
 
@@ -88,5 +95,44 @@ describe("copyright", () => {
     expect(document.querySelector("#copyright-year")!.textContent).toBe(
       String(new Date().getFullYear()),
     );
+  });
+});
+
+describe("selector de idioma", () => {
+  const botones = () => document.querySelectorAll<HTMLButtonElement>(".idioma-btn");
+  const nota = () => document.querySelector<HTMLElement>(".idioma-nota")!;
+
+  it("arranca en español, con ES marcado como activo", () => {
+    const [es, en] = botones();
+
+    expect(document.documentElement.lang).toBe("es");
+    expect(es.classList.contains("is-active")).toBe(true);
+    expect(es.getAttribute("aria-current")).toBe("true");
+    expect(en.classList.contains("is-active")).toBe(false);
+  });
+
+  it("avisa en pantalla cuando se pide inglés y no hay traducción", () => {
+    botones()[1].click();
+
+    expect(nota().hidden).toBe(false);
+    // ! Sin traducción no se finge haber cambiado de idioma
+    expect(document.documentElement.lang).toBe("es");
+    expect(botones()[0].classList.contains("is-active")).toBe(true);
+  });
+
+  it("aplica la traducción y vuelve atrás cuando el DOM trae `data-i18n-en`", () => {
+    const parrafo = document.querySelector<HTMLElement>("#bienvenido p")!;
+    parrafo.dataset.i18nEn = "hello";
+    parrafo.dataset.es = parrafo.textContent!;
+
+    botones()[1].click();
+    expect(parrafo.textContent).toBe("hello");
+    expect(document.documentElement.lang).toBe("en");
+    expect(nota().hidden).toBe(true);
+    expect(botones()[1].classList.contains("is-active")).toBe(true);
+
+    botones()[0].click();
+    expect(parrafo.textContent).toBe("hola");
+    expect(document.documentElement.lang).toBe("es");
   });
 });

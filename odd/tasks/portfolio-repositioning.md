@@ -33,7 +33,8 @@ en disco dice otra cosa. El objetivo no es rediseñar: es dejar de subvender.
 - Todas las secciones usan `class="hidden"` y dependen de JS +
   `IntersectionObserver` para ser visibles.
 - `public/fonts` pesa 980 KB en 12 archivos WOFF2 para 6 pesos declarados.
-- Budget actual de JS: **1.19 KB** (`dist/assets/index-*.js`).
+- Budget actual de JS: **1.19 KB sin comprimir** al inicio del plan. Hoy son
+  **2.4 KB sin comprimir / 1.1 KB gzip** tras el selector de idioma (ver L9).
 
 ---
 
@@ -70,7 +71,9 @@ no debe ser invisible para un crawler.
 **S9 — Presupuesto de fuentes.** Declarar solo los pesos realmente usados.
 
 **S10 — El budget de JS se mantiene.** Cualquier dependencia nueva se justifica
-contra el baseline actual de 1.19 KB.
+contra el baseline. El original era 1.19 KB sin comprimir; desde L9 la referencia
+es **1.1 KB gzip** (2.4 KB sin comprimir), porque el selector de idioma añadió
+30 líneas de JS nativo y cero dependencias.
 
 ---
 
@@ -148,12 +151,14 @@ sola página, el 90% de lo que se animaría ya está resuelto en
 T11 → T9 → T1 → T12 → T2 → T5 → T7. Quedan cuatro:
 
 - **T8** — medición antes/después. Los números ya existen: fuentes 980→324 KB,
-  JS 1.19 kB, CSS 4.88 kB, 4 capturas de 12-26 KB. Falta el Lighthouse formal.
+  JS 1.1 kB gzip, CSS 5.7 kB, 4 capturas de 12-26 KB. Falta el Lighthouse formal.
 - **T10** — páginas de detalle. Es el único trabajo estructural grande que queda,
   y el único que justificaría Lenis o Motion.
 - **og:image** — `Showcase3.png` (236 KB) sigue siendo la imagen social. No es
   una task: es deuda que dejó T1, y sale editando una línea.
-- **Inglés** — el `hreflang` está comentado y `/en` no existe. Sin task.
+- **Lighthouse formal** (T8) y **páginas de detalle** (T10): lo que queda.
+- ~~Inglés~~: **cerrado en L9**. La traducción vive en la misma página con
+  `data-i18n-en`, no en una ruta `/en`.
 
 > Nota: "T1 Tüür" en la línea anterior es un typo de redacción; es "T1 cerró con
 > el `og:image` pendiente". Sin efecto en el alcance.
@@ -245,7 +250,7 @@ que se entregan a clientes".
 **Estilo**: 55 líneas nuevas en `src/styles/styles.css` (rejilla `auto-fit
 minmax`, tarjeta con borde y fondo `base-darker`, enlaces al pie con
 `margin-top: auto`). CSS puro, cero JS: **el bundle sigue en 1.19 kB**, S10
-intacto.
+intacto en ese momento.
 
 **Test-first (RED → GREEN)**: `src/index.test.ts` fija el contrato de S2 y S4
 sobre el `index.html` real vía `import html from "../index.html?raw"`. RED
@@ -376,3 +381,50 @@ Playwright (`playwright-core` de `OpenSIM`) y scroll programático.
 push queda como decisión del autor.
 
 **Pendiente conocido**: `og:image` sigue siendo `Showcase3.png` (236 KB).
+
+### L9 — 2026-10-17 · Inglés traducido y datos de bundle corregidos
+
+El autor pide tres cosas: quitar un término sin explicación, hacer la traducción
+al inglés y corregir las cifras de bundle.
+
+**`fsh` no era la shell.** Salió de leer el panel de neofetch de la captura del
+escritorio. Es un alias a `fastfetch`:
+`FISH-Terminal/conf.d/30_aliases.fish:56` → `alias fsh='fastfetch'`, y lo mismo
+en `ZSH-Terminal/es/zshrc.d/aliases.zsh:384`. La shell del autor es **Nushell**.
+Fuera de la sección "Esto es mío" y del `alt` de la captura.
+
+**Inglés: cerrado.** La traducción vive en la misma página con `data-i18n-en`,
+no en una ruta `/en`. **111 nodos** de contenido y **8 etiquetas accesibles**
+traducidos. Se borra la nota "todavía no hay versión en inglés" y el `hreflang`
+apunta a `?lang=en`, que ahora sí existe, con `es` y `x-default`.
+
+**Dos atributos, nunca mezclados.** El primer intento usaba `data-i18n-en`
+también en `<nav>` y en los `<a>` con icono, y rompía el sitio: sustituir el
+contenido de un contenedor borra sus hijos, y el índice quedaba vacío. Ahora
+`data-i18n-en` traduce contenido y `data-i18n-en-aria` traduce etiqueta
+accesible. Un test prohíbe que un nodo traducible por contenido tenga hijos
+reales.
+
+**El original se fotografía al cargar**, no al volver atrás: si se tomara
+después de sobrescribir, "volver a español" devolvería el inglés.
+
+**Bundle corregido.** S10 decía 1.19 kB y el número llevaba tres sesiones de
+mentira:
+
+|                  | Antes   | Ahora                  |
+| :--------------- | :------ | :--------------------- |
+| JS sin comprimir | 1.19 kB | **2.42 kB**            |
+| JS gzip          | 0.62 kB | **1.10 kB**            |
+| CSS              | 4.66 kB | 5.67 kB                |
+| `index.html`     | 35.6 kB | 50.0 kB (gzip 12.3 kB) |
+
+La referencia de S10 pasa a **1.1 kB gzip**. El crecimiento es del selector de
+idioma: ~30 líneas de JS nativo, cero dependencias. `index.html` creció porque
+la traducción viaja en el DOM, no en un fetch: se pesan y se eligió lo primero
+para que funcione sin red y para que los tests puedan fijarla.
+
+**Tests: 24/24.** Los nuevos: que ninguna traducción deje español sin traducir,
+que ningún nodo traducible sea un contenedor, que el `hreflang` apunte a algo
+real, y que el selector sobreviva a ir y volver.
+
+**Fuera de alcance**: T8 (Lighthouse formal) y T10 (páginas de detalle).

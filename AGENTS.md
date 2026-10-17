@@ -32,8 +32,10 @@ release. Add a tool name to select part of the graph. For example, run
 
 Static personal portfolio: **semantic HTML, plain CSS and native TypeScript** on
 Vite+ and Cloudflare Workers. No UI framework, no scroll animation, no dependency
-that cannot be justified. The budget is **1.19 kB of JavaScript**: that is a
-design decision, not a number to relax. Single maintainer; agents must not guess
+that cannot be justified. The budget is **1.1 kB of JavaScript, gzipped**: that
+is a design decision, not a number to relax. It moved from 1.19 kB when the
+language switcher landed (2.4 kB raw, 1.1 kB gzip) — the cost of ~30 lines of
+vanilla JS and zero dependencies. Single maintainer; agents must not guess
 the tooling.
 
 **The voice is the most important thing about this project.** The explanatory
@@ -89,14 +91,14 @@ know it, ask. Do not fill a value in so a screen looks complete.
 
 ### Commands: use the ones that exist
 
-| Command          | What it does                                                         |
-| ---------------- | -------------------------------------------------------------------- |
-| `vp check`       | Format, lint and types in one gate. **The default before closing.**  |
-| `vp check --fix` | The same, writing the fixes back.                                    |
-| `vp test`        | Vitest with `happy-dom`. 15 tests pinning the page's copy and shape. |
-| `vp build`       | Production bundle. Confirms JS is still 1.19 kB.                     |
-| `vp dev`         | Development server.                                                  |
-| `vp install`     | After pulling remote changes, and before starting.                   |
+| Command          | What it does                                                                           |
+| ---------------- | -------------------------------------------------------------------------------------- |
+| `vp check`       | Format, lint and types in one gate. **The default before closing.**                    |
+| `vp check --fix` | The same, writing the fixes back.                                                      |
+| `vp test`        | Vitest with `happy-dom`. 24 tests pinning the page's copy, structure and translations. |
+| `vp build`       | Production bundle. Confirms JS gzip stays near 1.1 kB.                                 |
+| `vp dev`         | Development server.                                                                    |
+| `vp install`     | After pulling remote changes, and before starting.                                     |
 
 `vp` is the single CLI: `vp dev` and `vp run dev` **may not be the same thing**.
 The `package.json` scripts (`build`, `preview`, `deploy`) exist and are not
@@ -137,8 +139,9 @@ fold needs Playwright with programmatic scrolling.
   for analysis or planning is **read-only** unless the author asks for
   implementation.
 - Any code change goes through `vp check` and `vp test`, plus `vp build` when it
-  touches the bundle. **The bundle must stay at 1.19 kB** (S10): a new dependency
-  is justified against that baseline or it does not go in.
+  touches the bundle. **The JS must stay near 1.1 kB gzipped** (S10): a new
+  dependency is justified against that baseline or it does not go in. Check it
+  with `gzip -c dist/assets/*.js | wc -c`, not by reading the file size.
 - When advancing on tasks or plans, update `odd/` if there is an ODD plan for what
   you already executed.
 - Save and/or update the above in Engram memory. This step is _mandatory_ whether

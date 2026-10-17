@@ -1,7 +1,7 @@
 # ODD Tracker — `portfolio-repositioning`
 
 > **Cycle**: 2026-10-16 · **Branch**: `main` (direct)
-> **Route**: ODD-direct (inline) · **Status**: 📋 PLANNING ONLY — zero implementation
+> **Route**: ODD-direct (inline) · **Status**: 🛠 EN EJECUCIÓN — 9 de 13 tasks cerradas
 > **Runner**: `vp check` · `vp test` · `vp build`
 
 ## Objective
@@ -76,22 +76,53 @@ contra el baseline actual de 1.19 KB.
 
 ## Tasks
 
-| #   | Tarea                                                                         | Specs    | Ruta   | Estado    |
-| :-- | :---------------------------------------------------------------------------- | :------- | :----- | :-------- |
-| T0  | Inventario por proyecto: rol, métrica, URL en vivo, repo, stack con versiones | S1,S2,S5 | inline | pendiente |
-| T1  | Capturas de Casa Noria, Tranxfers, TallerAgentes, OpenSIM → WebP              | S3       | inline | pendiente |
-| T2  | Reordenar secciones: narrativa → trabajo → stack →关于 mí                     | S1,S6    | inline | pendiente |
-| T3  | Proyectos como tarjetas con enlace a demo y a código                          | S2       | inline | pendiente |
-| T4  | Sustituir autodescalamiento por hechos                                        | S4       | inline | pendiente |
-| T5  | Declarar stack real con versiones                                             | S5       | inline | pendiente |
-| T6  | Resolver `class="hidden"` sin JS                                              | S8       | inline | pendiente |
-| T7  | Recortar `@font-face` a los pesos usados y medir delta                        | S9       | inline | pendiente |
-| T8  | Medición antes/después: Lighthouse y peso de bundle                           | S10      | inline | pendiente |
-| T9  | Responsive real — hoy no existe ningún `@media`                               | todos    | inline | pendiente |
-| T10 | Páginas de detalle por proyecto (`/proyectos/casa-noria`)                     | S2       | inline | pendiente |
+| #   | Tarea                                                                           | Specs    | Ruta   | Estado                         |
+| :-- | :------------------------------------------------------------------------------ | :------- | :----- | :----------------------------- |
+| T0  | Inventario por proyecto: rol, métrica, URL en vivo, repo, stack con versiones   | S1,S2,S5 | inline | parcial — URLs recibidas (L5)  |
+| T1  | Capturas de Casa Noria, Tranxfers, TallerAgentes, OpenSIM → WebP                | S3       | inline | **hecha** — 4 de 4 (L8)        |
+| T2  | Reordenar secciones: narrativa → trabajo → stack → acerca de mí                 | S1,S6    | inline | **hecha** (L8)                 |
+| T3  | Proyectos como tarjetas con enlace a demo y a código                            | S2       | inline | **hecha** (L5)                 |
+| T4  | Sustituir autodescalamiento por hechos                                          | S4       | inline | **hecha** (L5)                 |
+| T5  | Declarar stack real con versiones                                               | S5       | inline | **hecha** (L8)                 |
+| T6  | Resolver `class="hidden"` sin JS                                                | S8       | inline | **cerrada** — ya resuelta (L4) |
+| T7  | Recortar `@font-face` a los pesos usados y medir delta                          | S9       | inline | **hecha** (L8)                 |
+| T8  | Medición antes/después: Lighthouse y peso de bundle                             | S10      | inline | pendiente                      |
+| T9  | Responsive real — hoy no existe ningún `@media`                                 | todos    | inline | **hecha** (L7)                 |
+| T10 | Páginas de detalle por proyecto (`/proyectos/casa-noria`)                       | S2       | inline | pendiente                      |
+| T11 | `<title>`, meta description, Open Graph y Twitter sin lenguaje de perfil junior | S1,S4    | inline | **hecha** (L6)                 |
+| T12 | Declarar qué resuelvo y para quién: para qué me contratan                       | S1,S2    | inline | **hecha** (L8)                 |
 
 Todas las tareas van **inline**: son de un solo archivo comprensible
 (`index.html`, `src/styles/*.css`) y ninguna toca lógica con rama o riesgo.
+
+---
+
+## Inventario T0 — evidencia medida 2026-10-17
+
+Cifras leídas de los repos (`git rev-list --count`, `package.json`, `src/pages/`),
+no de documentación. `~/Trabajo` = proyectos de cliente; `~/Proyectos` = propio u
+open source.
+
+| Proyecto          | Rol                                                                           | Evidencia medible                                                                   | URL en vivo              | Repo                                 |
+| :---------------- | :---------------------------------------------------------------------------- | :---------------------------------------------------------------------------------- | :----------------------- | :----------------------------------- |
+| **Casa Noria**    | Sitio oficial del Hotel Casa Noria (Acapulco). Reserva con pago.              | 22 páginas · 140 commits · 9 ramas · Astro 7.3.5 · Svelte 5.56.8 · Stripe 22        | ❌ no documentada        | `github.com/Kat404/Hotel-Casa-Noria` |
+| **Tranxfers**     | Traslados privados cotizados (Viajes RumboX). Wizard de cotización de 3 pasos | 7 páginas · 55 commits · 3 ramas · Astro 7.2.6 SSR · Svelte 5.56.10 · Vitest 4      | ❌ no documentada        | `github.com/Kat404/Tranxfers`        |
+| **TallerAgentes** | Plataforma del curso "Agentes de IA y Automatización", IEEE CS ITM            | 325 commits · 37 ramas · Workers free · D1 · Durable Objects · SSG · MDX · OpenSpec | n/a (plataforma interna) | `github.com/Kat404/TallerAgentes`    |
+| **OpenSIM**       | Rediseño FOSS del sistema académico del TecNM Morelia, como demo funcional    | 201 commits · 5 ramas · drizzle-orm · valibot · pdf-lib · Playwright + a11y         | n/a (rediseño)           | `github.com/Kat404/OpenSIM`          |
+| **Armadillos**    | Logística militar en Rust: ACID, RBAC, auditabilidad                          | 12 commits · 5 ramas · axum · tokio · maud · turso                                  | n/a                      | `github.com/Kat404/Armadillos`       |
+
+Tres hechos que el plan debe respetar:
+
+1. **La columna "URL en vivo" la entrega el autor, no los repos** (L5):
+   `hotelcasanoria.com.mx` y `tranxfers.com.mx`. Ningún repo las declara —
+   `wrangler.jsonc` solo trae `name: "hotel-casa-noria"` y no hay URLs de despliegue
+   en los README. T3 depende de que se mantengan al día a mano.
+2. **Armadillos es la evidencia más débil** del conjunto: 12 commits contra
+   201-325 de los demás. No se destaca con la misma jerarquía, o no se destaca.
+3. **Lo que sí genera ingresos vive en `~/Trabajo`.** El portfolio actual solo
+   enlaza `github.com/Kat404` (dotfiles, FISH-Terminal, ZSH-Terminal,
+   `linux_security.conf`) y un `Quinta-Dalam` bajo **otra** cuenta
+   (`JoseAlbertRuiL`). No hay ni un enlace al trabajo que paga.
 
 ---
 
@@ -113,8 +144,19 @@ tree-shakeable por Vite. Su caso real son animaciones de salida y layout
 sola página, el 90% de lo que se animaría ya está resuelto en
 `src/styles/animations.css`. Decisión: **solo si T10 entra en alcance.**
 
-**Orden recomendado**: T0 → T3 → T1 → T2 → T9. El mayor retorno es contenido y
-evidencia con **cero dependencias**.
+**Estado tras L8** — el orden acordado en L6 se ejecutó completo:
+T11 → T9 → T1 → T12 → T2 → T5 → T7. Quedan cuatro:
+
+- **T8** — medición antes/después. Los números ya existen: fuentes 980→324 KB,
+  JS 1.19 kB, CSS 4.88 kB, 4 capturas de 12-26 KB. Falta el Lighthouse formal.
+- **T10** — páginas de detalle. Es el único trabajo estructural grande que queda,
+  y el único que justificaría Lenis o Motion.
+- **og:image** — `Showcase3.png` (236 KB) sigue siendo la imagen social. No es
+  una task: es deuda que dejó T1, y sale editando una línea.
+- **Inglés** — el `hreflang` está comentado y `/en` no existe. Sin task.
+
+> Nota: "T1 Tüür" en la línea anterior es un typo de redacción; es "T1 cerró con
+> el `og:image` pendiente". Sin efecto en el alcance.
 
 ---
 
@@ -155,3 +197,182 @@ sesiones previas todavía sin commitear: `packageManager` pin de pnpm,
 eliminación de `devEngines` que rompía el language server de Zed, eliminación
 del bloque `observability` muerto, fusión del `.gitignore` con las reglas de
 Wrangler, y recorte del `.zed/settings.json` de plantilla a 8 lenguajes.
+
+### L4 — 2026-10-17 · T0 ejecutada (lectura) y T6 cerrada
+
+El autor pregunta por dónde empezar. Se ejecuta **T0** completa salvo la columna
+"URL en vivo", y se documenta en la sección `## Inventario T0`.
+
+**T6 se cierra sin trabajo: el hazard de S8 no existe.** `index.html:103` ejecuta
+un script inline que añade `js-enabled` a `<html>`, y todo el CSS de revelado está
+acotado a ese selector (`.js-enabled .hidden > * { opacity: 0 }`,
+`src/styles/animations.css:19`). Sin JS, la clase nunca se añade, la regla nunca
+aplica y el contenido se ve. El diagnóstico original de 2026-10-16 leyó
+`class="hidden"` sin ver el gate.
+
+**Corrección menor**: la fila T2 traía un fragmento en chino (`→关于 mí`); ahora
+`→ acerca de mí`. No altera el alcance de T2.
+
+**Orden revisado**: T6 sale. T3 y T4 se ejecutan juntas —son el mismo trabajo
+sobre `index.html` y el mismo criterio de honestidad: si T4 quita el
+autodescalamiento pero T3 no pone producción con ingresos al frente, la sección
+queda más corta e igual de débil. T5 baja después de T2 porque las versiones se
+redactan mejor cuando la sección de stack ya tiene el orden final.
+
+**Bloqueo de T3**: faltan las URLs públicas de Casa Noria y Tranxfers. Ningún
+repo las declara y T3 las necesita para cumplir S2. Preguntado al autor; hasta
+que responda, T3 se puede escribir con enlace a código pero sin "demo en vivo".
+
+### L5 — 2026-10-17 · T3 y T4 ejecutadas (primera implementación)
+
+El autor autoriza escribir en `index.html` y entrega las URLs que faltaban:
+**`hotelcasanoria.com.mx`** (Casa Noria) y **`tranxfers.com.mx`** (Tranxfers).
+
+**T3 — proyectos como tarjetas.** La `<ul>` de `<li class="list-project">` se
+sustituye por un `.project-grid` con cuatro `<article class="project-card">`:
+Casa Noria, Tranxfers, TallerAgentes y OpenSIM. Cada tarjeta lleva
+`.project-role` (qué es y para quién), `.project-facts` (hechos medidos, no
+adjetivos) y `.project-links` (demo en vivo + código; solo código para los dos
+que no tienen sitio público). Los cinco proyectos pequeños quedan bajo un
+`<h3>Otros proyectos</h3>` con la lista anterior intacta.
+
+**T4 — copy sin autodescalamiento.** Fuera "Primer proyecto real en un ámbito
+formal", "me encanta el hecho de poder modular" y "me gusta la idea de poner
+implementar". En su lugar: qué se construyó y con qué. También se corrigió el
+lead-in "me encanta estar aprendiendo acerca de" por "lo que uso en proyectos
+que se entregan a clientes".
+
+**Estilo**: 55 líneas nuevas en `src/styles/styles.css` (rejilla `auto-fit
+minmax`, tarjeta con borde y fondo `base-darker`, enlaces al pie con
+`margin-top: auto`). CSS puro, cero JS: **el bundle sigue en 1.19 kB**, S10
+intacto.
+
+**Test-first (RED → GREEN)**: `src/index.test.ts` fija el contrato de S2 y S4
+sobre el `index.html` real vía `import html from "../index.html?raw"`. RED
+observado: 3 tests fallando (0 tarjetas, URLs ausentes, copy presente).
+GREEN: 7/7 pasan, los 4 preexistentes de `main.test.ts` sin tocar.
+`vp check` limpio y `vp build` correcto.
+
+**No verificado**: el render visual de las tarjetas (no hay `e2e.config.ts` en el
+repo; abrir un navegador para una captura puntual es más caro que el riesgo de un
+`grid` estándar). Queda para T1, que sí necesita navegador.
+
+**Fuera de alcance, detectado**: `Mi Vida` sigue diciendo "Desarrollo Web
+(Aprendizaje Temprano)" y "me quiero enfocar en el desarrollo FrontEnd" — la
+misma enfermedad que S4, pero en la sección que toca T2. No se tocó.
+
+### L6 — 2026-10-17 · Grill de prioridades y T11 ejecutada
+
+El autor pide "qué sigue" y somete el plan a grill. Cinco decisiones suyas, todas
+registradas aquí:
+
+1. **T11 (nueva) — meta y title, primera.** El `<title>` decía "Frontend
+   Developer JR" y la meta description "un estudiante ... con un interés
+   temprano". Es el mismo S4, pero en el `<head>`, y ninguna task lo cubría: es
+   lo que ve el reclutador en Google y lo que WhatsApp/Slack muestran **antes**
+   del clic.
+2. **T9 sube a bloqueante.** `grep -c "@media"` → 0 en `styles.css`,
+   `animations.css` e `index.html`. Un enlace de portfolio se abre desde el móvil.
+3. **T1 desbloqueada**: hay autorización del cliente para capturar y publicar
+   `hotelcasanoria.com.mx` y `tranxfers.com.mx`.
+4. **T12 (nueva)** — declarar qué resuelvo y para quién. El plan mostraba
+   proyectos brillantes sin decir nunca qué se me contrata para hacer.
+5. **Orden**: capturas primero, performance después. T1 antes que T7/T8.
+
+**T11 ejecutada.** `<title>`: "Sitios en producción con Astro y Svelte — José
+Luis Ramírez Sánchez". Description, `og:title`, `og:description`,
+`twitter:title` y `twitter:description` llevan el mismo texto: "Dos sitios en
+producción con ingresos, una plataforma docente y un rediseño open source.
+Astro, Svelte, Stripe y Cloudflare Workers." El `og:image` se mantiene
+(`Showcase3.png`, 1200x630); T1 puede reemplazarlo por una captura real.
+
+**Motivo de las 6 copias**: el mismo copy autodescalador estaba duplicado en
+cinco metadatos y ninguno lo vigila. Por eso el test, no la buena voluntad.
+
+**Test-first (RED → GREEN)**: dos tests nuevos en `src/index.test.ts`. RED:
+`expected 'Portafolio Personal - José Luis - Fro…' not to match /\bJR\b|…/`.
+GREEN: **9/9**, los 7 previos sin tocar. `vp check` limpio, bundle JS sigue en
+**1.19 kB**.
+
+**Desperdicio detectado, sin resolver**: `og:image` sigue siendo
+`public/images/Showcase3.png` (236 KB) — la imagen de preview es la más pesada
+del sitio y no es del portfolio actual. Se resuelve en T1.
+
+### L7 — 2026-10-17 · T9 ejecutada y T1 parcial
+
+**Herramienta: no se instaló nada.** El Chromium de Playwright ya existe en
+`~/.cache/ms-playwright/chromium-1243/` (lo dejaron `Hotel-Casa-Noria` y
+`OpenSIM` al instalar sus deps). Se usa directo con `--headless=new`. El repo no
+gana una dependencia nueva.
+
+**T9 — responsive real.** Dos hallazgos medidos con captura antes/después:
+
+- **A 1440 px los párrafos medían 170 caracteres por línea.** Sin `max-width` en
+  `main`, los bloques ocupaban la pantalla completa. Ahora `main` tiene
+  `max-width: 60rem` y `margin-inline: auto`.
+- **A 375 px el título se partía en 4 líneas** y el índice ocupaba 4 filas.
+  Añadido `@media (max-width: 40rem)`: índice más compacto, título a 1.55rem,
+  padding de tarjeta reducido.
+
+**T1 — 2 de 4 capturas.** `public/images/proyectos/{casa-noria,tranxfers}.webp`,
+720x450, **26 KB y 23 KB** (desde PNG de 1 MB), con `loading="lazy"`,
+`width`/`height`, `alt` descriptivo y `aspect-ratio` en CSS. Test nuevo: toda
+imagen de proyecto con dimensiones, lazy, alt de más de 10 caracteres y `.webp`.
+10/10 verde.
+
+**Por qué solo dos:**
+
+- **Casa Noria**: `hotelcasanoria.com.mx` devuelve **HTTP 403 con
+  `cf-mitigated: challenge`** — Cloudflare bloquea el headless, incluso con 25 s
+  de budget. La captura se tomó del dev server local (`astro dev --port 4399`),
+  que devuelve el mismo sitio. Es el mismo código, no una maqueta.
+- **Tranxfers**: `tranxfers.com.mx` responde 200 y se capturó **en vivo**. Su
+  `astro dev` local se muere al arrancar, pero no hizo falta.
+- **TallerAgentes y OpenSIM**: no tienen sitio público y no se pueden levantar
+  sin instalar dependencias. Sus tarjetas quedan sin captura — es preferible a
+  inventar una imagen.
+
+**Pendiente de T1**: las dos capturas que faltan, y reemplazar el `og:image`
+de 236 KB por una imagen real del portfolio.
+
+### L8 — 2026-10-17 · Second grill: T7, T12, T2, T5 y cierre de T1
+
+Segundo round de grill. Decisiones del autor: commitear en rama, recortar
+fuentes, T12 primero, y terminar T1. Execution completa:
+
+**T1 — CERRADA, 4 de 4.** El autor entregó las URLs que faltaban:
+`opensim.jose-luis-rs.workers.dev` y `talleragentes.jose-luis-rs.workers.dev`
+(ambas respondieron 200). `talleragentes.webp` y `opensim.webp`, 13 KB cada
+una. **El repo de TallerAgentes es privado**: su tarjeta NO lleva enlace a
+código, solo al sitio en vivo. Enlazarlo sería un 404 para cualquier visitante.
+
+**T7 — 980 KB → 324 KB.** Trampa: los cinco pesos **estaban en uso** en reglas
+distintas (`a`=500, `.quote`=600, `.copyright`=300, `h1-h4`=700,
+`.titulo-principal`=800). Borrar los `@font-face` sin normalizar primero rompe
+el render. Orden correcto: normalizar las reglas a 400/700, **luego** borrar
+los 8 archivos que nadie usa.
+
+**T12 — sección "Qué hago".** Abre la página: qué construyo, tres razones
+concretas y contacto. Es lo primero que ve el visitante.
+
+**T2 — copy de "Sobre mí" sin autodescalamiento y secciones reordenadas.**
+Fuera "Desarrollo Web (Aprendizaje Temprano)" y "me quiero enfocar en el
+desarrollo FrontEnd" — la enfermedad de S4 que quedaba viva. Orden final:
+Qué hago → Bienvenido → Sobre mí → Proyectos → Stack → Curiosidades.
+
+**T5 — "Tecnologías de Interés" pasa a "Stack".** Con la versión real de cada
+herramienta en producción, ordenada por dominio demostrado (S6).
+
+**Tests: 14/14.** Cuatro describes nuevos fijan el orden de secciones, que todo
+ancla del índice exista, que el copy no prometa ni se disculpe, y que cada
+sección tenga título.
+
+**Trampa de captura**: `chromium --headless --screenshot` **no dispara
+`IntersectionObserver`**, así que las secciones con `.hidden` salen en blanco.
+Sirve para el tope de la página, no para más abajo. Con scroll hace falta
+Playwright (`playwright-core` de `OpenSIM`) y scroll programático.
+
+**Entrega**: rama `feature/reposicionamiento`, 5 work units commiteados. El
+push queda como decisión del autor.
+
+**Pendiente conocido**: `og:image` sigue siendo `Showcase3.png` (236 KB).

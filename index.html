@@ -19,6 +19,7 @@
     <meta
       name="description"
       content="Dos sitios en producción con ingresos, una plataforma docente y un rediseño open source. Astro, Svelte, Stripe y Cloudflare Workers."
+      data-i18n-en="Two production websites earning revenue, a teaching platform and an open source redesign. Astro, Svelte, Stripe and Cloudflare Workers."
     />
     <!-- * Description: Es la descripción que aparecerá en nuestro página web cuando sea buscada por motores de búsqueda como Google, tiene que ver mucho con la parte de optimizar el SEO de la página -->
 
@@ -36,9 +37,17 @@
     <link rel="canonical" href="https://portfolio.jose-luis-rs.workers.dev" />
     <!-- * Canonical: Señala a los motores de búsqueda cuál es la versión principal del sitio web para evitar duplicados -->
 
-    <!-- ! Descomentar cuando ya esté la página lista en Inglés -->
-    <!-- <link rel="alternate" href="https://portfolio.jose-luis-rs.workers.dev/en" hreflang="en" /> -->
-    <!-- * Alternate: En este caso, nos encargamos de poner el enlace alternativo de nuestra página web para el idioma Inglés -->
+    <!-- ? La traducción vive en esta misma página, no en /en/: no hay URL separada que anunciar -->
+    <link
+      rel="alternate"
+      href="https://portfolio.jose-luis-rs.workers.dev/?lang=en"
+      hreflang="en"
+    />
+    <!-- * Alternate: Enlace a la misma página con la variante en inglés.
+      ? Se declara porque el idioma es una opción real del documento, no una promesa vacía:
+      ? el selector ES/EN está en el DOM y ambos textos existen. -->
+    <link rel="alternate" href="https://portfolio.jose-luis-rs.workers.dev/" hreflang="es" />
+    <link rel="alternate" href="https://portfolio.jose-luis-rs.workers.dev/" hreflang="x-default" />
 
     <!-- ======================== OPEN GRAPH ======================== -->
     <!-- ! Open Graph: Modelo que permite la buena visualización de nuestro contenido en redes sociales -->
@@ -62,6 +71,7 @@
     <meta
       property="og:description"
       content="Dos sitios en producción con ingresos, una plataforma docente y un rediseño open source. Astro, Svelte, Stripe y Cloudflare Workers."
+      data-i18n-en="Two production websites earning revenue, a teaching platform and an open source redesign. Astro, Svelte, Stripe and Cloudflare Workers."
     />
     <meta
       property="og:image"
@@ -94,6 +104,7 @@
     <meta
       name="twitter:description"
       content="Dos sitios en producción con ingresos, una plataforma docente y un rediseño open source. Astro, Svelte, Stripe y Cloudflare Workers."
+      data-i18n-en="Two production websites earning revenue, a teaching platform and an open source redesign. Astro, Svelte, Stripe and Cloudflare Workers."
     />
     <meta
       name="twitter:image"
@@ -118,7 +129,7 @@
       <!-- * Header: Representa el encabezado del documento HTML, usualmente suele ser replicable y genérico dentro del abanico de la página web -->
       <div class="header-wrapper">
         <!-- ? Selector de idioma: ES por defecto, EN carga la traducción si existe -->
-        <nav id="selector-idioma" class="idioma" aria-label="Idioma">
+        <nav id="selector-idioma" class="idioma" aria-label="Idioma" data-i18n-en-aria="Language">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="15"
@@ -143,9 +154,6 @@
             ES
           </button>
           <button type="button" class="idioma-btn" data-lang="en" aria-current="false">EN</button>
-          <span class="idioma-nota" role="status" hidden>
-            Todavía no hay versión en inglés. Escríbeme y la hago.
-          </span>
         </nav>
 
         <h1 class="titulo-principal hidden-item">
@@ -185,7 +193,12 @@
         </h1>
 
         <div class="nav-container">
-          <nav id="indice" class="indice hidden" aria-label="Índice de Contenido">
+          <nav
+            id="indice"
+            class="indice hidden"
+            aria-label="Índice de Contenido"
+            data-i18n-en-aria="Table of Contents"
+          >
             <!-- ? Nav: Nos permite tener un sistema de navegación en nuestra web, puede verse como un índice propio e integrado -->
             <a href="#servicios">
               <svg
@@ -206,7 +219,7 @@
                   d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
                 ></path>
               </svg>
-              <span class="nav-text"> Qué hago </span>
+              <span class="nav-text" data-i18n-en="What I do"> Qué hago </span>
             </a>
             <a href="#mi-vida">
               <svg
@@ -225,7 +238,7 @@
                 <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
                 <circle cx="12" cy="7" r="4"></circle>
               </svg>
-              <span class="nav-text"> Sobre mí </span>
+              <span class="nav-text" data-i18n-en="About me"> Sobre mí </span>
             </a>
             <a href="#aficiones">
               <svg
@@ -250,7 +263,7 @@
                   d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"
                 ></path>
               </svg>
-              <span class="nav-text"> Aficiones </span>
+              <span class="nav-text" data-i18n-en="Interests"> Aficiones </span>
             </a>
             <a href="#mis-gustos">
               <svg
@@ -270,7 +283,7 @@
                   d="M19.414 14.414C21 12.828 22 11.5 22 9.5a5.5 5.5 0 0 0-9.591-3.676.6.6 0 0 1-.818.001A5.5 5.5 0 0 0 2 9.5c0 2.3 1.5 4 3 5.5l5.535 5.362a2 2 0 0 0 2.879.052 2.12 2.12 0 0 0-.004-3 2.124 2.124 0 1 0 3-3 2.124 2.124 0 0 0 3.004 0 2 2 0 0 0 0-2.828l-1.881-1.882a2.41 2.41 0 0 0-3.409 0l-1.71 1.71a2 2 0 0 1-2.828 0 2 2 0 0 1 0-2.828l2.823-2.762"
                 ></path>
               </svg>
-              <span class="nav-text"> Mis Gustos </span>
+              <span class="nav-text" data-i18n-en="Hobbies"> Mis Gustos </span>
             </a>
             <a href="#mis-proyectos">
               <svg
@@ -292,7 +305,7 @@
                   d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2z"
                 ></path>
               </svg>
-              <span class="nav-text"> Mis Proyectos </span>
+              <span class="nav-text" data-i18n-en="Projects"> Mis Proyectos </span>
             </a>
             <a href="#tecnologias-de-interes">
               <svg
@@ -317,7 +330,7 @@
                 ></path>
                 <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 .05 5 .05"></path>
               </svg>
-              <span class="nav-text"> Stack </span>
+              <span class="nav-text" data-i18n-en="Stack"> Stack </span>
             </a>
             <a href="#yo">
               <svg
@@ -337,7 +350,7 @@
                 <line x1="8" x2="16" y1="21" y2="21"></line>
                 <line x1="12" x2="12" y1="17" y2="21"></line>
               </svg>
-              <span class="nav-text"> Esto es mío </span>
+              <span class="nav-text" data-i18n-en="This is me"> Esto es mío </span>
             </a>
             <a href="#curiosidades">
               <svg
@@ -360,15 +373,21 @@
                 <path d="M16 14v.5"></path>
                 <path d="M11.25 16.25h1.5L12 17l-.75-.75Z"></path>
               </svg>
-              <span class="nav-text"> Curiosidades </span>
+              <span class="nav-text" data-i18n-en="Trivia"> Curiosidades </span>
             </a>
           </nav>
-          <nav id="indice-redes-sociales" class="indice hidden" aria-label="Redes Sociales">
+          <nav
+            id="indice-redes-sociales"
+            class="indice hidden"
+            aria-label="Redes Sociales"
+            data-i18n-en-aria="Social Networks"
+          >
             <a
               href="https://github.com/Kat404"
               target="_blank"
               rel="noreferrer noopener"
               aria-label="Perfil de GitHub"
+              data-i18n-en-aria="GitHub profile"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -394,6 +413,7 @@
               target="_blank"
               rel="noreferrer noopener"
               aria-label="Perfil de Codeberg"
+              data-i18n-en-aria="Codeberg profile"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -422,6 +442,7 @@
               target="_blank"
               rel="noreferrer noopener"
               aria-label="Perfil de Reddit"
+              data-i18n-en-aria="Reddit profile"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -457,46 +478,60 @@
 
     <main>
       <section id="servicios" class="hidden">
-        <h2>Qué hago</h2>
-        <p class="servicio-lead">
+        <h2 data-i18n-en="What I do">Qué hago</h2>
+        <p
+          class="servicio-lead"
+          data-i18n-en="I build websites that have to sell: booking systems, quote builders and internal platforms that get used daily. I work with Astro, Svelte and Cloudflare Workers, and I hand over the code, not just the screen."
+        >
           Construyo sitios web que tienen que cobrar: sistemas de reserva, cotizadores y plataformas
           internas que se usan a diario. Trabajo con Astro, Svelte y Cloudflare Workers, y entrego
           el código, no solo la pantalla.
         </p>
         <ul class="servicio-lista">
           <li>
-            <strong>Sitios que venden.</strong>
-            <span class="descripcion"
+            <strong data-i18n-en="Websites that sell.">Sitios que venden.</strong>
+            <span
+              class="descripcion"
+              data-i18n-en="From the quote form to the payment. One of mine is in production earning revenue today."
               >Del formulario de cotización al pago. Uno de los míos está en producción generando
               ingresos hoy.</span
             >
           </li>
           <li>
-            <strong>Plataformas internas.</strong>
-            <span class="descripcion"
+            <strong data-i18n-en="Internal platforms.">Plataformas internas.</strong>
+            <span
+              class="descripcion"
+              data-i18n-en="Roles, sessions, persistence and edge deployment. The one I use to teach an IEEE Computer Society course runs on D1 and Durable Objects."
               >Roles, sesiones, persistencia y despliegue en la nube de borde. La que uso para dar
               un curso del IEEE Computer Society corre sobre D1 y Durable Objects.</span
             >
           </li>
           <li>
-            <strong>Ingeniería de sistemas.</strong>
-            <span class="descripcion"
+            <strong data-i18n-en="Systems engineering.">Ingeniería de sistemas.</strong>
+            <span
+              class="descripcion"
+              data-i18n-en="Linux, networking, hardening and automation. Rust and TypeScript, whichever the problem calls for."
               >Linux, redes, hardened y automatización. Rust y TypeScript según lo que pida el
               problema.</span
             >
           </li>
         </ul>
         <p class="servicio-contacto">
-          Si necesitas algo de esto, escríbeme por
-          <a href="mailto:xocemyst@duck.com">correo</a> o por
+          <span data-i18n-en="If you need any of this, write to me by"
+            >Si necesitas algo de esto, escríbeme por</span
+          >
+          <a href="mailto:xocemyst@duck.com" data-i18n-en="email">correo</a>
+          <span data-i18n-en="or">o por</span>
           <a href="https://smp9.simplex.im/a#rMR3mX4XndQhxJgJ_qcma1NKD_uQ0PisFCCe_tAmXTw">SimpleX</a
           >.
         </p>
       </section>
 
       <section id="bienvenido" class="hidden">
-        <h2>¡Bienvenido!</h2>
-        <p>
+        <h2 data-i18n-en="Welcome!">¡Bienvenido!</h2>
+        <p
+          data-i18n-en="This is my portfolio. Below you will find <strong>what I work on</strong>, the <strong>projects</strong> I have built, the <strong>stack</strong> I built them with and, at the end, something more personal. Start with what you need to know."
+        >
           Este es mi portafolio. Debajo vas a encontrar <strong>en qué trabajo</strong>, los
           <strong>proyectos</strong> que he construido, el <strong>stack</strong> con el que lo he
           hecho y, al final, algo más personal. Empieza por lo que necesitas saber.
@@ -504,31 +539,39 @@
       </section>
 
       <section id="mi-vida" class="hidden">
-        <h2>Sobre mí</h2>
-        <p>
+        <h2 data-i18n-en="About me">Sobre mí</h2>
+        <p
+          data-i18n-en="I am a <strong>Computer Systems Engineering</strong> student and I have spent two years building software that actually gets used. I started with <strong>Linux</strong> and it is still where I feel most at home; from there I moved into web development and distributed systems."
+        >
           Soy estudiante de <strong>Ingeniería en Sistemas Computacionales</strong> y llevo dos años
           construyendo software que se usa de verdad. Empecé con <strong>Linux</strong> y todavía es
           donde más cómodo me siento; de ahí vine al desarrollo web y a los sistemas distribuidos.
         </p>
-        <h3 id="aficiones">Aficiones y Enfoques</h3>
+        <h3 id="aficiones" data-i18n-en="Interests and Focus">Aficiones y Enfoques</h3>
         <ul>
           <li>
-            Sistemas Operativos:
-            <span class="descripcion"
+            <span data-i18n-en="Operating Systems:">Sistemas Operativos:</span>
+            <span
+              class="descripcion"
+              data-i18n-en="Linux (Arch Linux), FreeBSD and OpenBSD soon. I configure and harden what I use."
               >Linux (Arch Linux), FreeBSD &amp; próximamente OpenBSD. Configuro y Endurezco lo que
               uso.</span
             >
           </li>
           <li>
-            Desarrollo Web:
-            <span class="descripcion"
+            <span data-i18n-en="Web Development:">Desarrollo Web:</span>
+            <span
+              class="descripcion"
+              data-i18n-en="Astro and Svelte on Cloudflare Workers. It is what I deliver to clients and what I use for my own projects."
               >Astro y Svelte sobre Cloudflare Workers. Es lo con lo que entrego a clientes y lo que
               uso para mis propios proyectos.</span
             >
           </li>
           <li>
-            Seguridad &amp; privacidad:
-            <span class="descripcion"
+            <span data-i18n-en="Security &amp; privacy:">Seguridad &amp; privacidad:</span>
+            <span
+              class="descripcion"
+              data-i18n-en="Hardening systems and browsers, firewalls, sandboxing and tools that do not track."
               >Hardening de sistemas y navegadores, cortafuegos, sandboxing y herramientas que no
               rastrean.</span
             >
@@ -536,20 +579,30 @@
         </ul>
 
         <aside id="mis-gustos" class="hidden">
-          <h3>Mis Gustos</h3>
-          <p>Dentro de mis gustos personales están:</p>
+          <h3 data-i18n-en="Hobbies">Mis Gustos</h3>
+          <p data-i18n-en="Some of my personal tastes:">Dentro de mis gustos personales están:</p>
           <ul>
-            <li class="descripcion">El helado de vainilla y café</li>
-            <li class="descripcion">Los gatos <em>obviamente</em></li>
-            <li class="descripcion">Programar y aprender cada día más y más</li>
-            <li class="descripcion">Hacer ejercicio de manera casual pero constante</li>
+            <li class="descripcion" data-i18n-en="Vanilla and coffee ice cream">
+              El helado de vainilla y café
+            </li>
+            <li class="descripcion" data-i18n-en="Cats <em>obviously</em>">
+              Los gatos <em>obviamente</em>
+            </li>
+            <li class="descripcion" data-i18n-en="Programming and learning more every day">
+              Programar y aprender cada día más y más
+            </li>
+            <li class="descripcion" data-i18n-en="Exercising casually but consistently">
+              Hacer ejercicio de manera casual pero constante
+            </li>
           </ul>
         </aside>
       </section>
 
       <section id="mis-proyectos" class="hidden">
-        <h2>Mis Proyectos</h2>
-        <p>
+        <h2 data-i18n-en="My Projects">Mis Proyectos</h2>
+        <p
+          data-i18n-en="Three systems in real production — one earning revenue, another in use by an IEEE Computer Society course — and an open source redesign of an academic system."
+        >
           Tres sistemas en producción real —uno con ingresos, otro en uso por un curso del IEEE
           Computer Society— y un rediseño open source de un sistema académico.
         </p>
@@ -566,20 +619,27 @@
               decoding="async"
             />
             <h3 class="project-title">Casa Noria</h3>
-            <p class="project-role">
+            <p
+              class="project-role"
+              data-i18n-en="Official site of a real hotel in Acapulco: rooms, local SEO and online booking with payment."
+            >
               Sitio oficial de un hotel real en Acapulco: habitaciones, SEO local y reserva con pago
               en línea.
             </p>
             <ul class="project-facts">
-              <li><strong>En producción</strong> · con ingresos</li>
-              <li>
+              <li><strong data-i18n-en="In production">En producción</strong> · con ingresos</li>
+              <li
+                data-i18n-en="22 pages · 140 commits · Astro 7 + Svelte 5 + Stripe 22 on Cloudflare Workers"
+              >
                 22 páginas · 140 commits · Astro 7 + Svelte 5 + Stripe 22 sobre Cloudflare Workers
               </li>
-              <li>Mobile-first, accesible y con pruebas E2E</li>
+              <li data-i18n-en="Mobile-first, accessible and covered by E2E tests">
+                Mobile-first, accesible y con pruebas E2E
+              </li>
             </ul>
             <p class="project-links">
               <a href="https://hotelcasanoria.com.mx" target="_blank" rel="noopener noreferrer"
-                >Ver sitio en vivo</a
+                ><span data-i18n-en="Live site">Ver sitio en vivo</span></a
               >
               <a
                 href="https://github.com/Kat404/Hotel-Casa-Noria"
@@ -601,18 +661,25 @@
               decoding="async"
             />
             <h3 class="project-title">Tranxfers</h3>
-            <p class="project-role">
+            <p
+              class="project-role"
+              data-i18n-en="Quoted private transfers by Viajes RumboX: the visitor builds their quote in three steps and can pick it up later."
+            >
               Traslados privados cotizados de Viajes RumboX: el visitante arma su cotización en tres
               pasos y puede retomarla después.
             </p>
             <ul class="project-facts">
-              <li><strong>En producción</strong> · con ingresos</li>
-              <li>7 páginas · 55 commits · Astro 7 SSR + Svelte 5 + Vitest</li>
-              <li>Cotizador con autosave en <code>localStorage</code></li>
+              <li><strong data-i18n-en="In production">En producción</strong> · con ingresos</li>
+              <li data-i18n-en="7 pages · 55 commits · Astro 7 SSR + Svelte 5 + Vitest">
+                7 páginas · 55 commits · Astro 7 SSR + Svelte 5 + Vitest
+              </li>
+              <li data-i18n-en="Quote builder with autosave in <code>localStorage</code>">
+                Cotizador con autosave en <code>localStorage</code>
+              </li>
             </ul>
             <p class="project-links">
               <a href="https://tranxfers.com.mx" target="_blank" rel="noopener noreferrer"
-                >Ver sitio en vivo</a
+                ><span data-i18n-en="Live site">Ver sitio en vivo</span></a
               >
               <a
                 href="https://github.com/Kat404/Tranxfers"
@@ -634,22 +701,31 @@
               decoding="async"
             />
             <h3 class="project-title">TallerAgentes</h3>
-            <p class="project-role">
+            <p
+              class="project-role"
+              data-i18n-en='Platform for the "AI and Automation Agents" course I teach at IEEE Computer Society ITM: enrollment, credentials, attendance and content publishing.'
+            >
               Plataforma del curso "Agentes de IA y Automatización" que doy en IEEE Computer Society
               ITM: inscripción, credenciales, asistencia y publicación de contenido.
             </p>
             <ul class="project-facts">
-              <li><strong>En producción</strong> · en uso del curso</li>
-              <li>325 commits · 37 ramas</li>
-              <li>Cloudflare Workers en free tier + D1 + Durable Objects</li>
-              <li>Contenido en MDX y pipeline OpenSpec con TDD estricto</li>
+              <li>
+                <strong data-i18n-en="In production">En producción</strong> · en uso del curso
+              </li>
+              <li data-i18n-en="325 commits · 37 branches">325 commits · 37 ramas</li>
+              <li data-i18n-en="Cloudflare Workers on the free tier + D1 + Durable Objects">
+                Cloudflare Workers en free tier + D1 + Durable Objects
+              </li>
+              <li data-i18n-en="Content in MDX and an OpenSpec pipeline with strict TDD">
+                Contenido en MDX y pipeline OpenSpec con TDD estricto
+              </li>
             </ul>
             <p class="project-links">
               <a
                 href="https://talleragentes.jose-luis-rs.workers.dev/"
                 target="_blank"
                 rel="noopener noreferrer"
-                >Ver sitio en vivo</a
+                ><span data-i18n-en="Live site">Ver sitio en vivo</span></a
               >
             </p>
           </article>
@@ -665,22 +741,31 @@
               decoding="async"
             />
             <h3 class="project-title">OpenSIM</h3>
-            <p class="project-role">
+            <p
+              class="project-role"
+              data-i18n-en="FOSS redesign of the TecNM Morelia academic system, built as a working demo: what the original does not publish is declared pending instead of invented."
+            >
               Rediseño FOSS del sistema académico del TecNM Morelia, construido como demo funcional:
               lo que el original no publica se declara pendiente en vez de inventarse.
             </p>
             <ul class="project-facts">
-              <li><strong>Demo pública</strong> · desplegada en Workers</li>
-              <li>201 commits</li>
-              <li>Drizzle ORM + Valibot + pdf-lib</li>
-              <li>Playwright + axe-core para accesibilidad</li>
+              <li>
+                <strong data-i18n-en="Public demo">Demo pública</strong> · desplegada en Workers
+              </li>
+              <li data-i18n-en="201 commits">201 commits</li>
+              <li data-i18n-en="Drizzle ORM + Valibot + pdf-lib">
+                Drizzle ORM + Valibot + pdf-lib
+              </li>
+              <li data-i18n-en="Playwright + axe-core for accessibility">
+                Playwright + axe-core para accesibilidad
+              </li>
             </ul>
             <p class="project-links">
               <a
                 href="https://opensim.jose-luis-rs.workers.dev"
                 target="_blank"
                 rel="noopener noreferrer"
-                >Ver demo</a
+                ><span data-i18n-en="See the demo">Ver demo</span></a
               >
               <a href="https://github.com/Kat404/OpenSIM" target="_blank" rel="noopener noreferrer"
                 >Código</a
@@ -689,7 +774,7 @@
           </article>
         </div>
 
-        <h3>Otros proyectos</h3>
+        <h3 data-i18n-en="Other projects">Otros proyectos</h3>
         <ul>
           <li class="list-project">
             <a
@@ -698,7 +783,9 @@
               rel="noopener noreferrer"
               >Configuración Out-of-the-Box</a
             >
-            para mejorar la seguridad nativa de Linux mediante
+            <span data-i18n-en="to harden Linux natively through"
+              >para mejorar la seguridad nativa de Linux mediante</span
+            >
             <em>systemd</em>
           </li>
           <li class="list-project">
@@ -707,8 +794,10 @@
               target="_blank"
               rel="noopener noreferrer"
               >ZSH-Terminal</a
-            >: Guía básica para el uso y personalización de la shell
-            <strong>Zsh</strong>
+            ><span data-i18n-en=": A basic guide to using and customizing the"
+              >: Guía básica para el uso y personalización de la shell</span
+            >
+            <strong>Zsh</strong> <span data-i18n-en="shell">shell</span>
           </li>
           <li class="list-project">
             <a
@@ -716,14 +805,23 @@
               target="_blank"
               rel="noopener noreferrer"
               >FISH-Terminal</a
-            >: Guía básica para el uso y personalización de la shell
-            <strong>Fish</strong>
+            ><span data-i18n-en=": A basic guide to using and customizing the"
+              >: Guía básica para el uso y personalización de la shell</span
+            >
+            <strong>Fish</strong> <span data-i18n-en="shell">shell</span>
           </li>
           <li class="list-project">
             <a href="https://github.com/Kat404/dotfiles" target="_blank" rel="noopener noreferrer"
               >Dotfiles</a
-            >: Configuración personal para sistemas operativos Linux y demás configuraciones para
-            mucho software que utilizo para desarrollar y vivir Linux de manera <em>Awesome</em>
+            ><span
+              data-i18n-en=": Personal configuration for Linux operating systems, plus configuration for the many tools I use to develop and to live Linux"
+              >: Configuración personal para sistemas operativos Linux y demás configuraciones
+              para</span
+            >
+            <span data-i18n-en="in an"
+              >mucho software que utilizo para desarrollar y vivir Linux de manera</span
+            >
+            <em data-i18n-en="awesome">Awesome</em> <span data-i18n-en="way">way</span>
           </li>
           <li class="list-project">
             <a
@@ -731,58 +829,76 @@
               target="_blank"
               rel="noopener noreferrer"
               >Hotel Quinta Dalam</a
-            >: Sitio web hotelero para cliente en Michoacán, México. Desarrollado en pares con
-            Astro, React &amp; JS nativo.
+            ><span
+              data-i18n-en=": Hotel website for a client in Michoacán, Mexico. Developed in pairs with"
+              >: Sitio web hotelero para cliente en Michoacán, México. Desarrollado en pares
+              con</span
+            >
+            Astro, React &amp; <span data-i18n-en="native JS">JS nativo</span>.
           </li>
         </ul>
       </section>
 
       <section id="tecnologias-de-interes" class="hidden">
         <h2>Stack</h2>
-        <p>
+        <p
+          data-i18n-en="This is the tooling I deliver with, at the version running in production today. It is not a wish list: every line corresponds to something that already runs."
+        >
           Esta es la herramienta con la que entrego, con la versión con la que está en producción
           hoy. No es una lista de deseos: cada línea corresponde a algo que ya corre.
         </p>
         <ul class="stack-lista">
           <li>
-            <strong>Sitios:</strong>
-            <span class="descripcion"
+            <strong data-i18n-en="Websites:">Sitios:</strong>
+            <span
+              class="descripcion"
+              data-i18n-en="<strong>Astro 7</strong> with <strong>Svelte 5</strong>. Static where JavaScript is not needed, SSR on Cloudflare Workers where it is."
               ><strong>Astro 7</strong> con <strong>Svelte 5</strong>. Estático donde no hace falta
               JavaScript, SSR sobre Cloudflare Workers donde sí.</span
             >
           </li>
           <li>
-            <strong>Pagos y datos:</strong>
-            <span class="descripcion"
+            <strong data-i18n-en="Payments and data:">Pagos y datos:</strong>
+            <span
+              class="descripcion"
+              data-i18n-en="<strong>Stripe</strong> for checkout, <strong>Drizzle ORM</strong> and <strong>Valibot</strong> for schema and validation at the edge."
               ><strong>Stripe</strong> para checkout, <strong>Drizzle ORM</strong> y
               <strong>Valibot</strong> para esquema y validación en el borde.</span
             >
           </li>
           <li>
-            <strong>Infraestructura:</strong>
-            <span class="descripcion"
+            <strong data-i18n-en="Infrastructure:">Infraestructura:</strong>
+            <span
+              class="descripcion"
+              data-i18n-en="<strong>Cloudflare Workers</strong>, <strong>D1</strong> and <strong>Durable Objects</strong>. wrangler for all three."
               ><strong>Cloudflare Workers</strong>, <strong>D1</strong> y
               <strong>Durable Objects</strong>. wrangler para los tres.</span
             >
           </li>
           <li>
-            <strong>Calidad:</strong>
-            <span class="descripcion"
+            <strong data-i18n-en="Quality:">Calidad:</strong>
+            <span
+              class="descripcion"
+              data-i18n-en="<strong>Vitest</strong> for unit tests, <strong>Playwright</strong> and <strong>axe-core</strong> for end-to-end and accessibility, <strong>OpenSpec</strong> for the development cycle."
               ><strong>Vitest</strong> en pruebas de unidad, <strong>Playwright</strong> y
               <strong>axe-core</strong> en end-to-end y accesibilidad,
               <strong>OpenSpec</strong> para el ciclo de desarrollo.</span
             >
           </li>
           <li>
-            <strong>Sistemas:</strong>
-            <span class="descripcion"
+            <strong data-i18n-en="Systems:">Sistemas:</strong>
+            <span
+              class="descripcion"
+              data-i18n-en="<strong>Rust</strong> with <strong>axum</strong>, <strong>tokio</strong> and <strong>turso</strong> for the logistics and ACID side."
               ><strong>Rust</strong> con <strong>axum</strong>, <strong>tokio</strong> y
               <strong>turso</strong> para la parte de logística y ACID.</span
             >
           </li>
           <li>
-            <strong>Base:</strong>
-            <span class="descripcion">HTML semántico, CSS puro y TypeScript nativo.</span>
+            <strong data-i18n-en="Base:">Base:</strong>
+            <span class="descripcion" data-i18n-en="Semantic HTML, plain CSS and native TypeScript."
+              >HTML semántico, CSS puro y TypeScript nativo.</span
+            >
           </li>
         </ul>
         <blockquote class="quote">
@@ -792,26 +908,44 @@
       </section>
 
       <section id="curiosidades" class="hidden">
-        <h2>Curiosidades sobre Mí</h2>
+        <h2 data-i18n-en="Trivia About Me">Curiosidades sobre Mí</h2>
         <details open>
-          <summary class="curiosidades-summary">¿Cuál es tu color favorito?</summary>
-          <p class="curiosidades-contenido">
+          <summary class="curiosidades-summary" data-i18n-en="What is your favorite color?">
+            ¿Cuál es tu color favorito?
+          </summary>
+          <p
+            class="curiosidades-contenido"
+            data-i18n-en="My favorite color is black, although I also love blue. On the Internet, I love the Catppuccin palette: they are beautiful, aesthetic colors."
+          >
             Mi color favorito es el negro aunque también me encanta el color azul. Dentro de
             Internet, me encanta la paleta de colores de Catppuccin, se me hacen unos colores muy
             estéticos y bonitos.
           </p>
         </details>
         <details>
-          <summary class="curiosidades-summary">¿Qué navegador usas?</summary>
-          <p class="curiosidades-contenido">
+          <summary class="curiosidades-summary" data-i18n-en="Which browser do you use?">
+            ¿Qué navegador usas?
+          </summary>
+          <p
+            class="curiosidades-contenido"
+            data-i18n-en="I currently use <strong>Firefox</strong>, although the controversy around its new CEO and the integration of AI into Firefox makes me doubt whether to keep using it, even though it is my favorite browser."
+          >
             Actualmente uso <strong>Firefox</strong> aunque con la polémica acerca de su nuevo CEO y
             la integración de la IA sobre Firefox me hace dudar sobre si seguir utilizándolo aunque
             sea mi navegador favorito.
           </p>
         </details>
         <details>
-          <summary class="curiosidades-summary">¿Cuál es tu sabor de helado favorito?</summary>
-          <p class="curiosidades-contenido">
+          <summary
+            class="curiosidades-summary"
+            data-i18n-en="What is your favorite ice cream flavor?"
+          >
+            ¿Cuál es tu sabor de helado favorito?
+          </summary>
+          <p
+            class="curiosidades-contenido"
+            data-i18n-en="I am very varied: chocolate and its variants, vanilla, coffee, mamey, coconut, and so on. As long as it is ice cream I know I will like it."
+          >
             Soy muy variado, me gusta desde el chocolate y sus variantes, la vainilla, el café,
             mamey, coco, etc. Mientras sea helado sé que me gustará mucho.
           </p>
@@ -823,8 +957,10 @@
 
       <!-- ? Yo: escritorio real, con neofetch y las herramientas que uso a diario -->
       <section id="yo" class="hidden">
-        <h2>Esto es mío</h2>
-        <p>
+        <h2 data-i18n-en="This is me">Esto es mío</h2>
+        <p
+          data-i18n-en="To close, this is not a mockup: it is my desktop. Arch Linux with the Catppuccin palette, <strong>Nushell</strong> in <strong>Kitty</strong>, and the same tools I work with every day."
+        >
           Y para cerrar, esto no es una maqueta: es mi escritorio. Arch Linux con la paleta
           Catppuccin, <strong>Nushell</strong> en <strong>Kitty</strong>, y las mismas herramientas
           con las que trabajo todos los días.
@@ -832,7 +968,8 @@
         <img
           class="yo-shot"
           src="/images/showcase.webp"
-          alt="Escritorio de Arch Linux: neofetch con el logo de la distribución, terminal con fsh y un listado de archivos, un explorador gráfico y dos ventanas con arte generado por la terminal"
+          alt="Escritorio de Arch Linux: neofetch con el logo de la distribución, una terminal con un listado de archivos, un explorador gráfico y dos ventanas con arte generado por la terminal"
+          data-i18n-en="Arch Linux desktop: neofetch with the distribution logo, a terminal listing files, a graphical file manager and two windows of terminal-generated art"
           width="1200"
           height="675"
           loading="lazy"
@@ -840,27 +977,37 @@
         />
         <ul class="yo-datos">
           <li>
-            <strong>Sistema:</strong>
-            <span class="descripcion">Arch Linux sobre xfs, con GNOME</span>
-          </li>
-          <li>
-            <strong>Shell:</strong>
-            <span class="descripcion"
-              ><strong>Nushell</strong>, estructurada y type-safe, con Zsh, Fish y
-              <code>fsh</code> documentados aparte en GitHub</span
+            <strong data-i18n-en="System:">Sistema:</strong>
+            <span class="descripcion" data-i18n-en="Arch Linux on xfs, with GNOME"
+              >Arch Linux sobre xfs, con GNOME</span
             >
           </li>
           <li>
-            <strong>Terminal:</strong>
-            <span class="descripcion">Kitty, con el motor de renderizado propio</span>
+            <strong data-i18n-en="Shell:">Shell:</strong>
+            <span
+              class="descripcion"
+              data-i18n-en="<strong>Nushell</strong>, structured and type-safe, with Zsh and Fish documented separately on GitHub"
+              ><strong>Nushell</strong>, estructurada y type-safe, con Zsh y Fish documentados
+              aparte en GitHub</span
+            >
           </li>
           <li>
-            <strong>Editor:</strong>
-            <span class="descripcion">Helix, en modo modal y basado en selecciones</span>
+            <strong data-i18n-en="Terminal:">Terminal:</strong>
+            <span class="descripcion" data-i18n-en="Kitty, with its own rendering engine"
+              >Kitty, con el motor de renderizado propio</span
+            >
           </li>
           <li>
-            <strong>Configuración:</strong>
-            <span class="descripcion"
+            <strong data-i18n-en="Editor:">Editor:</strong>
+            <span class="descripcion" data-i18n-en="Helix, in modal, selections-first mode"
+              >Helix, en modo modal y basado en selecciones</span
+            >
+          </li>
+          <li>
+            <strong data-i18n-en="Configuration:">Configuración:</strong>
+            <span
+              class="descripcion"
+              data-i18n-en="public dotfiles, and my Linux hardening config out in the open"
               >dotfiles públicos, y la configuración de seguridad de Linux al aire</span
             >
           </li>
@@ -871,7 +1018,7 @@
     <footer>
       <!-- * Footer: Nos permite tener un pie de página en nuestra web -->
       <!-- ? Suele ser común el derecho de copyright en las páginas webs, especialmente en empresas -->
-      <p class="copyright">
+      <p class="copyright" data-i18n-en="© 2026 José Luis Ramírez Sánchez. All rights reserved.">
         © <span id="copyright-year"></span> José Luis Ramírez Sánchez. Todos los derechos
         reservados.
       </p>
@@ -880,6 +1027,7 @@
           <a
             href="mailto:xocemyst@duck.com"
             aria-label="Enviar un correo electrónico a xocemyst@duck.com"
+            data-i18n-en-aria="Send an email to xocemyst@duck.com"
             rel="noreferrer noopener"
           >
             <svg
@@ -900,12 +1048,13 @@
               <path d="M19 16v6"></path>
               <path d="M16 19h6"></path>
             </svg>
-            Envíame un correo
+            <span data-i18n-en="Send me an email">Envíame un correo</span>
           </a>
           <!-- ? mailto: Abre el cliente de correo del usuario y autocompleta el destinatario, útil si se usa el correo -->
           <a
             href="https://smp9.simplex.im/a#rMR3mX4XndQhxJgJ_qcma1NKD_uQ0PisFCCe_tAmXTw"
             aria-label="Contacta conmigo mediante mensajería privada y segura SimpleX"
+            data-i18n-en-aria="Contact me over private, encrypted SimpleX messaging"
             target="_blank"
             rel="noreferrer noopener"
           >
@@ -928,7 +1077,7 @@
               <path d="M20 15v-2a2 2 0 0 0-4 0v2"></path>
               <rect x="14" y="15" width="8" height="5" rx="1"></rect>
             </svg>
-            SimpleX
+            <span data-i18n-en="SimpleX">SimpleX</span>
           </a>
           <!-- ? smp9.simplex.im: Conecta al visitante con mi usuario de SimpleX para mensajería segura y privada -->
         </p>

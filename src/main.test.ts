@@ -2,15 +2,20 @@ import { describe, expect, it, vi } from "vite-plus/test";
 
 // ! Pruebas de humo del entry de la app: fijan los comportamientos que entregaba Astro
 
+// ! Los nodos traducibles viven en el fixture y no se crean dentro de los tests: el
+// ! módulo fotografía el español AL CARGAR, así que un nodo agregado después ya no
+// ! tendría original contra el cual volver.
 const FIXTURE = `
   <header class="header-site"></header>
   <nav class="idioma">
     <button type="button" class="idioma-btn is-active" data-lang="es" aria-current="true">ES</button>
     <button type="button" class="idioma-btn" data-lang="en" aria-current="false">EN</button>
-    <span class="idioma-nota" role="status" hidden>Todavía no hay versión en inglés.</span>
   </nav>
   <main>
-    <section id="bienvenido" class="hidden"><p>hola</p></section>
+    <nav id="indice" aria-label="Índice" data-i18n-en-aria="Contents"><a href="#uno">Uno</a><a href="#dos">Dos</a></nav>
+    <section id="bienvenido" class="hidden">
+      <p data-i18n-en="Hi <strong>world</strong>">Hola <strong>mundo</strong></p>
+    </section>
     <aside id="mis-gustos" class="hidden"></aside>
     <h1 class="titulo-principal hidden-item"></h1>
   </main>
@@ -41,6 +46,8 @@ window.requestAnimationFrame = (cb: FrameRequestCallback) => {
   frames.push(cb);
   return frames.length;
 };
+document.head.innerHTML = `<title>Portafolio Personal</title>
+  <meta name="description" content="descripción original" data-i18n-en="Two production sites with revenue." />`;
 document.body.innerHTML = FIXTURE;
 // ! `innerHTML` no toca los atributos de `<html>`: el lang real viene del documento
 document.documentElement.lang = "es";
@@ -100,7 +107,6 @@ describe("copyright", () => {
 
 describe("selector de idioma", () => {
   const botones = () => document.querySelectorAll<HTMLButtonElement>(".idioma-btn");
-  const nota = () => document.querySelector<HTMLElement>(".idioma-nota")!;
 
   it("arranca en español, con ES marcado como activo", () => {
     const [es, en] = botones();
@@ -111,28 +117,56 @@ describe("selector de idioma", () => {
     expect(en.classList.contains("is-active")).toBe(false);
   });
 
-  it("avisa en pantalla cuando se pide inglés y no hay traducción", () => {
-    botones()[1].click();
-
-    expect(nota().hidden).toBe(false);
-    // ! Sin traducción no se finge haber cambiado de idioma
-    expect(document.documentElement.lang).toBe("es");
-    expect(botones()[0].classList.contains("is-active")).toBe(true);
-  });
-
-  it("aplica la traducción y vuelve atrás cuando el DOM trae `data-i18n-en`", () => {
+  it("traduce conservando el marcado interno y vuelve atrás exacto", () => {
     const parrafo = document.querySelector<HTMLElement>("#bienvenido p")!;
-    parrafo.dataset.i18nEn = "hello";
-    parrafo.dataset.es = parrafo.textContent!;
 
     botones()[1].click();
-    expect(parrafo.textContent).toBe("hello");
+    expect(parrafo.innerHTML).toBe("Hi <strong>world</strong>");
+    // ! El `<strong>` sobrevive: se cambia innerHTML, no textContent
+    expect(parrafo.querySelector("strong")?.textContent).toBe("world");
     expect(document.documentElement.lang).toBe("en");
-    expect(nota().hidden).toBe(true);
     expect(botones()[1].classList.contains("is-active")).toBe(true);
 
     botones()[0].click();
-    expect(parrafo.textContent).toBe("hola");
+    expect(parrafo.innerHTML).toBe("Hola <strong>mundo</strong>");
+    expect(document.documentElement.lang).toBe("es");
+  });
+
+  it("traduce también los metadatos y el título de la pestaña", () => {
+    const meta = document.querySelector<HTMLMetaElement>('meta[name="description"]')!;
+
+    botones()[1].click();
+    expect(meta.content).toBe("Two production sites with revenue.");
+    expect(document.title).toContain("Production websites");
+
+    botones()[0].click();
+    expect(meta.content).toBe("descripción original");
+    expect(document.title).toBe("Portafolio Personal");
+  });
+
+  it("un nodo traducible que es contenedor conserva sus hijos", () => {
+    // ! El caso que rompió la primera versión: `innerHTML` sobre un <nav> traducible
+    // ! borraba los enlaces enteros y el índice quedaba vacío
+    const nav = document.querySelector<HTMLElement>("#indice")!;
+
+    botones()[1].click();
+    expect(nav.getAttribute("aria-label")).toBe("Contents");
+    // ! El contenido traducible vive en los hijos, no en el nav: nunca se sustituye
+    expect(nav.querySelectorAll("a")).toHaveLength(2);
+
+    botones()[0].click();
+    expect(nav.getAttribute("aria-label")).toBe("Índice");
+    expect(nav.querySelectorAll("a")).toHaveLength(2);
+  });
+
+  it("traduce cada nodo traducible y no toca los que no lo son", () => {
+    const sinTraducir = document.querySelector<HTMLElement>("#mis-gustos")!;
+
+    botones()[1].click();
+    expect(sinTraducir.innerHTML).toBe("");
+    expect(document.documentElement.lang).toBe("en");
+
+    botones()[0].click();
     expect(document.documentElement.lang).toBe("es");
   });
 });

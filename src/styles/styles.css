@@ -276,6 +276,44 @@ address {
   text-align: center;
 }
 
+/* ======================== SELECTOR DE IDIOMA ======================== */
+/* ? ↓ ES es el predeterminado: el botón activo se marca con `is-active` y `aria-current` */
+.idioma {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--color-subtext);
+}
+
+.idioma-btn {
+  padding: 0.1rem 0.45rem;
+  border: 1px solid transparent;
+  border-radius: 0.3rem;
+  background: none;
+  color: var(--color-subtext-zero);
+  font: inherit;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.idioma-btn:hover {
+  color: var(--color-text-blue);
+}
+
+.idioma-btn.is-active {
+  color: var(--color-text-blue);
+  border-color: var(--color-base-darkest);
+}
+
+.idioma-nota {
+  margin-left: 0.5rem;
+  color: var(--color-subtext-zero);
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
 /* ======================== SECCIÓN "YO" ======================== */
 /* ? ↓ Divisor: separa el trabajo de la persona con una línea y espacio, sin otra sección */
 .divisor {

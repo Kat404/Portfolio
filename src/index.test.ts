@@ -16,6 +16,16 @@ describe("oferta y honestidad del copy (T12, S1)", () => {
     expect(secciones.indexOf("mis-proyectos")).toBeLessThan(secciones.indexOf("curiosidades"));
   });
 
+  it("el selector de idioma ofrece ES y EN, con ES activo", () => {
+    const botones = document.querySelectorAll("#selector-idioma .idioma-btn");
+
+    expect(botones).toHaveLength(2);
+    expect([...botones].map((b) => b.getAttribute("data-lang"))).toEqual(["es", "en"]);
+    expect(botones[0].classList.contains("is-active")).toBe(true);
+    expect(botones[0].getAttribute("aria-current")).toBe("true");
+    expect(botones[1].getAttribute("aria-current")).toBe("false");
+  });
+
   it("la sección de lo personal es la última y va tras un divisor", () => {
     const secciones = [...document.querySelectorAll("main > section")].map((s) => s.id);
 

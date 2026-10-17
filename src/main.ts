@@ -36,3 +36,38 @@ window.addEventListener("scroll", () => {
 
 // ? ↓ El año del copyright siempre queda al día sin necesidad de rebuild
 document.querySelector("#copyright-year")!.textContent = String(new Date().getFullYear());
+
+// ? ↓ Selector de idioma. ES predeterminado; EN solo cambia el texto si la traducción
+// ? está en el DOM (`data-i18n-en`). Mientras no exista, lo dice en pantalla en vez de
+// ? dejar un botón que no hace nada.
+const botonesIdioma = document.querySelectorAll<HTMLButtonElement>(".idioma-btn");
+const notaIdioma = document.querySelector<HTMLElement>(".idioma-nota");
+
+for (const boton of botonesIdioma) {
+  boton.addEventListener("click", () => {
+    const lang = boton.dataset.lang === "en" ? "en" : "es";
+    const traducciones = document.querySelectorAll<HTMLElement>("[data-i18n-en]");
+
+    if (lang === "en" && traducciones.length === 0) {
+      if (notaIdioma) notaIdioma.hidden = false;
+      return;
+    }
+
+    if (lang === "en") {
+      for (const nodo of traducciones) nodo.textContent = nodo.dataset.i18nEn!;
+    } else {
+      // ! Cada nodo traducible guarda su original en `data-es` para poder volver atrás
+      for (const nodo of document.querySelectorAll<HTMLElement>("[data-es]")) {
+        nodo.textContent = nodo.dataset.es!;
+      }
+    }
+
+    document.documentElement.lang = lang;
+    for (const otro of botonesIdioma) {
+      const activo = otro === boton;
+      otro.classList.toggle("is-active", activo);
+      otro.setAttribute("aria-current", String(activo));
+    }
+    if (notaIdioma) notaIdioma.hidden = true;
+  });
+}

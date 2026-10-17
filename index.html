@@ -117,6 +117,37 @@
     <header class="header-site">
       <!-- * Header: Representa el encabezado del documento HTML, usualmente suele ser replicable y genérico dentro del abanico de la página web -->
       <div class="header-wrapper">
+        <!-- ? Selector de idioma: ES por defecto, EN carga la traducción si existe -->
+        <nav id="selector-idioma" class="idioma" aria-label="Idioma">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="15"
+            height="15"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="3"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+            class="lucide lucide-languages"
+          >
+            <path d="m5 8 6 6"></path>
+            <path d="m4 14 6-6 2-3"></path>
+            <path d="M2 5h12"></path>
+            <path d="M7 2h1"></path>
+            <path d="m22 22-5-10-5 10"></path>
+            <path d="M14 18h6"></path>
+          </svg>
+          <button type="button" class="idioma-btn is-active" data-lang="es" aria-current="true">
+            ES
+          </button>
+          <button type="button" class="idioma-btn" data-lang="en" aria-current="false">EN</button>
+          <span class="idioma-nota" role="status" hidden>
+            Todavía no hay versión en inglés. Escríbeme y la hago.
+          </span>
+        </nav>
+
         <h1 class="titulo-principal hidden-item">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -795,8 +826,8 @@
         <h2>Esto es mío</h2>
         <p>
           Y para cerrar, esto no es una maqueta: es mi escritorio. Arch Linux con la paleta
-          Catppuccin, <code>fsh</code> como shell, y las mismas herramientas con las que trabajo
-          todos los días.
+          Catppuccin, <strong>Nushell</strong> en <strong>Kitty</strong>, y las mismas herramientas
+          con las que trabajo todos los días.
         </p>
         <img
           class="yo-shot"
@@ -810,13 +841,18 @@
         <ul class="yo-datos">
           <li>
             <strong>Sistema:</strong>
-            <span class="descripcion">Arch Linux con btrfs, Wayland y GNOME</span>
+            <span class="descripcion">Arch Linux sobre xfs, con GNOME</span>
           </li>
           <li>
             <strong>Shell:</strong>
             <span class="descripcion"
-              ><code>fsh</code>, con Zsh y Fish documentados por separado en GitHub</span
+              ><strong>Nushell</strong>, estructurada y type-safe, con Zsh, Fish y
+              <code>fsh</code> documentados aparte en GitHub</span
             >
+          </li>
+          <li>
+            <strong>Terminal:</strong>
+            <span class="descripcion">Kitty, con el motor de renderizado propio</span>
           </li>
           <li>
             <strong>Editor:</strong>

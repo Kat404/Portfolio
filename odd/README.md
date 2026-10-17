@@ -1,14 +1,32 @@
 # ODD — Organic Driven Development
 
-> Protocolo de trabajo para cualquier agente que toque este repositorio
-> (OpenCode, Claude Code, Pi, Gemini, Codex, subagentes). Fuente de verdad
-> **local al repo**: un subagente arranca sin memoria, y este archivo es lo que
-> lee. Si contradice al prompt del sistema, manda el prompt del sistema; si no
-> lo contradice, este archivo manda sobre la intuición.
+> Bitácora de ejecución y protocolo de trabajo para cualquier agente que toque este
+> repositorio (OpenCode, Claude Code, Pi, Gemini, Codex, subagentes). Fuente de verdad
+> **local al repo**: un subagente arranca sin memoria, y este archivo es lo que lee.
+> Si contradice al prompt del sistema, manda el prompt del sistema; si no lo contradice,
+> este archivo manda sobre la intuición.
 >
 > **Lee este archivo entero antes de escribir código.**
+>
+> - `odd/README.md` — este protocolo, siempre vigente.
+> - `odd/tasks/<feature>.md` — un documento por feature en curso o cerrada.
 
-## 0. Contrato mínimo
+## Contexto del proyecto
+
+Portafolio personal estático: HTML semántico, CSS puro y TypeScript nativo sobre
+Vite+ y Cloudflare Workers. Sin framework de UI, sin animación de scroll, sin
+dependencia que no se justifique contra el budget de **1.19 kB** de JavaScript.
+
+**La voz es lo más importante del proyecto.** Los comentarios explicativos en
+español del código y el copy de la página son la identidad del repo, no relleno
+(S7). Al reportar o proponer, distingue siempre entre lo que está verificado en
+disco y lo que es interpretación. No inventes un dato para que una pantalla se vea
+completa: si no lo sabes, se dice en la página.
+
+**Stack:** Vite+ (Vite, Rolldown, Vitest, Oxlint, Oxfmt) · TypeScript nativo ·
+happy-dom · wrangler · pnpm · Codegraph.
+
+## Contrato mínimo
 
 - **Idioma**: conversación con el usuario en español neutro (sin voseo, sin
   muletillas). Artefactos técnicos —código, comentarios, commits, docs, tests—
@@ -27,7 +45,7 @@
   adelante" que nadie pidió. Borrar > agregar. Reutiliza lo que ya existe en el
   repo (helpers, componentes, convenciones) antes de inventar.
 
-## 1. Protocolo — 7 pasos, en este orden, en cada request
+## Protocolo — 7 pasos, en este orden, en cada request
 
 1. **Autorizar.** ¿El request autoriza mutar? Si no: read-only, responde y
    termina. Si la intención es ambigua o condicional, pregunta **una** vez y
@@ -53,7 +71,7 @@
    línea `Risk:` (§5). Hedgear no es parar: si el usuario dice "puedes parar",
    deja notas y commits separados.
 
-## 2. Tamaño de la task
+## Tamaño de la task
 
 **Small** — las tres deben cumplirse:
 
@@ -76,7 +94,7 @@ tamaño. ~400 líneas authored (additions + deletions) por work unit es una
 explica por qué y sigue. Nunca recortes espacios, comentarios o tests para
 caber.
 
-## 3. Documento de feature — `odd/tasks/<feature-name>.md`
+## Documento de feature — `odd/tasks/<feature-name>.md`
 
 Orden fijo. Contenido estable primero, log al final.
 
@@ -134,7 +152,7 @@ completo y detenerse en `## Log` antes de editar. Al volver debe reportar **qué
 validación, normalización) van **en el prompt**: dos unidades en paralelo no se
 ven entre sí.
 
-## 4. Política de tests
+## Política de tests
 
 Aplica a cambios de comportamiento, no a documentación.
 
@@ -161,7 +179,7 @@ Aplica a cambios de comportamiento, no a documentación.
 - **No borres tests para hacer verde.** Un test rojo heredado del base se
   documenta como fallo conocido, no se "arregla" de paso.
 
-## 5. Riesgo — los 6 items high-risk
+## Riesgo — los 6 items high-risk
 
 Si el cambio toca uno, es high-risk:
 
@@ -188,7 +206,7 @@ Risk: item 3 (cambia el shape del config que el sitio lee)
 código que otro comportamiento no mencionado también usa (opciones compartidas,
 parsers, helpers): si lo hace, es item 3.
 
-## 6. Triggers de delegación
+## Triggers de delegación
 
 Solo cuando la condición **de verdad** se cumple; ninguno aplica por defecto.
 Si dudas, inline.
@@ -208,7 +226,7 @@ corren inline: escribir cuesta menos que arrancar un worker.
 y sus docs juntos.** Nunca lo partas en "writer de tests" + "writer de código";
 una entrega que depende de otra no es independiente.
 
-## 7. Verificación
+## Verificación
 
 - **Inline**: el focused test de lo que cambió + la suite, una vez cada uno.
 - **Delegado**: el writer corre los comandos autorizados en `## Verification` en
@@ -222,7 +240,7 @@ una entrega que depende de otra no es independiente.
   **"Necesita tu decisión"** único que nombre los blockers. Proof parcial,
   bloqueado o agotado se colapsa en ese único resultado.
 
-## 8. Entrega — qué NO haces
+## Entrega — qué NO haces
 
 - **Push, PR y merge son decisiones del usuario.** Los work-unit commits de una
   implementación ODD autorizada sí son parte del protocolo.
@@ -231,3 +249,26 @@ una entrega que depende de otra no es independiente.
   corriste.
 - Nunca amplíes alcance porque encontraste algo mejor. Lo anotas y lo preguntas.
 - No borres ni reformatees archivos fuera del alcance del cambio.
+
+---
+
+## Notas del proyecto
+
+Trampas ya pisadas en este repo. No las repitas:
+
+- **`chromium --headless --screenshot` no dispara `IntersectionObserver`.** Las
+  secciones con `.hidden` salen en blanco porque la opacidad la pone
+  `IntersectionObserver` en `src/main.ts`. Sirve para el tope de la página; para
+  ver más abajo hace falta Playwright con scroll programático.
+- **El Chromium de Playwright no es dependencia del repo.** Vive en
+  `~/.cache/ms-playwright/`, lo dejaron `Hotel-Casa-Noria` y `OpenSIM`. No
+  instales nada para capturar.
+- **`hotelcasanoria.com.mx` responde 403** con `cf-mitigated: challenge` al
+  headless: Cloudflare bloquea el bot. Para esa captura hay que servir el repo
+  local.
+- **Los pesos de fuente estaban los 5 en uso** (`a`=500, `.quote`=600,
+  `.copyright`=300, `h1-h4`=700, `.titulo-principal`=800). Borrar los
+  `@font-face` sin normalizar primero rompe el render. Hoy solo se declaran 400 y
+  700: si agregas un peso, decláralo **y úsalo**, o borra su archivo.
+- **La salida de `rg` puede venir sustituida** en este entorno (`js-enabled` se
+  mostró como `n`). Confirma con `grep` antes de citar evidencia.

@@ -16,6 +16,48 @@ describe("oferta y honestidad del copy (T12, S1)", () => {
     expect(secciones.indexOf("mis-proyectos")).toBeLessThan(secciones.indexOf("curiosidades"));
   });
 
+  it("cada elemento traducible tiene inglés, y el español no sobrevive en inglés", () => {
+    const traducibles = [...document.querySelectorAll("[data-i18n-en]")];
+
+    expect(traducibles.length).toBeGreaterThan(40);
+
+    // ? Palabras que delatan una traducción no hecha. Los nombres propios de proyecto,
+    // ? las technologies y las cifras son iguales en ambos idiomas: no se comprueban.
+    const SOLO_ESPANOL =
+      /\b(de|del|que|para|con|una|uno|unos|las|los|sitio|sitios|cobrar|producción|ingresos|plataforma|docente|rediseño|abierto|código|páginas|sección|sobre|mío|mía|esto|hago|construyo|trabajo|escribeme|vive|vivo|donde|también|como|pero|desde|hasta|ya|tengo|quiero|sabes|puedes)\b/i;
+
+    for (const nodo of traducibles) {
+      const en = nodo.getAttribute("data-i18n-en")!.trim();
+
+      expect(en.length, `${nodo.tagName} sin traducción`).toBeGreaterThan(0);
+      expect(SOLO_ESPANOL.test(en), `queda español en: "${en}"`).toBe(false);
+    }
+  });
+
+  it("ningún nodo traducible por contenido es un contenedor con hijos", () => {
+    // ? Es lo que rompió la primera versión: sustituir el contenido de un <nav>
+    // ? traducible borraba los enlaces del índice
+    for (const nodo of document.querySelectorAll("[data-i18n-en]")) {
+      const tieneHijosUtiles = [...nodo.children].some(
+        (hijo) => !["STRONG", "EM", "CODE", "SPAN"].includes(hijo.tagName),
+      );
+      expect(tieneHijosUtiles, `${nodo.tagName} traducible con hijos reales`).toBe(false);
+    }
+  });
+
+  it("los metadatos y el hreflang no prometen un /en que no existe", () => {
+    for (const meta of document.querySelectorAll("meta[data-i18n-en]")) {
+      expect(meta.getAttribute("data-i18n-en")!.trim().length).toBeGreaterThan(10);
+    }
+
+    const hreflang = [...document.querySelectorAll('link[rel="alternate"][hreflang]')].map((l) =>
+      l.getAttribute("hreflang"),
+    );
+    // ? Debe existir el alterno en inglés porque la traducción ya está en el documento
+    expect(hreflang).toContain("en");
+    expect(hreflang).toContain("x-default");
+  });
+
   it("el selector de idioma ofrece ES y EN, con ES activo", () => {
     const botones = document.querySelectorAll("#selector-idioma .idioma-btn");
 

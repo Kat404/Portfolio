@@ -26,77 +26,98 @@ release. Add a tool name to select part of the graph. For example, run
 
 <!--VITE PLUS END-->
 
-# AGENTS.md — Bitácora de Ejecución
+# AGENTS.md — Execution Log
 
-## Contexto
+## Context
 
-Portafolio personal estático: **HTML semántico, CSS puro y TypeScript nativo** sobre
-Vite+ y Cloudflare Workers. Sin framework de UI, sin animación de scroll, sin
-dependencia que no se justifique. El budget es **1.19 kB de JavaScript**: es una
-decisión de diseño, no un dato que relajar. Un mantenedor; los agentes no deben
-adivinar el tooling.
+Static personal portfolio: **semantic HTML, plain CSS and native TypeScript** on
+Vite+ and Cloudflare Workers. No UI framework, no scroll animation, no dependency
+that cannot be justified. The budget is **1.19 kB of JavaScript**: that is a
+design decision, not a number to relax. Single maintainer; agents must not guess
+the tooling.
 
-**La voz es lo más importante del proyecto.** Los comentarios explicativos en
-español del código y el copy de la página son la identidad del repo, no relleno
-(S7 de `odd/tasks/portfolio-repositioning.md`). Todo artefacto versionado —código,
-comentarios, commits, docs, tests— va en español neutro, sin jerga ni persona.
+**The voice is the most important thing about this project.** The explanatory
+comments in the source and the copy on the page are the repo's identity, not
+filler (S7 in `odd/tasks/portfolio-repositioning.md`). Every versioned artifact —
+code, comments, commits, docs, tests — is written in neutral Spanish: no slang,
+no persona.
 
-**Stack:** Vite+ (Vite, Rolldown, Vitest, Oxlint, Oxfmt) · TypeScript nativo ·
+**Stack:** Vite+ (Vite, Rolldown, Vitest, Oxlint, Oxfmt) · native TypeScript ·
 happy-dom · wrangler · pnpm · Codegraph.
 
-### Qué es dato y qué es invención
+**Author's environment** (for the "Esto es mío" section and for writing examples
+that match how they actually work): Arch Linux on xfs · GNOME · Kitty terminal ·
+Nushell shell · Helix editor in modal, selections-first mode.
 
-Al reportar o proponer, no mezcles las dos categorías. Cuando afieces un hecho
-del portfolio (commits, páginas, métricas, versiones), cítalo de donde viene: el
-repositorio, `package.json`, `git rev-list`, o un `curl`. Si no lo sabes,
-pregunta; no rellenes para que la pantalla se vea completa.
+### What is data and what is invention
 
-## Patrones y Guía de Ejecución
+Do not mix the two categories when reporting or proposing. When you state a fact
+about the portfolio (commits, pages, metrics, versions), cite where it comes
+from: the repository, `package.json`, `git rev-list`, or a `curl`. If you do not
+know it, ask. Do not fill a value in so a screen looks complete.
 
-### Búsqueda e Indexado de Código
+## Patterns and Execution Guide
 
-- **Al empezar la sesión, corre `codegraph status` y lee el aviso de versión.** Si dice `⚠ Index was built by vX.Y.Z; re-index to pick up this engine's improvements`, el índice se construyó con un Codegraph viejo aunque diga "Index is up to date". Pídele al mantenedor autorización para reindexar (`codegraph index`, reconstrucción completa, o `codegraph sync` si el propio aviso lo sugiere) y espera su respuesta. La indexación es suya: no la corras por tu cuenta, y no sigas usando el índice viejo como si estuviera al día.
-- Siempre que requieras y quieras buscar cualquier fragmento de código haz de _Codegraph_ tú método principal y favorito. Codegraph permite indexar y buscar de manera semántica y natural porciones de código grande.
-- Para búsqueda menos extensa y con un alcance más específico haz uso de _ripgrep_ (mediante 'rg') como una mejora exponencial de rendimiento de _grep_.
-- Como último recurso haz uso de _grep_.
-- `.codegraph/` ya se autoexcluye de git: su `.gitignore` ignora todo menos él mismo, así que la base nunca se sube. El `.gitignore` sí se versiona.
+### Code search and indexing
 
-### Datos & Privacidad
+- **At the start of the session, run `codegraph status` and read the version
+  notice.** If it says `⚠ Index was built by vX.Y.Z; re-index to pick up this
+  engine's improvements`, the index was built by an older Codegraph even though
+  it says "Index is up to date". Ask the maintainer for authorization to reindex
+  (`codegraph index` for a full rebuild, or `codegraph sync` if the notice itself
+  suggests it) and wait for the answer. Indexing is theirs: do not run it on your
+  own, and do not keep using a stale index as if it were current.
+- Whenever you need to look for any piece of code, make **Codegraph** your
+  primary and preferred method. It indexes and searches large chunks of code
+  semantically, in natural language.
+- For a narrower search with a specific scope, use _ripgrep_ (`rg`), an
+  exponential improvement over `grep`.
+- As a last resort, use _grep_.
+- `.codegraph/` already excludes itself from git: its `.gitignore` ignores
+  everything except itself, so the database never gets committed while the
+  `.gitignore` does.
 
-- Siempre que vayas a tratar con datos personales pregunta al usuario mantenedor qué se deberían hacer con dichos datos, debido a que sería un riesgo grave a la privacidad subirlos en remoto.
-- Cumple el requisito anterior aún si los datos no parecen ser completamente personales o que involucren a primeras o terceras personas.
-- `~/Trabajo` contiene repos de cliente que pagan. **Capturar o publicar material suyo requiere autorización explícita del mantenedor cada vez**, no solo del hecho de que el sitio sea público.
+### Data & privacy
 
-### Comandos: usa los que existen
+- Whenever you are going to handle personal data, ask the maintainer what should
+  be done with it: uploading it remotely is a serious privacy risk.
+- Comply with the above even when the data does not look fully personal or when
+  it involves third parties.
+- `~/Trabajo` holds client repositories that pay. **Capturing or publishing their
+  material requires explicit maintainer authorization every time** — a public
+  site is not the same as permission.
 
-| Comando          | Qué hace                                                                              |
-| ---------------- | ------------------------------------------------------------------------------------- |
-| `vp check`       | Formato, lint y tipos en un solo gate. **El default antes de cerrar cualquier cosa.** |
-| `vp check --fix` | Lo anterior, escribiendo los cambios.                                                 |
-| `vp test`        | Vitest con `happy-dom`. 15 tests que fijan el copy y la estructura del `index.html`.  |
-| `vp build`       | Bundle de producción. Confirma que el JS sigue en 1.19 kB.                            |
-| `vp dev`         | Servidor de desarrollo.                                                               |
-| `vp install`     | Tras traer cambios remotos, y antes de empezar.                                       |
+### Commands: use the ones that exist
 
-`vp` es el CLI único: `vp dev` y `vp run dev` **pueden no ser lo mismo**. Los
-scripts de `package.json` (`build`, `preview`, `deploy`) existen y no se
-sobrescriben. Una receta que no aparece ahí no existe y no la debes inventar en
-un reporte.
+| Command          | What it does                                                         |
+| ---------------- | -------------------------------------------------------------------- |
+| `vp check`       | Format, lint and types in one gate. **The default before closing.**  |
+| `vp check --fix` | The same, writing the fixes back.                                    |
+| `vp test`        | Vitest with `happy-dom`. 15 tests pinning the page's copy and shape. |
+| `vp build`       | Production bundle. Confirms JS is still 1.19 kB.                     |
+| `vp dev`         | Development server.                                                  |
+| `vp install`     | After pulling remote changes, and before starting.                   |
 
-### Prohibido lo remoto
+`vp` is the single CLI: `vp dev` and `vp run dev` **may not be the same thing**.
+The `package.json` scripts (`build`, `preview`, `deploy`) exist and are not
+overridden. A recipe that does not appear there does not exist and must not be
+invented in a report.
 
-`pnpm deploy` y `wrangler deploy` despliegan a producción. Requieren autorización
-explícita del mantenedor **cada vez**, sin excepción. Una autorización de una
-corrida anterior no autoriza la siguiente, y "el plan lo pedía" tampoco.
+### Remote operations are forbidden
 
-Igual de remoto, aunque no destruya nada: `git push`. Piden autorización en los
-mismos términos. El resto del trabajo es local.
+`pnpm deploy` and `wrangler deploy` ship to production. They require explicit
+maintainer authorization **every time**, no exceptions. Authorization from a
+previous run does not authorize the next one, and "the plan asked for it" is not
+authorization either.
 
-### Capturas: no instales nada
+Equally remote, even though nothing is destroyed: `git push`. Same terms. The
+rest of the work is local.
 
-El Chromium de Playwright **ya está en la máquina** (`~/.cache/ms-playwright/`,
-lo dejaron los repos de Hotel-Casa-Noria y OpenSIM). El repo no tiene
-Playwright como dependencia y no debe añadirla. Capturas con:
+### Screenshots: install nothing
+
+Playwright's Chromium **is already on this machine** (`~/.cache/ms-playwright/`,
+left there by the Hotel-Casa-Noria and OpenSIM repos). This repo does not depend
+on Playwright and must not add it. Screenshots with:
 
 ```bash
 CHROME=~/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome
@@ -104,17 +125,25 @@ CHROME=~/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome
   --virtual-time-budget=4000 --screenshot=out.png --window-size=1280,800 URL
 ```
 
-**Trampa:** ese modo no dispara `IntersectionObserver`, así que las secciones con
-`.hidden` salen en blanco. Para ver más abajo del pliegue hace falta Playwright
-con scroll programático.
+**Trap:** that mode does not fire `IntersectionObserver`, so sections carrying
+`.hidden` render blank. It is fine for the top of the page; anything below the
+fold needs Playwright with programmatic scrolling.
 
-### Actualización & Seguimiento
+### Updates & follow-up
 
-- **Toda task de este repo pasa por ODD.** Lee [`odd/README.md`](odd/README.md) antes de escribir código: los 7 pasos, el criterio small/large, el formato del documento de feature, la política RED→GREEN y la línea `Risk:` obligatoria. Un request de análisis o plan es **read-only** salvo que el autor pida implementación.
-- Cualquier cambio de código pasa por `vp check` y `vp test`, más `vp build` si toca el bundle. **El bundle debe seguir en 1.19 kB** (S10): una dependencia nueva se justifica contra ese baseline o no entra.
-- Al avanzar en tareas o planeaciones, actualiza `odd/` si hay un plan ODD para lo que ya ejecutaste.
-- Guarda y/o actualiza en memoria Engram lo anterior. Este paso es _obligatorio_ se tenga o no una planeación ODD.
+- **Every task in this repo goes through ODD.** Read [`odd/README.md`](odd/README.md)
+  before writing code: the 7 steps, the small/large criterion, the feature
+  document format, the RED→GREEN policy and the mandatory `Risk:` line. A request
+  for analysis or planning is **read-only** unless the author asks for
+  implementation.
+- Any code change goes through `vp check` and `vp test`, plus `vp build` when it
+  touches the bundle. **The bundle must stay at 1.19 kB** (S10): a new dependency
+  is justified against that baseline or it does not go in.
+- When advancing on tasks or plans, update `odd/` if there is an ODD plan for what
+  you already executed.
+- Save and/or update the above in Engram memory. This step is _mandatory_ whether
+  or not there is an ODD plan.
 
 ## Disclaimer
 
-Ver `README.md` para el propósito del proyecto.
+See `README.md` for the project's purpose.

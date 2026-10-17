@@ -15,7 +15,8 @@
 
 Portafolio personal estático: HTML semántico, CSS puro y TypeScript nativo sobre
 Vite+ y Cloudflare Workers. Sin framework de UI, sin animación de scroll, sin
-dependencia que no se justifique contra el budget de **1.19 kB** de JavaScript.
+dependencia que no se justifique contra el budget de **1.1 kB de JavaScript
+comprimido**.
 
 **La voz es lo más importante del proyecto.** Los comentarios explicativos en
 español del código y el copy de la página son la identidad del repo, no relleno

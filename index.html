@@ -65,13 +65,13 @@
     />
     <meta
       property="og:image"
-      content="https://portfolio.jose-luis-rs.workers.dev/images/Showcase3.png"
+      content="https://portfolio.jose-luis-rs.workers.dev/images/showcase.webp"
     />
     <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+    <meta property="og:image:height" content="675" />
     <meta
       property="og:image:alt"
-      content="Portafolio de José Luis Ramírez Sánchez: proyectos en Astro, Svelte y Cloudflare Workers"
+      content="Escritorio Arch Linux con Catppuccin, neofetch y mis herramientas: así trabajo"
     />
     <meta property="og:url" content="https://portfolio.jose-luis-rs.workers.dev" />
     <meta property="og:type" content="website" />
@@ -97,7 +97,7 @@
     />
     <meta
       name="twitter:image"
-      content="https://portfolio.jose-luis-rs.workers.dev/images/Showcase3.png"
+      content="https://portfolio.jose-luis-rs.workers.dev/images/showcase.webp"
     />
 
     <!-- ============================ ESTILOS ============================ -->
@@ -287,6 +287,26 @@
                 <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 .05 5 .05"></path>
               </svg>
               <span class="nav-text"> Stack </span>
+            </a>
+            <a href="#yo">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+                class="lucide lucide-monitor"
+              >
+                <rect width="20" height="14" x="2" y="3" rx="2"></rect>
+                <line x1="8" x2="16" y1="21" y2="21"></line>
+                <line x1="12" x2="12" y1="17" y2="21"></line>
+              </svg>
+              <span class="nav-text"> Esto es mío </span>
             </a>
             <a href="#curiosidades">
               <svg
@@ -741,7 +761,6 @@
       </section>
 
       <section id="curiosidades" class="hidden">
-        <h2>Curiosidades</h2>
         <h2>Curiosidades sobre Mí</h2>
         <details open>
           <summary class="curiosidades-summary">¿Cuál es tu color favorito?</summary>
@@ -766,6 +785,50 @@
             mamey, coco, etc. Mientras sea helado sé que me gustará mucho.
           </p>
         </details>
+      </section>
+
+      <!-- ? ═══ Divisor: a partir de aquí el sitio deja de hablar de trabajo ═══ -->
+      <hr class="divisor" />
+
+      <!-- ? Yo: escritorio real, con neofetch y las herramientas que uso a diario -->
+      <section id="yo" class="hidden">
+        <h2>Esto es mío</h2>
+        <p>
+          Y para cerrar, esto no es una maqueta: es mi escritorio. Arch Linux con la paleta
+          Catppuccin, <code>fsh</code> como shell, y las mismas herramientas con las que trabajo
+          todos los días.
+        </p>
+        <img
+          class="yo-shot"
+          src="/images/showcase.webp"
+          alt="Escritorio de Arch Linux: neofetch con el logo de la distribución, terminal con fsh y un listado de archivos, un explorador gráfico y dos ventanas con arte generado por la terminal"
+          width="1200"
+          height="675"
+          loading="lazy"
+          decoding="async"
+        />
+        <ul class="yo-datos">
+          <li>
+            <strong>Sistema:</strong>
+            <span class="descripcion">Arch Linux con btrfs, Wayland y GNOME</span>
+          </li>
+          <li>
+            <strong>Shell:</strong>
+            <span class="descripcion"
+              ><code>fsh</code>, con Zsh y Fish documentados por separado en GitHub</span
+            >
+          </li>
+          <li>
+            <strong>Editor:</strong>
+            <span class="descripcion">Helix, en modo modal y basado en selecciones</span>
+          </li>
+          <li>
+            <strong>Configuración:</strong>
+            <span class="descripcion"
+              >dotfiles públicos, y la configuración de seguridad de Linux al aire</span
+            >
+          </li>
+        </ul>
       </section>
     </main>
 

@@ -10,11 +10,17 @@ document.documentElement.innerHTML = html;
 describe("oferta y honestidad del copy (T12, S1)", () => {
   it("la página dice qué hace antes de hablar de su vida", () => {
     const secciones = [...document.querySelectorAll("main > section")].map((s) => s.id);
-    const indice = [...secciones];
 
-    expect(indice.indexOf("servicios")).toBe(0);
-    expect(indice.indexOf("servicios")).toBeLessThan(indice.indexOf("mi-vida"));
-    expect(indice.indexOf("mis-proyectos")).toBeLessThan(indice.indexOf("curiosidades"));
+    expect(secciones.indexOf("servicios")).toBe(0);
+    expect(secciones.indexOf("servicios")).toBeLessThan(secciones.indexOf("mi-vida"));
+    expect(secciones.indexOf("mis-proyectos")).toBeLessThan(secciones.indexOf("curiosidades"));
+  });
+
+  it("la sección de lo personal es la última y va tras un divisor", () => {
+    const secciones = [...document.querySelectorAll("main > section")].map((s) => s.id);
+
+    expect(secciones.at(-1)).toBe("yo");
+    expect(document.querySelectorAll("main > .divisor")).toHaveLength(1);
   });
 
   it("cada enlace del índice apunta a una sección que existe", () => {
@@ -49,8 +55,8 @@ describe("oferta y honestidad del copy (T12, S1)", () => {
 });
 
 describe("capturas de proyecto (S3)", () => {
-  it("cada imagen lleva dimensiones, carga diferida y texto alternativo", () => {
-    const imagenes = document.querySelectorAll("#mis-proyectos img");
+  it("toda imagen del documento lleva dimensiones, carga diferida y texto alternativo", () => {
+    const imagenes = document.querySelectorAll("main img");
 
     expect(imagenes.length).toBeGreaterThan(0);
     for (const imagen of imagenes) {

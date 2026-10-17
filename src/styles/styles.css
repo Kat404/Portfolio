@@ -4,12 +4,8 @@
 /* * Definimos los colores base del Portfolio usando oklch para mayor precisión */
 :root {
   --color-base: oklch(0.2429 0.0304 283.91); /* ? Catppuccin Base */
-  --color-base-darker: oklch(
-    0.2155 0.0254 284.06
-  ); /* ? Catppucin Base Darker */
-  --color-base-darkest: oklch(
-    0.1828 0.0204 284.2
-  ); /* ? Catppuccin Base más oscuro de todos */
+  --color-base-darker: oklch(0.2155 0.0254 284.06); /* ? Catppucin Base Darker */
+  --color-base-darkest: oklch(0.1828 0.0204 284.2); /* ? Catppuccin Base más oscuro de todos */
 
   --color-text: oklch(0.8787 0.0426 272.28); /* ? Texto principal */
   --color-subtext: oklch(0.8168 0.0403 272.86); /* ? Subtexto */
@@ -18,9 +14,7 @@
   --color-text-blue: oklch(0.7664 0.1113 259.88); /* ? Texto en azul */
   --color-text-lavender: oklch(0.8166 0.091 277.31); /* ? Texto en lavanda */
   --color-text-sky: oklch(0.8467 0.0833 210.25); /* ? Texto en azul claro */
-  --color-text-mauve: oklch(
-    0.7871 0.1187 304.77
-  ); /* ? Texto en púrpura suave */
+  --color-text-mauve: oklch(0.7871 0.1187 304.77); /* ? Texto en púrpura suave */
 }
 
 /* ======================== TIPOGRAFÍAS (FONT-FACES) ======================== */

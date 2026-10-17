@@ -1,34 +1,26 @@
 {
   "name": "portfolio",
+  "version": "0.0.0",
+  "private": true,
   "type": "module",
-  "version": "1.7.0",
-  "engines": {
-    "node": ">=22.12.0"
-  },
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "pnpm run build && wrangler dev",
-    "astro": "astro",
-    "generate-types": "wrangler types",
-    "deploy": "pnpm run build && wrangler deploy"
+    "dev": "vp dev",
+    "build": "tsc && vp build",
+    "preview": "vp build && wrangler dev",
+    "deploy": "vp build && wrangler deploy"
   },
-  "dependencies": {
-    "@astrojs/cloudflare": "^14.1.7",
-    "@lucide/astro": "^1.28.0",
-    "astro": "^7.1.6",
-    "prettier-plugin-astro": "^0.14.1",
+  "devDependencies": {
+    "happy-dom": "^21.0.3",
+    "typescript": "~6.0.2",
+    "vite": "catalog:",
+    "vite-plus": "catalog:",
     "wrangler": "^4.118.0"
   },
-  "overrides": {
-    "vite": "^7",
-    "tinyclip": "0.1.10"
-  },
-  "aube": {
-    "allowBuilds": {
-      "esbuild": true,
-      "sharp": true,
-      "workerd": true
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.14.0",
+      "onFail": "download"
     }
   }
 }

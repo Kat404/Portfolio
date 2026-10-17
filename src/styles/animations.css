@@ -85,9 +85,7 @@ a::after {
 }
 
 a:hover::after {
-  transform: scaleX(
-    1
-  ); /* Regresa a su 100% (del 90% definido arriba) en hover */
+  transform: scaleX(1); /* Regresa a su 100% (del 90% definido arriba) en hover */
 }
 
 a:hover {

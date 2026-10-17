@@ -1,13 +1,11 @@
 {
-	"compatibility_date": "2026-03-17",
-	"compatibility_flags": ["global_fetch_strictly_public"],
-	"name": "portfolio",
-	"main": "@astrojs/cloudflare/entrypoints/server",
-	"assets": {
-		"directory": "./dist",
-		"binding": "ASSETS"
-	},
-	"observability": {
-		"enabled": true
-	}
+  "compatibility_date": "2026-03-17",
+  "compatibility_flags": ["global_fetch_strictly_public"],
+  "name": "portfolio",
+  "assets": {
+    "directory": "./dist",
+  },
+  "observability": {
+    "enabled": true,
+  },
 }

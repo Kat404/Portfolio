@@ -4,29 +4,34 @@ Frontend Developer JR | Estudiante de Ingeniería en Sistemas Computacionales.
 
 ## 📋 Descripción
 
-Este proyecto es un portafolio personal minimalista construido con **Astro**. Su objetivo es servir como base de aprendizaje en desarrollo web modular, manteniendo un enfoque en HTML semántico y CSS puro.
+Este proyecto es un portafolio personal minimalista construido con **Vite+**. Su objetivo es servir como base de aprendizaje en desarrollo web modular, manteniendo un enfoque en HTML semántico y CSS puro.
 
 ## 🛠️ Tecnologías Usadas
 
-- **Astro 6.x** — Framework web para optimizar el rendimiento.
+- **Vite+ 1.3** — Toolchain unificado: runtime, dev server, build, lint, formato y tests.
+- **Vite 7** — Bundler (Rolldown) y dev server.
 - **HTML5** — Estructura semántica avanzada.
 - **CSS3** — Diseño visual.
-- **Aube** — Gestor de paquetes de NodeJS de alto rendimiento.
+- **TypeScript** — Único entry de cliente (`src/main.ts`) para animaciones y header.
+- **pnpm** — Gestor de paquetes de NodeJS.
 - **Wrangler** — Plataforma de Desarrollo para Cloudflare
+- **Lucide** — Íconos SVG, inlinados en `index.html` en tiempo de build.
 
 ## 🗂️ Estructura del Proyecto
 
 ```text
-Portfolio/
+Portfolio-VP/
 ├── public/              # Recursos estáticos (imágenes, iconos)
 │   ├── fonts/           # Fuentes tipográficas web (WOFF2)
 │   ├── images/          # Imágenes
 │   └── icons/           # Íconos & Logos
 ├── src/
-│   ├── components/      # Fragmentos de UI (Header, Footer)
-│   ├── layouts/         # Plantillas Base (BaseLayout)
-│   ├── pages/           # Página Web Base y Contenidos (index.astro)
+│   ├── main.ts          # Entry de cliente: revelado, header y copyright
+│   ├── main.test.ts     # Pruebas de humo del entry
 │   └── styles/          # Hojas de estilo globales (CSS)
+├── index.html           # Documento completo (estructura + metadatos + íconos)
+├── vite.config.ts       # Configuración de Vite+ (lint, fmt, test)
+├── wrangler.jsonc       # Despliegue estático en Cloudflare Workers
 ├── README.md            # Documentación general
 └── NOTES.md             # Apuntes y retroalimentación
 ```
@@ -35,10 +40,21 @@ Portfolio/
 
 ```bash
 # Instalar dependencias
-aube install
+vp install
 
 # Iniciar servidor de desarrollo
-aube run dev
+vp dev
+
+# Validar (formato + lint + tipos) y probar
+vp check
+vp test
+
+# Build de producción
+vp build
+
+# Previsualizar y desplegar
+vp run preview
+vp run deploy
 ```
 
 ---
@@ -79,6 +95,7 @@ Análisis de accesibilidad, semántica y SEO.
 
 ### 📜 Historial de Versiones
 
+- **v2.0.0 (16/10/26):** Migración de Astro a Vite+. Layout, componentes y páginas se aplanan en `index.html`; los scripts de `.astro` pasan a `src/main.ts`; Prettier pasa a Oxfmt; los iconos Lucide se inlinean en el HTML.
 - **v1.7.0 (02/05/26):** Correción de semántica, mejora visual y de animaciones. Preparando animaciones extras.
 - **v1.6.0 (02/04/26):** Integración inicial de animaciones, transiciones y apariciones usando CSS & JS.
 - **v1.5.0 (01/04/26):** Modularización revertida, añadición de íconos Lucide, ajustes al CSS.

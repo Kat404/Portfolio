@@ -13,12 +13,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- ? Viewport Width: Adapta la página web según el ancho del dispositivo en cuestión -->
 
-    <title>Portafolio Personal - José Luis - Frontend Developer JR</title>
+    <title>Sitios en producción con Astro y Svelte — José Luis Ramírez Sánchez</title>
     <!-- * Title: Es el título que aparecerá en nuestra página en la pestaña del navegador -->
 
     <meta
       name="description"
-      content="Portafolio de José Luis, un estudiante en Ingeniería en Sistemas Computacionales con un interés temprano enfocado en el desarrollo de páginas web FrontEnd, con ganas de maximizar sus habilidades en HTML y CSS"
+      content="Dos sitios en producción con ingresos, una plataforma docente y un rediseño open source. Astro, Svelte, Stripe y Cloudflare Workers."
     />
     <!-- * Description: Es la descripción que aparecerá en nuestro página web cuando sea buscada por motores de búsqueda como Google, tiene que ver mucho con la parte de optimizar el SEO de la página -->
 
@@ -55,10 +55,13 @@
     ? Locale: Define el idioma de la página web
     ? Site_name: Nombre de la página web, aparece en la previsualización de la tarjeta
     -->
-    <meta property="og:title" content="Portafolio Personal - José Luis Ramírez Sánchez" />
+    <meta
+      property="og:title"
+      content="Sitios en producción con Astro y Svelte — José Luis Ramírez Sánchez"
+    />
     <meta
       property="og:description"
-      content="Portafolio de José Luis, un estudiante en Ingeniería en Sistemas Computacionales con un interés temprano enfocado en el desarrollo de páginas web FrontEnd, con ganas de maximizar sus habilidades en HTML y CSS"
+      content="Dos sitios en producción con ingresos, una plataforma docente y un rediseño open source. Astro, Svelte, Stripe y Cloudflare Workers."
     />
     <meta
       property="og:image"
@@ -66,7 +69,10 @@
     />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Portafolio de José Luis Ramírez Sánchez" />
+    <meta
+      property="og:image:alt"
+      content="Portafolio de José Luis Ramírez Sánchez: proyectos en Astro, Svelte y Cloudflare Workers"
+    />
     <meta property="og:url" content="https://portfolio.jose-luis-rs.workers.dev" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_MX" />
@@ -81,10 +87,13 @@
     ? twitter:image: URL de la imagen de preview (debe ser accesible públicamente)
     -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Portafolio Personal - José Luis Ramírez Sánchez" />
+    <meta
+      name="twitter:title"
+      content="Sitios en producción con Astro y Svelte — José Luis Ramírez Sánchez"
+    />
     <meta
       name="twitter:description"
-      content="Portafolio de José Luis, estudiante de ISC enfocado en desarrollo web Frontend."
+      content="Dos sitios en producción con ingresos, una plataforma docente y un rediseño open source. Astro, Svelte, Stripe y Cloudflare Workers."
     />
     <meta
       name="twitter:image"
@@ -147,7 +156,7 @@
         <div class="nav-container">
           <nav id="indice" class="indice hidden" aria-label="Índice de Contenido">
             <!-- ? Nav: Nos permite tener un sistema de navegación en nuestra web, puede verse como un índice propio e integrado -->
-            <a href="#bienvenido">
+            <a href="#servicios">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="13"
@@ -166,7 +175,7 @@
                   d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
                 ></path>
               </svg>
-              <span class="nav-text"> Inicio </span>
+              <span class="nav-text"> Qué hago </span>
             </a>
             <a href="#mi-vida">
               <svg
@@ -185,7 +194,7 @@
                 <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
                 <circle cx="12" cy="7" r="4"></circle>
               </svg>
-              <span class="nav-text"> Mi Vida </span>
+              <span class="nav-text"> Sobre mí </span>
             </a>
             <a href="#aficiones">
               <svg
@@ -277,7 +286,7 @@
                 ></path>
                 <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 .05 5 .05"></path>
               </svg>
-              <span class="nav-text"> Tecnologías de Interés </span>
+              <span class="nav-text"> Stack </span>
             </a>
             <a href="#curiosidades">
               <svg
@@ -396,41 +405,82 @@
     </header>
 
     <main>
+      <section id="servicios" class="hidden">
+        <h2>Qué hago</h2>
+        <p class="servicio-lead">
+          Construyo sitios web que tienen que cobrar: sistemas de reserva, cotizadores y plataformas
+          internas que se usan a diario. Trabajo con Astro, Svelte y Cloudflare Workers, y entrego
+          el código, no solo la pantalla.
+        </p>
+        <ul class="servicio-lista">
+          <li>
+            <strong>Sitios que venden.</strong>
+            <span class="descripcion"
+              >Del formulario de cotización al pago. Uno de los míos está en producción generando
+              ingresos hoy.</span
+            >
+          </li>
+          <li>
+            <strong>Plataformas internas.</strong>
+            <span class="descripcion"
+              >Roles, sesiones, persistencia y despliegue en la nube de borde. La que uso para dar
+              un curso del IEEE Computer Society corre sobre D1 y Durable Objects.</span
+            >
+          </li>
+          <li>
+            <strong>Ingeniería de sistemas.</strong>
+            <span class="descripcion"
+              >Linux, redes, hardened y automatización. Rust y TypeScript según lo que pida el
+              problema.</span
+            >
+          </li>
+        </ul>
+        <p class="servicio-contacto">
+          Si necesitas algo de esto, escríbeme por
+          <a href="mailto:xocemyst@duck.com">correo</a> o por
+          <a href="https://smp9.simplex.im/a#rMR3mX4XndQhxJgJ_qcma1NKD_uQ0PisFCCe_tAmXTw">SimpleX</a
+          >.
+        </p>
+      </section>
+
       <section id="bienvenido" class="hidden">
         <h2>¡Bienvenido!</h2>
         <p>
-          Bienvenido a mi portafolio personal. Aquí encontrarás información sobre mis
-          <strong>proyectos</strong>, habilidades y experiencia profesional además de poder
-          conocerme un poco más. ¿Estás listo?
+          Este es mi portafolio. Debajo vas a encontrar <strong>en qué trabajo</strong>, los
+          <strong>proyectos</strong> que he construido, el <strong>stack</strong> con el que lo he
+          hecho y, al final, algo más personal. Empieza por lo que necesitas saber.
         </p>
       </section>
 
       <section id="mi-vida" class="hidden">
-        <h2>Mi Vida</h2>
+        <h2>Sobre mí</h2>
         <p>
-          Actualmente soy un <em>estudiante</em> en
-          <strong>Ingeniería en Sistemas Computacionales</strong>, me gustan mucho los Sistemas
-          Operativos, en especial los tipo <strong>UNIX</strong>, me quiero enfocar en el desarrollo
-          FrontEnd, diseño web y todo lo que tenga que ver con la UI/UX de Interfaces Gráficas para
-          usuarios modernos y exigentes.
+          Soy estudiante de <strong>Ingeniería en Sistemas Computacionales</strong> y llevo dos años
+          construyendo software que se usa de verdad. Empecé con <strong>Linux</strong> y todavía es
+          donde más cómodo me siento; de ahí vine al desarrollo web y a los sistemas distribuidos.
         </p>
         <h3 id="aficiones">Aficiones y Enfoques</h3>
         <ul>
           <li>
             Sistemas Operativos:
-            <span class="descripcion">Linux (Arch Linux), FreeBSD &amp; próximamente OpenBSD.</span>
-          </li>
-          <li>
-            Desarrollo Web (Aprendizaje Temprano):
             <span class="descripcion"
-              >HTML y CSS, con determinación para dominar frameworks para FrontEnd como
-              <strong>Astro</strong> con React y frameworks de CSS como Bootstrap o
-              TailwindCSS.</span
+              >Linux (Arch Linux), FreeBSD &amp; próximamente OpenBSD. Configuro y Endurezco lo que
+              uso.</span
             >
           </li>
           <li>
-            Mejoramiento de la seguridad &amp; privacidad de sistemas y navegadores:
-            <span class="descripcion">AdBlockers, Firewalls, Sandboxing, etc.</span>
+            Desarrollo Web:
+            <span class="descripcion"
+              >Astro y Svelte sobre Cloudflare Workers. Es lo con lo que entrego a clientes y lo que
+              uso para mis propios proyectos.</span
+            >
+          </li>
+          <li>
+            Seguridad &amp; privacidad:
+            <span class="descripcion"
+              >Hardening de sistemas y navegadores, cortafuegos, sandboxing y herramientas que no
+              rastrean.</span
+            >
           </li>
         </ul>
 
@@ -448,6 +498,147 @@
 
       <section id="mis-proyectos" class="hidden">
         <h2>Mis Proyectos</h2>
+        <p>
+          Tres sistemas en producción real —uno con ingresos, otro en uso por un curso del IEEE
+          Computer Society— y un rediseño open source de un sistema académico.
+        </p>
+        <!-- ? Cada tarjeta declara su rol, sus hechos verificables y sus enlaces: nada queda al aire -->
+        <div class="project-grid">
+          <article class="project-card">
+            <img
+              class="project-shot"
+              src="/images/proyectos/casa-noria.webp"
+              alt="Portada del sitio del Hotel Casa Noria: fotografía del acceso con el logo del hotel y el botón Reservar en línea"
+              width="720"
+              height="450"
+              loading="lazy"
+              decoding="async"
+            />
+            <h3 class="project-title">Casa Noria</h3>
+            <p class="project-role">
+              Sitio oficial de un hotel real en Acapulco: habitaciones, SEO local y reserva con pago
+              en línea.
+            </p>
+            <ul class="project-facts">
+              <li><strong>En producción</strong> · con ingresos</li>
+              <li>
+                22 páginas · 140 commits · Astro 7 + Svelte 5 + Stripe 22 sobre Cloudflare Workers
+              </li>
+              <li>Mobile-first, accesible y con pruebas E2E</li>
+            </ul>
+            <p class="project-links">
+              <a href="https://hotelcasanoria.com.mx" target="_blank" rel="noopener noreferrer"
+                >Ver sitio en vivo</a
+              >
+              <a
+                href="https://github.com/Kat404/Hotel-Casa-Noria"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Código</a
+              >
+            </p>
+          </article>
+
+          <article class="project-card">
+            <img
+              class="project-shot"
+              src="/images/proyectos/tranxfers.webp"
+              alt="Portada de Tranxfers: lema Cada destino, un nuevo rumbo sobre una foto de van, con la calificación 4.9 y el botón Cotizar ahora"
+              width="720"
+              height="450"
+              loading="lazy"
+              decoding="async"
+            />
+            <h3 class="project-title">Tranxfers</h3>
+            <p class="project-role">
+              Traslados privados cotizados de Viajes RumboX: el visitante arma su cotización en tres
+              pasos y puede retomarla después.
+            </p>
+            <ul class="project-facts">
+              <li><strong>En producción</strong> · con ingresos</li>
+              <li>7 páginas · 55 commits · Astro 7 SSR + Svelte 5 + Vitest</li>
+              <li>Cotizador con autosave en <code>localStorage</code></li>
+            </ul>
+            <p class="project-links">
+              <a href="https://tranxfers.com.mx" target="_blank" rel="noopener noreferrer"
+                >Ver sitio en vivo</a
+              >
+              <a
+                href="https://github.com/Kat404/Tranxfers"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Código</a
+              >
+            </p>
+          </article>
+
+          <article class="project-card">
+            <img
+              class="project-shot"
+              src="/images/proyectos/talleragentes.webp"
+              alt="Portada de Taller Agentes: título del taller, botones de iniciar sesión y registrarse, y la mascota penguin de Ubuntu"
+              width="720"
+              height="450"
+              loading="lazy"
+              decoding="async"
+            />
+            <h3 class="project-title">TallerAgentes</h3>
+            <p class="project-role">
+              Plataforma del curso "Agentes de IA y Automatización" que doy en IEEE Computer Society
+              ITM: inscripción, credenciales, asistencia y publicación de contenido.
+            </p>
+            <ul class="project-facts">
+              <li><strong>En producción</strong> · en uso del curso</li>
+              <li>325 commits · 37 ramas</li>
+              <li>Cloudflare Workers en free tier + D1 + Durable Objects</li>
+              <li>Contenido en MDX y pipeline OpenSpec con TDD estricto</li>
+            </ul>
+            <p class="project-links">
+              <a
+                href="https://talleragentes.jose-luis-rs.workers.dev/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Ver sitio en vivo</a
+              >
+            </p>
+          </article>
+
+          <article class="project-card">
+            <img
+              class="project-shot"
+              src="/images/proyectos/opensim.webp"
+              alt="Inventario de componentes UI de OpenSIM: botones, campos de entrada, estados, barras de avance y avatares, con verificación WCAG 2.1 AA"
+              width="720"
+              height="450"
+              loading="lazy"
+              decoding="async"
+            />
+            <h3 class="project-title">OpenSIM</h3>
+            <p class="project-role">
+              Rediseño FOSS del sistema académico del TecNM Morelia, construido como demo funcional:
+              lo que el original no publica se declara pendiente en vez de inventarse.
+            </p>
+            <ul class="project-facts">
+              <li><strong>Demo pública</strong> · desplegada en Workers</li>
+              <li>201 commits</li>
+              <li>Drizzle ORM + Valibot + pdf-lib</li>
+              <li>Playwright + axe-core para accesibilidad</li>
+            </ul>
+            <p class="project-links">
+              <a
+                href="https://opensim.jose-luis-rs.workers.dev"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Ver demo</a
+              >
+              <a href="https://github.com/Kat404/OpenSIM" target="_blank" rel="noopener noreferrer"
+                >Código</a
+              >
+            </p>
+          </article>
+        </div>
+
+        <h3>Otros proyectos</h3>
         <ul>
           <li class="list-project">
             <a
@@ -489,38 +680,58 @@
               target="_blank"
               rel="noopener noreferrer"
               >Hotel Quinta Dalam</a
-            >: Sitio web Hotelero personalizado para cliente en Michoacán, México. Desarrollado en
-            pares usando Astro, React &amp; JS nativo.
-            <span class="subrayado"> Primer proyecto real en un ámbito formal. </span>
+            >: Sitio web hotelero para cliente en Michoacán, México. Desarrollado en pares con
+            Astro, React &amp; JS nativo.
           </li>
         </ul>
       </section>
 
       <section id="tecnologias-de-interes" class="hidden">
-        <h2>Tecnologías de Interés</h2>
-        <p>Fundamentalmente son las básicas dentro del desarrollo web:</p>
-        <ul>
-          <li>HTML</li>
-          <li>CSS</li>
-          <li>JavaScript</li>
-        </ul>
+        <h2>Stack</h2>
         <p>
-          Fuera de los lenguajes de marcado, estilo y programación "básicos", me encanta estar
-          aprendiendo acerca de:
+          Esta es la herramienta con la que entrego, con la versión con la que está en producción
+          hoy. No es una lista de deseos: cada línea corresponde a algo que ya corre.
         </p>
-        <ul>
+        <ul class="stack-lista">
           <li>
-            <strong>Framework Principal:</strong>
-            <span class="subrayado">Astro</span>, me encanta el hecho de poder modular, crear y usar
-            componentes, layouts y diferentes recursos para el proyecto en el que esté trabajando o
-            en futuros proyectos.
+            <strong>Sitios:</strong>
+            <span class="descripcion"
+              ><strong>Astro 7</strong> con <strong>Svelte 5</strong>. Estático donde no hace falta
+              JavaScript, SSR sobre Cloudflare Workers donde sí.</span
+            >
           </li>
           <li>
-            <strong>Librería Popular:</strong>
-            <span class="subrayado">React</span>, me gusta la idea de poner implementar y
-            complementar las diferentes capacidades y ventajas de Astro con un toque moderno,
-            portable y con un transfondo sumamente comercial y con mucha documentación aunque su
-            complejidad sea relativamente alta al principio.
+            <strong>Pagos y datos:</strong>
+            <span class="descripcion"
+              ><strong>Stripe</strong> para checkout, <strong>Drizzle ORM</strong> y
+              <strong>Valibot</strong> para esquema y validación en el borde.</span
+            >
+          </li>
+          <li>
+            <strong>Infraestructura:</strong>
+            <span class="descripcion"
+              ><strong>Cloudflare Workers</strong>, <strong>D1</strong> y
+              <strong>Durable Objects</strong>. wrangler para los tres.</span
+            >
+          </li>
+          <li>
+            <strong>Calidad:</strong>
+            <span class="descripcion"
+              ><strong>Vitest</strong> en pruebas de unidad, <strong>Playwright</strong> y
+              <strong>axe-core</strong> en end-to-end y accesibilidad,
+              <strong>OpenSpec</strong> para el ciclo de desarrollo.</span
+            >
+          </li>
+          <li>
+            <strong>Sistemas:</strong>
+            <span class="descripcion"
+              ><strong>Rust</strong> con <strong>axum</strong>, <strong>tokio</strong> y
+              <strong>turso</strong> para la parte de logística y ACID.</span
+            >
+          </li>
+          <li>
+            <strong>Base:</strong>
+            <span class="descripcion">HTML semántico, CSS puro y TypeScript nativo.</span>
           </li>
         </ul>
         <blockquote class="quote">
@@ -530,6 +741,7 @@
       </section>
 
       <section id="curiosidades" class="hidden">
+        <h2>Curiosidades</h2>
         <h2>Curiosidades sobre Mí</h2>
         <details open>
           <summary class="curiosidades-summary">¿Cuál es tu color favorito?</summary>

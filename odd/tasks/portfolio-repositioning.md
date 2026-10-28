@@ -51,6 +51,14 @@ público: un enlace a un repo privado es un 404 para cualquier visitante.
 Objetivo: llegar a "esto está en producción y cobra dinero" en menos de 10
 segundos.
 
+**S2b — Solo dos proyectos están en producción real y dan ingresos.** El autor
+lo es explícito: Casa Noria y Tranxfers son los dos que aportan al CV y
+facturan. Los otros dos son trabajo propio —plataforma docente en uso y
+rediseño open source— y **no pueden llevar la misma etiqueta de producción**.
+La introducción de la sección cuenta lo que hay: dos con ingresos, una
+plataforma docente en uso y un rediseño open source. La distinción se fija con
+tests, no con la buena voluntad del copy.
+
 **S3 — Capturas reales.** Mínimo una por proyecto destacado, en WebP, con
 `loading="lazy"`, `width`/`height` declarados y `alt` descriptivo.
 
@@ -837,3 +845,40 @@ el JS sigue en **1 125 B gzip**.
 > prosa que tiene delante. Por eso esta deriva se detectó a ojo, no sola. Lo
 > que falta para que la suite la detecte es otro test: comparar longitud o
 > palabras significativas de ambos idiomas nodo por nodo.
+
+### L16 — 2026-10-27 · Solo dos proyectos son producción real
+
+> Solamente 2 son de producción REAL (que aportan valor al CV, los otros son
+> solo de desarrollo personal/local) que me aportan ganancias. Refléjalo.
+> — autor
+
+La página mezclaba dos cosas: tres tarjetas llevaban la etiqueta "En producción"
+—dos con ingresos y una en uso del curso— y la introducción contaba "Tres
+sistemas en producción real". Con la aclaración del autor, esas dos cosas
+dejaban de ser ciertas.
+
+**Qué cambió**
+
+| Antes                                                                                                                                                        | Después                                                                                                                                                            |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| "En producción · en uso del curso" (TallerAgentes)                                                                                                           | "Plataforma propia · en uso del curso"                                                                                                                             |
+| "Tres sistemas en producción real —dos con ingresos, otro en uso por un curso del IEEE Computer Society— y un rediseño open source de un sistema académico." | "Dos sistemas en producción con ingresos, una plataforma docente en uso por un curso del IEEE Computer Society y un rediseño open source de un sistema académico." |
+
+Casa Noria y Tranxfers conservan "En producción · con ingresos" y OpenSIM
+conserva "Demo pública · desplegada en Workers". Ahora **solo dos tarjetas
+dicen "En producción"** y son las dos que facturan.
+
+**Dos tests nuevos lo fijan**: exactamente dos tarjetas con "con ingresos",
+exactamente una con "en uso del curso", exactamente dos con "En producción", y
+la introducción dice "Dos sistemas" y no "Tres". RED observado antes de tocar
+el copy: 3 tarjetas con "En producción" y la intro diciendo "Tres sistemas".
+
+**Lo que NO se cambió, y por qué**: el `meta description` y los de Open Graph
+y Twitter ya decían "Dos sitios en producción con ingresos, una plataforma
+docente y un rediseño open source" — la distinción correcta estaba escrito en
+la descripción y no en el cuerpo de la página. Ahora los dos sitios coinciden.
+
+**Conflicto con el plan**: T21 pedía "protagonismo visual uniforme" en las
+tarjetas. Eso contradice lo que el autor acaba de aclarar: si solo dos proyectos
+aportan al CV, esos dos deberían destacar más que los otros dos, no lo mismo.
+T21 queda pendiente de reescribirse con esa jerarquía.

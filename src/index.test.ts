@@ -273,4 +273,13 @@ describe("metadatos del documento (T11)", () => {
     expect(contenido('meta[property="og:description"]')).toBe(descripcion);
     expect(contenido('meta[name="twitter:description"]')).toBe(descripcion);
   });
+
+  it("el título, el de Open Graph y el de Twitter son el mismo", () => {
+    // ? Decisión del autor: la pestaña y las vistas previas llevan el mismo texto.
+    const titulo = document.title;
+
+    expect(titulo.length).toBeGreaterThan(0);
+    expect(contenido('meta[property="og:title"]')).toBe(titulo);
+    expect(contenido('meta[name="twitter:title"]')).toBe(titulo);
+  });
 });

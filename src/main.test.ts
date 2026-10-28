@@ -137,7 +137,7 @@ describe("selector de idioma", () => {
 
     botones()[1].click();
     expect(meta.content).toBe("Two production sites with revenue.");
-    expect(document.title).toContain("Production websites");
+    expect(document.title).toContain("Web and Systems Developer");
 
     botones()[0].click();
     expect(meta.content).toBe("descripción original");

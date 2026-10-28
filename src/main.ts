@@ -2,7 +2,7 @@
 
 // ? ↓ Lo que no cabe en un atributo del DOM: el título de la pestaña
 const EN = {
-  title: "Production websites with Astro and Svelte — José Luis Ramírez Sánchez",
+  title: "José Luis Ramírez Sánchez — Web and Systems Developer",
 } as const;
 
 // ? ↓ Revelado progresivo de los elementos al entrar en el viewport

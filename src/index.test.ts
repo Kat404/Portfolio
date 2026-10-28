@@ -71,7 +71,9 @@ describe("oferta y honestidad del copy (T12, S1)", () => {
   it("la sección de lo personal es la última y va tras un divisor", () => {
     const secciones = [...document.querySelectorAll("main > section")].map((s) => s.id);
 
-    expect(secciones.at(-1)).toBe("yo");
+    // ? El autor reordenó la página en L13: lo personal cierra el documento y el
+    // ? divisor sigue separando la parte de trabajo de la parte personal.
+    expect(secciones.at(-1)).toBe("mi-vida");
     expect(document.querySelectorAll("main > .divisor")).toHaveLength(1);
   });
 
@@ -169,8 +171,14 @@ describe("stack declarado y toolchain (S5)", () => {
     expect(html).not.toContain("openspec");
   });
 
-  it("declara el E2E real, el de tester-army/e2e", () => {
-    expect(html).toContain("github.com/tester-army/e2e");
+  it("declara el E2E real, el de agentes de IA", () => {
+    // ? El enlace al repo de tester-army/e2e salió del Stack por decisión del autor:
+    // ? el contrato queda en la mención del E2E, no en la URL.
+    const tarjetas = [...document.querySelectorAll(".project-card")].map(
+      (c) => c.textContent ?? "",
+    );
+
+    expect(tarjetas.some((t) => t.includes("E2E") && t.includes("agentes de IA"))).toBe(true);
   });
 
   it("declara Vite+ y pnpm como toolchain y package manager", () => {

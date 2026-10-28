@@ -107,6 +107,13 @@ no cientos.
 | T16 | Declarar Vite+ y pnpm como toolchain y package manager                          | S5       | inline | **hecha** (L11)                |
 | T17 | Solar Icons: evaluar e incluir el set estático (cero JS)                        | S10      | inline | **hecha** (L11)                |
 | T18 | T8: medición Lighthouse antes/después y corrección de sus hallazgos             | S10      | inline | **hecha** (L10-L11)            |
+| T19 | Licencia y procedencia de los iconos vendorizados (`THIRD-PARTY-NOTICES.md`)    | S10      | inline | **hecha** (L13)                |
+| T20 | Nav de 8 a 4 anclas y cierre de la sección "Bienvenido"                         | S1,S2    | inline | pendiente                      |
+| T21 | Protagonismo visual uniforme en las tarjetas de proyecto                        | S2       | inline | pendiente                      |
+| T22 | `#tecnologias-de-interes` → `#stack`, agrupada en cinco pilares                 | S5,S6    | inline | pendiente                      |
+| T23 | `#yo` → `#entorno`: el entorno como presentación de oficio                      | S7       | inline | pendiente                      |
+| T24 | `#mi-vida` + `#aficiones` + `#mis-gustos` + `#curiosidades` → `#sobre-mi`       | S7       | inline | pendiente                      |
+| T25 | Verificación de tests, formato y presupuesto de JS tras el refactor             | S10      | inline | pendiente                      |
 
 Todas las tareas van **inline**: son de un solo archivo comprensible
 (`index.html`, `src/styles/*.css`) y ninguna toca lógica con rama o riesgo.
@@ -650,3 +657,101 @@ sobre el `index.html` (10 655 B → 15 422 B). Es el precio de vendorizar el set
 completo; un sprite externo no lo abarata (mismos bytes, una petición más). El
 `index.html` final queda en 57.6 kB raw / 15.6 kB gzip, con el JS intacto en
 **1.10 kB gzip** (S10 ✓).
+
+### L13 — 2026-10-27 · Plan de reestructuración de la arquitectura de información
+
+El autor entrega un plan ODD completo para reestructurar el `index.html`
+(verbatim, con su redacción):
+
+> **Objetivo General**: Transformar la estructura actual de `index.html` para
+> elevar al máximo la relación señal-ruido (_signal-to-noise ratio_), reducir la
+> fricción de navegación de 8 a 4 puntos principales, consolidar las secciones
+> personales evitando redundancias, y regularizar la atribución de licencia de las
+> herramientas integradas.
+>
+> **Tarea 1: Regularización de Licencia y Procedencia de Íconos (Solar Icons)**.
+> Acciones: (1) Crear un archivo `THIRD-PARTY-NOTICES.md` en la raíz del
+> repositorio indicando la procedencia (`@solar-icons/static@2.3.3`, estilo
+> _Linear_) y la licencia MIT completa correspondiente a Hakim Saoudi. (2) Incluir
+> un comentario discreto en el `<head>` de `index.html` o al inicio de los SVG
+> referenciando `THIRD-PARTY-NOTICES.md` para mantener trazabilidad limpia sin
+> afectar el peso del build. Verificación: inspección de archivos y `vp check`.
+>
+> **Tarea 2: Rediseño del Header y Simplificación de Navegación**. Acciones:
+> (1) Modificar `<nav id="indice">` para dejar solo 4 secciones: `Proyectos`
+> (`#proyectos`), `Stack & Calidad` (`#stack`), `Entorno & Filosofía`
+> (`#entorno`), `Sobre Mí` (`#sobre-mi`). (2) Eliminar el bloque `<section
+> id="bienvenido">` (meta-explicación innecesaria) y consolidar la propuesta de
+> valor directamente en `<section id="servicios">` (que pasará a ser el inicio
+> del contenido principal). Verificación: los enlaces funcionales en responsive y
+> accesibles con lectores de pantalla (`aria-label`).
+>
+> **Tarea 3: Consolidación y Optimización de la Sección "Proyectos"
+> (`#proyectos`)**. Acciones: (1) Ajustar `<section id="mis-proyectos">` para que
+> la arquitectura y métricas de cada proyecto (Astro 7.4, Svelte 5.57, Stripe 23,
+> Cloudflare Workers, Vitest, Playwright, axe-core) tengan protagonismo visual
+> uniforme. (2) Asegurar que los enlaces directos a sitios en vivos y repos
+> públicos (como _OpenSIM_) mantengan `target="_blank" rel="noopener noreferrer"`.
+> Verificación: renderización en rejilla (`grid`) y accesibilidad HTML.
+>
+> **Tarea 4: Reestructuración de "Stack & Calidad" (`#stack`)**. Acciones:
+> (1) Reorganizar la sección `#tecnologias-de-interes` renombrándola
+> semánticamente a `#stack`. (2) Agrupar la lista de tecnologías en pilares
+> claros: **Frameworks & Edge**, **Pagos & Datos**, **Infraestructura**,
+> **Calidad & Testing** y **Filosofía Base**. (3) Enfatizar las pruebas
+> unitarias y E2E (Vitest, Playwright, axe-core) y la restricción estricta de
+> rendimiento (< 1.2 kB de JS gzipped). Verificación: claridad sintáctica del
+> marcado semántico (`<strong>`, `<span>`).
+>
+> **Tarea 5: Rebranding de la Sección Entorno de Trabajo (`#entorno`)**.
+> Acciones: (1) Renombrar la sección `<section id="yo">` ("Esto es mío") por una
+> presentación ingenieril del entorno de desarrollo (`#entorno`). (2) Mantener la
+> captura de escritorio real (Arch Linux, GNOME, Nushell, Kitty, Helix, hardening
+> en systemd) destacando el conocimiento de sistemas operativos, bajo nivel y
+> FOSS. Verificación: los `alt` de la imagen mantienen una descripción técnica
+> accesible.
+>
+> **Tarea 6: Unificación de Secciones Personales en `#sobre-mi`**. Acciones:
+> (1) Fusionar toda la información personal en una única sección bien
+> estructurada `<section id="sobre-mi">`. (2) Incluir al final un bloque
+> discreto `<details>` con curiosidades o gustos sutiles. (3) Asegurar que los
+> canales de contacto (Email, SimpleX, GitHub, Codeberg, Reddit) queden visibles
+> y accesibles al cierre. Verificación: que no queden referencias descolgadas ni
+> IDs duplicados en el DOM.
+>
+> **Tarea 7: Validación de Tests, Formato y Presupuesto de JS**. Acciones:
+> (1) Actualizar las aserciones de los tests de Vitest si la eliminación de
+> selectores o los cambios de texto afectan la suite. (2) `vp check`. (3)
+> `vp test` en `happy-dom`. (4) `vp build` y verificar que el JS cliente
+> (`dist/assets/*.js`) se mantenga cerca de los 1.1 kB gzipped. Verificación:
+> `gzip -c dist/assets/*.js | wc -c`.
+>
+> **Riesgo**: la reestructuración de IDs (`#yo` → `#entorno`, `#servicios` →
+> `#proyectos`) o cambios en textos traducidos pueden romper tests existentes o
+> scripts que dependan de clases específicas. **Mitigación**: `vp test`
+> incremental tras modificar el DOM.
+
+**Cuatro correcciones al plan, antes de ejecutar:**
+
+1. **El mapa de IDs del bloque de riesgos está mal y es destructivo.** Dice
+   `#servicios` → `#proyectos`. `#servicios` es la sección "Qué hago" (la oferta
+   de valor); si se renombra a `#proyectos` se destruye y además choca con
+   `#mis-proyectos`, que es la que debe pasar a `#proyectos`. El mapa correcto es
+   `mis-proyectos` → `proyectos`, `tecnologias-de-interes` → `stack`, `mi-vida` →
+   `sobre-mi`, `yo` → `entorno`. **`servicios` conserva su id.**
+2. **El archivo de tests es `src/index.test.ts`, no `src/main.test.ts`.** Los
+   contratos del DOM real (orden de secciones, anclas del índice, i18n, copy,
+   iconos) viven en `index.test.ts`; `main.test.ts` prueba `main.ts` contra un
+   fixture propio y no se ve afectado por estos cambios.
+3. **La suite tiene 32 tests, no 24.** Los 8 nuevos son los de T13-T18.
+4. **`#bienvenido` contiene el párrafo de encuadre que el autor acaba de
+   reescribir a mano** ("Este es mi portafolio. Debajo vas a encontrar en qué
+   trabajo…"). Eliminar la sección lo borra; la alternativa es conservarlo
+   fusionado dentro de `#servicios`. Queda a decisión del autor.
+
+**Consecuencia no escrita en el plan**: `#entorno` ("Entorno & Filosofía de
+Desarrollo") es trabajo, y hoy el `<hr class="divisor">` marca justo lo
+contrario — "a partir de aquí el sitio deja de hablar de trabajo". Con el
+rebranding, el divisor tiene que moverse o desaparecer, y el test
+`la sección de lo personal es la última y va tras un divisor` hay que
+reescribirlo.

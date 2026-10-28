@@ -1,8 +1,8 @@
 # ODD Tracker — `portfolio-repositioning`
 
-> **Cycle**: 2026-10-16 · **Branch**: `main` (direct)
-> **Route**: ODD-direct (inline) · **Status**: 🛠 EN EJECUCIÓN — 9 de 13 tasks cerradas
-> **Runner**: `vp check` · `vp test` · `vp build`
+> **Cycle**: 2026-10-16 → 2026-10-27 · **Branch**: `feature/reposicionamiento`
+> **Route**: ODD-direct (inline) · **Status**: 🛠 EN EJECUCIÓN — 17 de 19 tasks cerradas
+> **Runner**: `vp check` · `vp test` · `vp build` · Lighthouse vía `pnpm dlx` (efímero)
 
 ## Objective
 
@@ -45,19 +45,23 @@ ingresos, una plataforma docente y trabajo open source. Evidencia antes que
 biografía.
 
 **S2 — Los proyectos son el contenido principal.** De `<li class="list-project">`
-a tarjetas con rol real, problema, métrica verificable, stack, y dos enlaces:
-**demo en vivo** y código. Objetivo: llegar a "esto está en producción y cobra
-dinero" en menos de 10 segundos.
+a tarjetas con rol real, problema, métrica verificable, stack, y el enlace a la
+**demo en vivo**. El enlace a código solo se publica si el repositorio es
+público: un enlace a un repo privado es un 404 para cualquier visitante.
+Objetivo: llegar a "esto está en producción y cobra dinero" en menos de 10
+segundos.
 
 **S3 — Capturas reales.** Mínimo una por proyecto destacado, en WebP, con
 `loading="lazy"`, `width`/`height` declarados y `alt` descriptivo.
 
-**S4 — Eliminar el autodescalamiento.** Se borran "me gusta la idea de poner
+**S4 — Eliminar el autodescalamiento.** Se borra "me gusta la idea de poner
 implementar" y "me encanta el hecho de poder modular". Se sustituye por hechos
 verificables.
 
-**S5 — Declarar el stack real con versiones.** Astro, Svelte, Vitest, Stripe,
-Cloudflare, Rust. Es la prueba, no la aspiración.
+**S5 — Declarar el stack real con versiones.** Astro 7.4, Svelte 5.57, SvelteKit
+3.1, Vitest 5, Stripe 23, Cloudflare Workers, Rust. Es la prueba, no la
+aspiración: la versión que se declara es la que corre hoy, no la que se usó la
+primera vez.
 
 **S6 — "Tecnologías de Interés" deja de ser sección de deseos** y pasa a stack y
 práctica real, ordenada por dominio demostrado.
@@ -73,7 +77,10 @@ no debe ser invisible para un crawler.
 **S10 — El budget de JS se mantiene.** Cualquier dependencia nueva se justifica
 contra el baseline. El original era 1.19 KB sin comprimir; desde L9 la referencia
 es **1.1 KB gzip** (2.4 KB sin comprimir), porque el selector de idioma añadió
-30 líneas de JS nativo y cero dependencias.
+30 líneas de JS nativo y cero dependencias. Medido por Lighthouse en L10:
+**JS 1 125 B gzip · CSS 1 786 B gzip · HTML 12 278 B gzip**. El presupuesto
+también cubre el peso total de la página: el favicon solo puede pesar kilobytes,
+no cientos.
 
 ---
 
@@ -89,11 +96,17 @@ es **1.1 KB gzip** (2.4 KB sin comprimir), porque el selector de idioma añadió
 | T5  | Declarar stack real con versiones                                               | S5       | inline | **hecha** (L8)                 |
 | T6  | Resolver `class="hidden"` sin JS                                                | S8       | inline | **cerrada** — ya resuelta (L4) |
 | T7  | Recortar `@font-face` a los pesos usados y medir delta                          | S9       | inline | **hecha** (L8)                 |
-| T8  | Medición antes/después: Lighthouse y peso de bundle                             | S10      | inline | pendiente                      |
+| T8  | Medición antes/después: Lighthouse y peso de bundle                             | S10      | inline | **hecha** (L10-L11)            |
 | T9  | Responsive real — hoy no existe ningún `@media`                                 | todos    | inline | **hecha** (L7)                 |
 | T10 | Páginas de detalle por proyecto (`/proyectos/casa-noria`)                       | S2       | inline | pendiente                      |
 | T11 | `<title>`, meta description, Open Graph y Twitter sin lenguaje de perfil junior | S1,S4    | inline | **hecha** (L6)                 |
 | T12 | Declarar qué resuelvo y para quién: para qué me contratan                       | S1,S2    | inline | **hecha** (L8)                 |
+| T13 | Quitar el enlace a código de los repos privados (Casa Noria, Tranxfers)         | S2       | inline | **hecha** (L11)                |
+| T14 | Tarjeta de OpenSIM con el stack y los módulos reales, y captura del producto    | S2,S3,S5 | inline | **hecha** (L11)                |
+| T15 | Fuera OpenSpec; declarar el E2E real (`@e2e-dev/web` / `e2e`)                   | S5       | inline | **hecha** (L11)                |
+| T16 | Declarar Vite+ y pnpm como toolchain y package manager                          | S5       | inline | **hecha** (L11)                |
+| T17 | Solar Icons: evaluar e incluir el set estático (cero JS)                        | S10      | inline | **hecha** (L11)                |
+| T18 | T8: medición Lighthouse antes/después y corrección de sus hallazgos             | S10      | inline | **hecha** (L10-L11)            |
 
 Todas las tareas van **inline**: son de un solo archivo comprensible
 (`index.html`, `src/styles/*.css`) y ninguna toca lógica con rama o riesgo.
@@ -147,16 +160,17 @@ tree-shakeable por Vite. Su caso real son animaciones de salida y layout
 sola página, el 90% de lo que se animaría ya está resuelto en
 `src/styles/animations.css`. Decisión: **solo si T10 entra en alcance.**
 
-**Estado tras L8** — el orden acordado en L6 se ejecutó completo:
-T11 → T9 → T1 → T12 → T2 → T5 → T7. Quedan cuatro:
+**Work unit**: `f361966` — _feat(portfolio): iconografia Solar, copy verificado y
+hallazgos de Lighthouse_ (5 archivos, +236/−111). T13 a T18 entran en ese commit.
 
-- **T8** — medición antes/después. Los números ya existen: fuentes 980→324 KB,
-  JS 1.1 kB gzip, CSS 5.7 kB, 4 capturas de 12-26 KB. Falta el Lighthouse formal.
-- **T10** — páginas de detalle. Es el único trabajo estructural grande que queda,
-  y el único que justificaría Lenis o Motion.
-- **og:image** — `Showcase3.png` (236 KB) sigue siendo la imagen social. No es
-  una task: es deuda que dejó T1, y sale editando una línea.
-- **Lighthouse formal** (T8) y **páginas de detalle** (T10): lo que queda.
+**Estado tras L11** — el plan ya está en 17 de 19. Queda **una sola task**:
+
+- **T10** — páginas de detalle por proyecto. Es el único trabajo estructural
+  grande que queda, y el único que justificaría Lenis o Motion.
+- ~~T8~~: **cerrado en L10-L11** (Lighthouse medido antes/después y sus tres
+  hallazgos corregidos).
+- ~~og:image~~: **cerrado** — `Showcase3.png` (236 KB) se sustituyó por
+  `public/images/showcase.webp` (52 KB) y el favicon de 301 KB por uno de 8 KB.
 - ~~Inglés~~: **cerrado en L9**. La traducción vive en la misma página con
   `data-i18n-en`, no en una ruta `/en`.
 
@@ -428,3 +442,182 @@ que ningún nodo traducible sea un contenedor, que el `hreflang` apunte a algo
 real, y que el selector sobreviva a ir y volver.
 
 **Fuera de alcance**: T8 (Lighthouse formal) y T10 (páginas de detalle).
+
+### L10 — 2026-10-27 · T8, auditoría de repos, Solar Icons y corrección de copy
+
+Solicitud del autor (verbatim):
+
+> Procede con:
+>
+> - T8 mediante pnpx (o pnpm dlx) para Lighthouse
+> - Revisa la integridad, viabilidad e inclusión de Solar Icons al proyecto
+>   (https://solar-icons.dev/). Tiene paquetes nativos tanto como SVG o JS: [Image 1]
+> - [Image 2] Los links del código de los proyectos en producción está en privado por
+>   lo que debe de ser descartado, no hace diferencia alguna a la privacidad o seguridad
+>   del proyecto debido al auth de GitHub pero aún así es necesario corregirlo
+> - [Image 3] La demo del OpenSIM está bien pero ya dentro del proyecto se ve así,
+>   además de que no mencionas que está hecha con SvelteKit 3.1.x pero sí otras
+>   funcionalidades
+> - Sobre el punto anterior, puedes "viajar" entre todo mi ~/Proyectos para verificar
+>   por tu propia cuenta toda la arquitectura de los proyectos que ya conoces
+> - Ya no uso OpenSpec
+> - He usado mucho https://github.com/tester-army/e2e para funcionalidad E2E potenciada
+>   con agentes de IA
+> - He estado usando Vite+ como toolchain unificada para potenciar de manera OOTB y
+>   concisa mis proyectos web, pnpm como package manager predilecto para todo
+
+**T8 — Lighthouse medido (sin dependencias nuevas).** `pnpm dlx lighthouse` contra el
+build servido en `127.0.0.1`, con el Chromium de `~/.cache/ms-playwright` (no se
+instaló nada). La base es `ea8e8f6` (main, pre-reposicionamiento), extraída con
+`git archive` a un `mktemp -d` fuera del worktree.
+
+| Métrica             | Base `ea8e8f6` | Rama actual   | Δ       |
+| :------------------ | :------------- | :------------ | :------ |
+| Performance         | 0.64           | **0.96**      | +0.32   |
+| Accessibility       | 1.00           | 0.96          | −0.04   |
+| Best practices      | 1.00           | 1.00          | =       |
+| SEO                 | 1.00           | 1.00          | =       |
+| FCP / LCP           | 5.0 s / 6.6 s  | 2.3 s / 2.3 s | −2.7 s  |
+| CLS                 | 0.032          | 0.006         | −       |
+| JS gzip             | 647 B          | 1 125 B       | +478 B  |
+| CSS gzip            | 1 315 B        | 1 786 B       | +471 B  |
+| `index.html` gzip   | 6 992 B        | 12 278 B      | +5.3 kB |
+| Fuentes descargadas | 8 (980 KB)     | 4 (324 KB)    | −656 KB |
+
+El salto de Performance viene de recortar las fuentes (T7), no del contenido. Pero
+**Accessibility bajó de 1.00 a 0.96** y son dos defectos que introdujo esta rama:
+
+- `label-content-name-mismatch`: el enlace de correo del pie tiene
+  `aria-label="Enviar un correo electrónico a xocemyst@duck.com"` y su texto visible
+  es "Envíame un correo". WCAG 2.5.3 exige que el texto visible esté contenido en
+  el nombre accesible.
+- `target-size`: los anclas del índice `#servicios` y `#mis-gustos` quedan por
+  debajo de 24×24 px.
+
+**Un hallazgo que T8 no pidió y que sí importa**: el favicon
+`public/icons/linux_maletin.png` pesa **301 705 B**. Es el recurso más pesado del
+sitio, por encima de las cuatro fuentes. Lighthouse lo marca en
+`network-dependency-tree-insight`. Ninguna medición anterior lo había visto porque
+nadie miró la pestaña Network.
+
+**Auditoría de la arquitectura real (5 repos leídos, no de README).** Un explorador
+read-only recorrió `~/Proyectos/OpenSIM`, `~/Proyectos/Taller-Agentes`,
+`~/Proyectos/Armadillos`, `~/Trabajo/Hotel-Casa-Noria` y `~/Trabajo/Tranxfers`, y el
+padre verificó los conteos con `git rev-list --count`:
+
+| Proyecto      | Stack real (manifest)                                                                                                                              | Commits | Visibilidad |
+| :------------ | :------------------------------------------------------------------------------------------------------------------------------------------------- | :------ | :---------- |
+| Casa Noria    | Astro 7.4.2 · Svelte 5.57.3 · Stripe 23.0.1 · `e2e` 0.21.3 + `@e2e-dev/web` 0.14.0 · D1 · output server                                            | 232     | **privada** |
+| Tranxfers     | Astro 7.4.2 SSR · Svelte 5.57.2 · Vitest 5.0.5 · Playwright 1.64.1 · jsdom 30.1.3                                                                  | 97      | **privada** |
+| OpenSIM       | **SvelteKit 3.1.0** · Svelte 5.57.2 · Drizzle 0.45.4 + D1 · Valibot 1.5.0 · pdf-lib · `e2e` 0.21.2 + `@e2e-dev/web` 0.15.2 · Playwright + axe-core | 248     | pública     |
+| TallerAgentes | Astro 7.3.3 SSG · MDX · Tailwind 4.3.3 + daisyUI · Alpine 3.17.2 · D1 + Durable Objects · Vitest 4.1.11 + Playwright + axe-core                    | 325     | privada     |
+| Armadillos    | Rust edition 2024 · axum 0.8.9 · tokio · maud · turso 0.6.1 · argon2 · chacha20poly1305 · 37 tests inline                                          | 12      | pública     |
+
+Cifras que el copy tenía desfasadas: **Stripe 22 → 23**, **201 → 248 commits** en
+OpenSIM, `Astro 7.3.5 → 7.4.2`, `Vitest 4 → 5`, y las 37 ramas de TallerAgentes
+eran `git branch -a` (19 locales). TallerAgentes **no usa Svelte** y **no usa
+Playwright+axe-core**; Casa Noria **no usa Playwright**, usa `@e2e-dev/web`.
+
+**OpenSpec.** Solo existe en `Taller-Agentes/openspec/`; OpenSIM, Casa Noria y
+Tranxfers documentan su ciclo con ODD en `odd/`. El autor ya no lo usa: sale del
+copy de la tarjeta y de la sección Stack.
+
+**`tester-army/e2e` es la fuente real de los paquetes E2E**: `npm view @e2e-dev/web
+repository.url` → `git+https://github.com/tester-army/e2e.git`, y `npm view e2e
+repository.url` → el mismo repo. El E2E de OpenSIM y Casa Noria corre con
+`e2e run`, no con Playwright: Playwright es la capa complementaria (y en Casa
+Noria no está).
+
+**Vite+ y pnpm.** pnpm es el package manager de los cuatro proyectos web (OpenSIM
+12.13.0, TallerAgentes 11.26.0, Casa Noria y Tranxfers con workspace pnpm);
+Armadillos es Cargo. `vite-plus` solo está en este Portfolio —el resto usa el Vite
+de Astro o `vite 8.3.4`—, así que el copy dice **Vite+ para este sitio** y **pnpm
+en todos los proyectos web**, sin atribuir Vite+ a repos que no lo usan.
+
+**Solar Icons: integridad, viabilidad e inclusión.** Verificado contra el
+registro, no contra el landing:
+
+- `@solar-icons/static` 2.3.3 · MIT · 26 210 archivos · 75 MB descomprimido ·
+  **cero dependencias de runtime**. El CLI 2.8.0 es MIT y su única dependencia
+  propia es `@solar-icons/static`.
+- El catálogo real son **1 451 iconos × 6 estilos = 8 706 variaciones** (CLI
+  `overview --json`), no los 1 380 de la documentación.
+- **El paquete JS queda descartado**: mete runtime en el bundle y S10 deja de
+  cumplirse. El paquete de framework (React/Vue/Svelte) también: aquí no hay
+  framework.
+- **El paquete Static es viable y es el que entra**, pero con una aritmética que
+  hay que hacer explícita: los 16 iconos actuales de Lucide ocupan 11 168 B
+  inline; los equivalentes Solar en **Bold** serían 21 868 B (+10.7 kB de HTML) y
+  en **Linear** 14 064 B (+2.9 kB). Entra **Linear**: conserva el lenguaje de
+  línea que ya tiene el sitio y cuesta 6 veces menos que Bold.
+- Los SVG se traen con `pnpm dlx @solar-icons/cli get <icono> --style linear` y se
+  **vendorizan dentro del HTML**: ni dependencia en `package.json`, ni petición
+  extra, ni JS. El plan de iconos es 16 utilidades; **Solar no trae logotipos**
+  (GitHub, Codeberg, Reddit, SimpleX no se tocan).
+- Mapeo: `languages→translation`, `chevron-right→arrow-right`,
+  `chevron-left→arrow-left`, `house→home`, `user→user`, `notebook-pen→notebook`,
+  `heart-handshake→hand-shake`, `folder-code→folder`, `rocket→rocket`,
+  `monitor→monitor`, `cat→cat`, `git-branch→git-branch`, `folder-git-2→git-fork`,
+  `user-round-search→user-id`, `mail-plus→letter`, `message-square-lock→chat-round`.
+
+### L11 — 2026-10-27 · Ejecutado: T13 a T18
+
+**T13 — enlaces a repos privados fuera.** Casa Noria y Tranxfers ya no enlazan su
+código. OpenSIM y Armadillos, que son públicos, sí lo hacen. Un test lo fija: si
+alguien vuelve a enlazar un repo privado, la suite cae.
+
+**T14 — tarjeta de OpenSIM rehecha.** Rol con los módulos reales (horario,
+retícula, kardex, reinscripción, trámites, temario), stack con **SvelteKit 3.1 +
+Svelte 5.57**, 248 commits y el E2E de agentes. **Captura nueva**: la anterior era
+el inventario de componentes, no el producto. La nueva es el panel del sistema
+—menú lateral, tarjetas de promedio, créditos y avance— capturada de la
+**instancia local** con la cuenta de prueba `99999999`, porque la contraseña de la
+demo desplegada no está en el repositorio (a propósito: `db-set-password-remote`
+es una operación manual del autor). 16 462 B en WebP, 720×450.
+
+**T15 — fuera OpenSpec.** Desaparecen de la tarjeta de TallerAgentes y de la
+sección Stack. Entra el E2E real: `e2e` + `@e2e-dev/web`, que es de
+`tester-army/e2e` (confirmado con `npm view … repository.url`), con el enlace en
+la sección Stack. Playwright y axe-core se quedan: son ciertos en OpenSIM y
+TallerAgentes, y el copy no los atribuye a Casa Noria.
+
+**T16 — Vite+ y pnpm declarados.** La línea "Base" de la sección Stack dice ahora
+"Vite+ como toolchain unificada y pnpm en todos mis proyectos web". Se dejamos de
+atribuir Vite+ a repos que no lo usan: solo este Portfolio lo tiene.
+
+**T17 — Solar Icons en línea.** Los 16 iconos de Lucide son ahora Solar Linear.
+Se mantienen el `viewBox` de 24, el tamaño en píxeles y el grosor de trazo de
+cada icono, así que el peso visual no cambia; lo que cambia es el set. **Cero
+dependencias**: los SVG se bajaron con `pnpm dlx @solar-icons/cli` y se
+vendorizaron dentro del HTML. **Cero JS**: el paquete `@solar-icons/js` quedó
+descartado por S10.
+
+> Trampa del formato: el set de Solar entrega `<path … />`. Dentro de `<svg>` el
+> parser HTML lo tolera por las reglas de contenido foráneo, pero el resto del
+> sitio usa cierre explícito (`<path …></path>`) y un parser sin "breakout" se
+> traga el documento. Se convirtió a cierre explícito, como estaba antes.
+
+**T18 — los tres hallazgos de T8, corregidos.**
+
+| Hallazgo                                   | Corrección                                                                | Resultado                                    |
+| :----------------------------------------- | :------------------------------------------------------------------------ | :------------------------------------------- |
+| Favicon de 301 705 B                       | PNG de 501×498 reescalado a 64×64                                         | 8 453 B (−97 %)                              |
+| `label-content-name-mismatch` (WCAG 2.5.3) | El `aria-label` del correo pasa a "Envíame un correo a xocemyst@duck.com" | Accessibility 0.96 → **1.00**                |
+| `target-size` (WCAG 2.5.8)                 | `.indice a { min-height: 24px }`                                          | Los 8 enlaces del índice miden 24 px de alto |
+
+**Lighthouse después de los arreglos**: Performance **1.00** en la segunda corrida
+(0.92 en la primera: varianza de laboratorio, LCP entre 1.2 s y 3.3 s),
+Accessibility **1.00**, Best practices 1.00, SEO 1.00, TBT 0 ms, CLS 0.003.
+Contra la base `ea8e8f6` (0.64 / 1.00 / 1.00 / 1.00), el Performance sube 0.36.
+
+**Lo que T8 dejó abierto**: `network-dependency-tree-insight` sigue en rojo, y la
+razón son las cuatro Maple Mono NF: **324 KB de fuentes** para una página que ya
+pesa 1.10 kB de JS. La itálica y la bold italic (170 KB) son el precio de que
+`Maple Mono NF` traiga los glifos de Nerd Fonts. Es una decisión de identidad, no
+un defecto: bajarla es trabajo del autor, no de este plan.
+
+**Coste de T17 en el HTML**: los 16 iconos ocupan 18 045 B raw y **+4 767 B gzip**
+sobre el `index.html` (10 655 B → 15 422 B). Es el precio de vendorizar el set
+completo; un sprite externo no lo abarata (mismos bytes, una petición más). El
+`index.html` final queda en 57.6 kB raw / 15.6 kB gzip, con el JS intacto en
+**1.10 kB gzip** (S10 ✓).

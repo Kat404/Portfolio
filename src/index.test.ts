@@ -132,14 +132,97 @@ describe("proyectos destacados (S2)", () => {
     }
   });
 
-  it("los sistemas en producción enlazan su sitio en vivo y su código", () => {
+  it("los sistemas en producción enlazan su sitio en vivo", () => {
     for (const url of ["https://hotelcasanoria.com.mx", "https://tranxfers.com.mx"]) {
       const tarjeta = [...document.querySelectorAll(".project-card")].find((c) =>
         c.querySelector(`a[href="${url}"]`),
       );
 
       expect(tarjeta, `ninguna tarjeta enlaza ${url}`).toBeDefined();
-      expect(tarjeta?.querySelector("a[href*='github.com']")).not.toBeNull();
+    }
+  });
+
+  it("nadie enlaza el código de un repositorio privado: sería un 404", () => {
+    // ? Casa Noria y Tranxfers son repos privados. Enlazar su código no filtra nada
+    // ? (el auth de GitHub manda) pero deja un enlace roto en la tarjeta.
+    for (const privado of ["Hotel-Casa-Noria", "Tranxfers"]) {
+      const tarjeta = [...document.querySelectorAll(".project-card")].find((c) =>
+        c.querySelector(`a[href*="${privado}"]`),
+      );
+
+      expect(tarjeta, `ninguna tarjeta enlaza ${privado}`).toBeUndefined();
+    }
+  });
+
+  it("OpenSIM sí enlaza su repositorio, que es público", () => {
+    const tarjeta = [...document.querySelectorAll(".project-card")].find((c) =>
+      c.querySelector('a[href="https://opensim.jose-luis-rs.workers.dev"]'),
+    );
+
+    expect(tarjeta?.querySelector("a[href*='github.com/Kat404/OpenSIM']")).not.toBeNull();
+  });
+});
+
+describe("stack declarado y toolchain (S5)", () => {
+  it("no menciona OpenSpec: el ciclo de desarrollo ya no es ese", () => {
+    expect(html).not.toContain("OpenSpec");
+    expect(html).not.toContain("openspec");
+  });
+
+  it("declara el E2E real, el de tester-army/e2e", () => {
+    expect(html).toContain("github.com/tester-army/e2e");
+  });
+
+  it("declara Vite+ y pnpm como toolchain y package manager", () => {
+    expect(html).toContain("Vite+");
+    expect(html).toContain("pnpm");
+  });
+
+  it("la tarjeta de OpenSIM declara SvelteKit y sus módulos reales", () => {
+    const tarjeta = [...document.querySelectorAll(".project-card")].find(
+      (c) => c.querySelector(".project-title")?.textContent?.trim() === "OpenSIM",
+    );
+    const texto = tarjeta?.textContent ?? "";
+
+    expect(texto).toContain("SvelteKit");
+    for (const modulo of [
+      "horario",
+      "retícula",
+      "kardex",
+      "reinscripción",
+      "trámites",
+      "temario",
+    ]) {
+      expect(texto.toLowerCase(), `falta el módulo ${modulo}`).toContain(modulo);
+    }
+  });
+});
+
+describe("iconografía (T17)", () => {
+  it("todos los iconos son Solar Icons en línea y ninguno es de Lucide", () => {
+    expect(html).not.toContain("lucide");
+
+    const iconos = [...document.querySelectorAll("svg")];
+    expect(iconos.length).toBeGreaterThan(0);
+    for (const icono of iconos) {
+      expect(icono.getAttribute("class")).toMatch(/^solar solar-[a-z0-9-]+-linear$/);
+      expect(icono.getAttribute("aria-hidden")).toBe("true");
+      expect(icono.getAttribute("stroke")).toBe("currentColor");
+    }
+  });
+});
+
+describe("accesibilidad y peso (T8)", () => {
+  it("el nombre accesible de cada enlace contiene su texto visible", () => {
+    // ? WCAG 2.5.3: el texto visible tiene que estar dentro del nombre accesible.
+    for (const enlace of document.querySelectorAll("a[aria-label]")) {
+      const visible = (enlace.textContent ?? "").trim();
+      const nombre = (enlace.getAttribute("aria-label") ?? "").trim();
+
+      // ? Un enlace solo con icono no tiene etiqueta visible: la regla no aplica.
+      if (visible.length === 0) continue;
+
+      expect(nombre.toLowerCase(), `aria-label de "${visible}"`).toContain(visible.toLowerCase());
     }
   });
 });

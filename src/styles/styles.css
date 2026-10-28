@@ -146,6 +146,10 @@ a {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  /* ? WCAG 2.5.8: el objetivo de puntero necesita 24×24 px. Los enlaces del
+  ? ? índice miden 17 px de alto, así que Lighthouse marca los que no tienen
+  ? ? vecino a 24 px: el primero de cada fila. */
+  min-height: 24px;
 }
 
 .nav-text {

@@ -278,6 +278,13 @@ code {
   border-top: 1px dashed var(--color-base-darkest);
 }
 
+/* ? ↓ Cada enlace lleva su icono: inline-flex los alinea en la misma línea */
+.project-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
 /* ======================== ESTILOS DEL FOOTER ======================== */
 /* ? ↓ Centrado de textos y alineación de enlaces del Footer */
 footer p,

@@ -106,6 +106,25 @@ describe("oferta y honestidad del copy (T12, S1)", () => {
       expect(seccion.querySelector("h2")?.textContent?.trim().length).toBeGreaterThan(0);
     }
   });
+  it("solo dos proyectos aportan ingresos; los otros son desarrollo propio", () => {
+    // ? El autor es explícito: dos sistemas están en producción real y dan
+    // ? ingresos. El resto es trabajo propio (plataforma docente y rediseño open
+    // ? source) y no puede llevar la misma etiqueta de producción.
+    const tarjetas = [...document.querySelectorAll(".project-card")];
+    const conIngresos = tarjetas.filter((c) => c.textContent?.includes("con ingresos"));
+    const enUsoDelCurso = tarjetas.filter((c) => c.textContent?.includes("en uso del curso"));
+
+    expect(conIngresos).toHaveLength(2);
+    expect(enUsoDelCurso).toHaveLength(1);
+    expect(tarjetas.filter((c) => c.textContent?.includes("En producción"))).toHaveLength(2);
+  });
+
+  it("la introducción de la sección cuenta bien lo que hay", () => {
+    const intro = document.querySelector("#proyectos p")?.textContent ?? "";
+
+    expect(intro).toContain("Dos sistemas en producción con ingresos");
+    expect(intro).not.toContain("Tres sistemas");
+  });
 });
 
 describe("capturas de proyecto (S3)", () => {

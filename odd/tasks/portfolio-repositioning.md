@@ -163,6 +163,35 @@ sola página, el 90% de lo que se animaría ya está resuelto en
 **Work unit**: `f361966` — _feat(portfolio): iconografia Solar, copy verificado y
 hallazgos de Lighthouse_ (5 archivos, +236/−111). T13 a T18 entran en ese commit.
 
+### L12 — 2026-10-27 · Toolchain al día: Vite+ 1.4.0 y TypeScript 7.0.2
+
+El `vp` del PATH estaba en 1.4.0 y el catálogo del repo en 1.3.0. Se suben las
+dos entradas del catálogo (el core que se publica como `vite` y `vite-plus`) y la
+lista `minimumReleaseAgeExclude`, que es por donde se declara la excepción de edad
+para instalar una release recién salida. Commit `ac93c84`.
+
+Después, **TypeScript 6.0.3 → 7.0.2**, que ya es el compilador nativo, con
+`happy-dom` 21.0.4 y `wrangler` 4.154.0. `vp outdated` queda vacío. Commit
+`91aee0e`.
+
+El salto de versión mayor se **midió**, no se asumió:
+
+| Comprobación                         | Resultado                                           |
+| :----------------------------------- | :-------------------------------------------------- |
+| `tsc` (nativo) sobre el proyecto     | 0.14 s, sin errores                                 |
+| ¿Detecta un error de tipo de verdad? | Sí: TS2322 en una sonda con `const x: number = "…"` |
+| `vp check` (reglas que miran tipos)  | limpio, 0 avisos                                    |
+| `vp test`                            | 32/32                                               |
+| `vp build`                           | **mismos hashes de assets y mismos pesos**          |
+
+La salida del build no cambia un byte: JS en 2 427 B sin comprimir y 1 125 B
+gzip, CSS en 5 695 B, `index.html` en 57 617 B. S10 intacto.
+
+**Riesgo que queda abierto y es del autor**: las 324 KB de Maple Mono NF siguen
+siendo el mayor peso del sitio. Ahora que la toolchain está al día, el lugar
+natural para atacarlo es el _subsetting_ de la fuente (una variante sin los
+glifos de Nerd Fonts), no el recorte de `@font-face`, que ya está hecho.
+
 **Estado tras L11** — el plan ya está en 17 de 19. Queda **una sola task**:
 
 - **T10** — páginas de detalle por proyecto. Es el único trabajo estructural

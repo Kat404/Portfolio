@@ -108,7 +108,7 @@ no cientos.
 | T17 | Solar Icons: evaluar e incluir el set estático (cero JS)                        | S10      | inline | **hecha** (L11)                |
 | T18 | T8: medición Lighthouse antes/después y corrección de sus hallazgos             | S10      | inline | **hecha** (L10-L11)            |
 | T19 | Licencia y procedencia de los iconos vendorizados (`THIRD-PARTY-NOTICES.md`)    | S10      | inline | **hecha** (L13)                |
-| T20 | Nav de 8 a 4 anclas y cierre de la sección "Bienvenido"                         | S1,S2    | inline | pendiente                      |
+| T20 | Nav de 8 a 4 anclas y cierre de la sección "Bienvenido"                         | S1,S2    | inline | **hecha** (L14)                |
 | T21 | Protagonismo visual uniforme en las tarjetas de proyecto                        | S2       | inline | pendiente                      |
 | T22 | `#tecnologias-de-interes` → `#stack`, agrupada en cinco pilares                 | S5,S6    | inline | pendiente                      |
 | T23 | `#yo` → `#entorno`: el entorno como presentación de oficio                      | S7       | inline | pendiente                      |
@@ -755,3 +755,55 @@ contrario — "a partir de aquí el sitio deja de hablar de trabajo". Con el
 rebranding, el divisor tiene que moverse o desaparecer, y el test
 `la sección de lo personal es la última y va tras un divisor` hay que
 reescribirlo.
+
+### L14 — 2026-10-27 · T20 ejecutada: nav de 4 y cierre de "Bienvenido"
+
+**T19 — licencia y procedencia** (`fd3e44c`). `THIRD-PARTY-NOTICES.md` en la raíz
+con la procedencia de los 16 iconos (`@solar-icons/static@2.3.3`, estilo
+`Linear`), el texto MIT completo de Hakim Saoudi, el porqué de vendorizar inline y
+el comando del CLI que los trae. Se suma la sección de las fuentes **Maple Mono
+NF**: son 324 KB de OFL-1.1 y tampoco tenían aviso. Dos comentarios en
+`index.html` apuntan al archivo y cuestan **82 B gzip**.
+
+> Lo que el plan no pedía y salió de la auditoría: el favicon
+> (`public/icons/linux_maletin.png`) tiene **procedencia no documentada**. Queda
+> anotado en el archivo como "pendiente de identificar" en vez de inventar una
+> atribución.
+
+**T20 — el nav pasa de 8 anclas a 4.** Se conservan los SVG que ya estaban (el
+carpeta de proyectos, el cohete del stack, el monitor del entorno y el usuario
+del "Sobre mí") y solo cambian destino y etiqueta:
+
+| Antes                                                                                             | Ahora                                                        |
+| :------------------------------------------------------------------------------------------------ | :----------------------------------------------------------- |
+| Qué hago · Sobre mí · Aficiones · Mis Gustos · Mis Proyectos · Stack · Esto es mío · Curiosidades | Proyectos · Stack & Calidad · Entorno & Filosofía · Sobre Mí |
+
+**IDs renombrados**: `mis-proyectos` → `proyectos`,
+`tecnologias-de-interes` → `stack`, `mi-vida` → `sobre-mi`, `yo` → `entorno`.
+**`servicios` conserva su id** (ver la corrección 1 de L13: el plan pedía
+`#servicios` → `#proyectos`, que habría destruido la sección de la oferta).
+
+**"Bienvenido" desaparece como sección.** Su párrafo de encuadre —el que el autor
+acababa de reescribir a mano— no se tira: pasa a ser la primera prosa de
+`#servicios`, que así abre el contenido. Se elimina la meta-explicación
+("¡Bienvenido!") y una sección entera, no solo su texto.
+
+**Verificado**: las cuatro anclas existen y llevan a su sección (comprobado
+navegando con Playwright, no solo con el selector), 32/32 tests, `vp check`
+limpio y el JS sigue en **1 125 B gzip**. El HTML baja de 15.40 a **13.77 kB
+gzip**: quitar cuatro entradas del nav y una sección se paga parte del coste de
+los iconos de T17.
+
+**Deriva ES/EN pendiente del autor** (su reescritura manual dejó el
+`data-i18n-en` viejo en seis sitios: el intro de la sección Stack, la etiqueta
+"Frameworks:", las descripciones de Frameworks, de Pagos y Datos y de Calidad, y
+el texto de la línea Base). El contrato de i18n de la suite es **estructural**
+—traducción no vacía y sin español suelto—, no semántico: por eso no detecta
+que el inglés ya no corresponde al español. Se anota aquí para que la
+sincronización sea una decisión consciente.
+
+**Lo que T20 deja abierto**: la sección `#curiosidades` sigue viva y separada
+(la fusiona T24), el divisor sigue delante de `#entorno` (que T5 convierte en
+"Entorno & Filosofía de Desarrollo", o sea trabajo: el divisor tendrá que
+moverse) y la oferta de "Qué hago" ya no lista los tres motivos concretos que
+tenía antes de la reescritura manual del autor.

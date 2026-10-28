@@ -12,8 +12,8 @@ describe("oferta y honestidad del copy (T12, S1)", () => {
     const secciones = [...document.querySelectorAll("main > section")].map((s) => s.id);
 
     expect(secciones.indexOf("servicios")).toBe(0);
-    expect(secciones.indexOf("servicios")).toBeLessThan(secciones.indexOf("mi-vida"));
-    expect(secciones.indexOf("mis-proyectos")).toBeLessThan(secciones.indexOf("curiosidades"));
+    expect(secciones.indexOf("servicios")).toBeLessThan(secciones.indexOf("sobre-mi"));
+    expect(secciones.indexOf("proyectos")).toBeLessThan(secciones.indexOf("curiosidades"));
   });
 
   it("cada elemento traducible tiene inglés, y el español no sobrevive en inglés", () => {
@@ -71,9 +71,9 @@ describe("oferta y honestidad del copy (T12, S1)", () => {
   it("la sección de lo personal es la última y va tras un divisor", () => {
     const secciones = [...document.querySelectorAll("main > section")].map((s) => s.id);
 
-    // ? El autor reordenó la página en L13: lo personal cierra el documento y el
-    // ? divisor sigue separando la parte de trabajo de la parte personal.
-    expect(secciones.at(-1)).toBe("mi-vida");
+    // ? El autor reordenó la página en L13 y T20 la renombró: lo personal cierra el
+    // ? documento y el divisor sigue separando la parte de trabajo de la personal.
+    expect(secciones.at(-1)).toBe("sobre-mi");
     expect(document.querySelectorAll("main > .divisor")).toHaveLength(1);
   });
 
@@ -125,7 +125,7 @@ describe("capturas de proyecto (S3)", () => {
 
 describe("proyectos destacados (S2)", () => {
   it("cada tarjeta declara su rol y sus enlaces", () => {
-    const tarjetas = document.querySelectorAll("#mis-proyectos .project-card");
+    const tarjetas = document.querySelectorAll("#proyectos .project-card");
 
     expect(tarjetas.length).toBeGreaterThan(0);
     for (const tarjeta of tarjetas) {

@@ -807,3 +807,33 @@ sincronización sea una decisión consciente.
 "Entorno & Filosofía de Desarrollo", o sea trabajo: el divisor tendrá que
 moverse) y la oferta de "Qué hago" ya no lista los tres motivos concretos que
 tenía antes de la reescritura manual del autor.
+
+### L15 — 2026-10-27 · Inglés sincronizado con la reescritura del autor
+
+El autor pide reescribir los `data-i18n-en` que su reescritura manual dejó
+desfasados. Son siete, y todos se ajustan al español nuevo sin tocarlo:
+
+| Nodo                      | Español nuevo                                                                                                                        | Inglés nuevo                                                                                                                 |
+| :------------------------ | :----------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------- |
+| Lead de "Qué hago"        | "solucionan problemas y entregan resultados… Todo listo para ser usado y probado desde el día 1"                                     | "solve problems and deliver results… Everything ready to be used and tested from day one"                                    |
+| Intro de la sección Stack | "Este es mi stack actual… Herramientas específicos a casos específicos"                                                              | "This is my current stack… Tools specific to specific cases"                                                                 |
+| Etiqueta                  | "Frameworks:"                                                                                                                        | "Frameworks:" (antes decía "Websites:")                                                                                      |
+| Frameworks                | "islas y componentes interactivos Svelte… SvelteKit cuando es necesaria una ingeniería de proyecto más compleja a nivel empresarial" | "islands and interactive Svelte components… SvelteKit when a more complex, enterprise-grade project engineering is required" |
+| Pagos y Datos             | "validación en el backend. La solidez y la ligereza pocas veces van de la mano"                                                      | "validation in the backend. Strength and lightness rarely go hand in hand"                                                   |
+| Calidad                   | "tests unitarios… asegurando UI/UX, con E2E de agentes de IA apoyados de documentación y orquestación orgánica"                      | "in unit tests… ensuring UI/UX, with AI agent-driven E2E supported by documentation and organic orchestration"               |
+| Base                      | "HTML semántico & accesible"                                                                                                         | "semantic & accessible HTML"                                                                                                 |
+
+**El markup se conserva 1:1**: los `<strong>` caen en los mismos sitios que en
+español, porque el mecanismo de idioma sustituye el `innerHTML` del nodo y un
+desajuste ahí se vería como texto en negrita donde no toca.
+
+**Verificado en el navegador, no solo con el test**: con `?lang=en` se capturó
+la sección Stack en inglés y el resultado tiene el mismo orden, las mismas
+negritas y la misma puntuación que el español. 32/32 tests, `vp check` limpio y
+el JS sigue en **1 125 B gzip**.
+
+> El contrato de i18n de la suite sigue siendo **estructural**: comprueba que
+> toda traducción exista y no tenga español suelto, no que corresponda a la
+> prosa que tiene delante. Por eso esta deriva se detectó a ojo, no sola. Lo
+> que falta para que la suite la detecte es otro test: comparar longitud o
+> palabras significativas de ambos idiomas nodo por nodo.

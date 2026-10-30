@@ -139,6 +139,10 @@ de cada proyecto viven en un solo módulo, con el copy en los dos idiomas.
   pura que toma el HTML y el proyecto, y devuelve la página del proyecto con el `<main>`
   sustituido por el caso, el `<title>` y la descripción propios, el `canonical` de su URL
   y los `hreflang` recíprocos (es → `/`, en → `/en/`, y la variante del proyecto).
+- **La ficha es una página, no una tarjeta**: el caso es el contenido y no reutiliza
+  `.project-card`. Arriba va la vuelta al inicio con su icono, luego el nombre del
+  proyecto, el párrafo que lo explica, la captura, la evidencia en una línea (estado,
+  escala y stack, con el stack una sola vez) y los enlaces con su icono.
 - **El nav de la página del proyecto** no puede apuntar a anclas que no existen ahí: sus
   enlaces pasan a ser absolutos (`/#proyectos`, `/#stack`, `/#entorno`, `/#sobre-mi`).
 - **Páginas**: cuatro en español (`/proyectos/<slug>/`) y cuatro en inglés
@@ -271,6 +275,51 @@ cambios (el header con los iconos finos y el del idioma en azul, las tarjetas co
 etiquetas nuevas y el enlace con su icono, la captura nueva de Casa Noria y el divisor sin
 el vacío). El CSS sube 45 B gzip (1 841 → 1 886) y el JS no se toca: 647 B. La página
 inglesa conserva su icono y su texto propio ("See more details").
+
+### L27 — 2026-10-29 · WU-J: la ficha de proyecto deja de ser una tarjeta
+
+Siete cosas pidió el autor sobre el resultado. Una de ellas —"trátalo lo máximo
+posible"— traía detrás un problema de diseño que la revisión con la skill de _impeccable_
+dejó claro: **la ficha de proyecto era una tarjeta**. Reutilizaba `.project-card`, el
+contenedor del índice, así que salía con marco, fondo y padding de tarjeta, con la
+captura recortada a 16:10 y la tipografía de una lista. Una página que _es_ el caso no
+necesita el marco de una tarjeta: el marco es ruido cuando el contenido es el producto.
+
+**El stack se repetía tres veces**: en los hechos de la tarjeta, en un bloque "Stack" con
+encabezado y lista, y en la sección global del sitio. Ahora va una: los datos se separan
+en `escala` (la medida), `stack` (las tecnologías) y `notas`, y la ficha los muestra en
+una sola línea de evidencia —estado, escala y stack— sin lista y sin encabezado propio.
+La tarjeta conserva el copy del autor: `index.html` sigue siendo donde se edita.
+
+**Lo que cambió**:
+
+1. **La ficha es una página**: la vuelta al inicio con su icono (`home-linear`), el
+   nombre del proyecto como `h2` (el `h1` sigue siendo la marca de la cabecera: un solo
+   `h1` por página), el párrafo que lo explica, la captura sin recortar, la línea de
+   evidencia y los enlaces.
+2. **Las descripciones**: los cuatro proyectos tienen ya su párrafo, en los dos idiomas.
+   Son redactadas con lo que está verificado (el papel, los hechos y la auditoría de los
+   repos); no inventan métricas.
+3. **Los enlaces con su icono**: el generador ahora extrae el `svg` del enlace de la
+   tarjeta, así que la ficha muestra los mismos iconos que las tarjetas. El bug era del
+   extractor: cortaba el `svg` por su etiqueta de apertura y lo dejaba sin `path`.
+4. **"Ver más detalles"** con `presentation-graph-linear`, en línea con el resto.
+5. **SimpleX** con `incognito-linear`.
+6. **El pie**: los iconos van centrados con su texto (`inline-flex` + `align-items`), no
+   apoyados en la línea base, y los dos enlaces llevan su separación.
+7. **La vuelta al inicio** con `home-linear` y su leyenda en los dos idiomas.
+
+**Verificado**: 68/68 tests, `vp check` limpio, build en verde y revisión **en
+pantalla** de la ficha en los dos idiomas, de las tarjetas y del pie. El CSS sube 180 B
+gzip (1 886 → 2 066) por las reglas de la ficha; el JS no se toca (647 B). La ficha pesa
+7 273 B gzip en español y 7 324 en inglés.
+
+**Lo que el detector de _impeccable_ señaló y no se tocó**: un "marketing buzzword"
+("enterprise-grade") en la traducción del stack. Es copy del autor: la revisión no cambia
+palabras que no son suyas, así que queda anotado para que decida él.
+
+**Lo que sigue pendiente del autor**: las descripciones son mías, escritas con los datos
+verificados del repo: conviene que las lea y las ajuste a su voz.
 
 ### L22 — 2026-10-29 · WU-C: la jerarquía visual de las tarjetas y los cinco pilares
 

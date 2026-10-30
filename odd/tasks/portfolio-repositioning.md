@@ -985,4 +985,29 @@ marcados como pendientes dentro de la propia página.
 `origin/main`: es más de una rebanada revisable. Cuando llegue el push, la forma de
 entrega es decisión del autor (PR encadenado por work unit, o un PR único revisado
 commit por commit). WU-D (URLs públicas) y WU-H (routing) son las dos rebanadas que no
-conviene revisar mezcladas con las demás.
+conviene revisar mezcladas con las demás. **→ L18 zanja esto: encadenado, una rebanada
+por revisión.**
+
+### L18 — 2026-10-29 · El candidato acumulado no entra en el presupuesto de review
+
+Al cerrar el plan se intentó revisar el candidato acumulado de la rama (diff contra
+`ea8e8f6`: 28 commits, 3 119 líneas authored). La autoridad nativa lo rechaza en
+preflight con **`lens_context_budget_exceeded`**: la evidencia completa de revisión no
+cabe en el presupuesto de contexto del provider.
+
+No se creó autoridad —`authority_applicability: not_evaluated`, `mutation_outcome:
+none`—, así que no hay nada que abandonar ni reparar, y **reintentar el mismo
+candidato no puede funcionar**: la evidencia congelada nunca se trunca. Es un cierre
+terminal para ese candidato, no un fallo recuperable. El autor decide no forzar la vía
+y seguir con la implementación.
+
+**Lo que cambia**: el candidato de revisión no es la rama, es **cada work unit por
+separado**, con su rango commiteado (`baseRef` + `committedOnly: true`). Una rebanada
+de ~400 líneas authored entra en el presupuesto; la rama completa, no. Esto confirma
+la nota de entrega de L17: la forma correcta es una **cadena** de commits y PRs, cada
+uno revisado por su cuenta, no un PR único de 3 119 líneas.
+
+**Secuencia**: cada work unit se commitea y se revisa como candidato propio antes de
+pasar al siguiente; el push final (WU-G) ocurre con todas las rebanadas revisadas. El
+drift i18n (WU-A) va primero justamente porque es el único que puede fallar en
+silencio: los tests pasan y el copy está viejo.

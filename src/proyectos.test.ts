@@ -53,14 +53,18 @@ describe("datos de los proyectos (T10, S12)", () => {
       expect(proyecto.rol.en.length).toBeGreaterThan(0);
       expect(proyecto.etiqueta.es.length).toBeGreaterThan(0);
       expect(proyecto.etiqueta.en.length).toBeGreaterThan(0);
-      expect(proyecto.hechos.length).toBeGreaterThan(0);
+      expect(proyecto.descripcion.es.length).toBeGreaterThan(0);
+      expect(proyecto.descripcion.en.length).toBeGreaterThan(0);
+      expect(proyecto.escala.es.length).toBeGreaterThan(0);
+      expect(proyecto.escala.en.length).toBeGreaterThan(0);
+      expect(proyecto.notas.length).toBeGreaterThan(0);
       expect(proyecto.stack.length).toBeGreaterThan(0);
       expect(proyecto.url).toMatch(/^https:\/\//);
       expect(proyecto.captura).toMatch(/^\/images\/proyectos\//);
     }
   });
 
-  it("el rol, la etiqueta y los hechos son los de la tarjeta, en los dos idiomas", () => {
+  it("el rol y la etiqueta son los de la tarjeta, en los dos idiomas", () => {
     const documentoEs = cargar(es);
     const documentoEn = cargar(en);
 
@@ -77,13 +81,35 @@ describe("datos de los proyectos (T10, S12)", () => {
       // ? El primer hecho de la tarjeta es la etiqueta; los demás son los hechos.
       expect(plano(hechosEs[0]?.textContent)).toBe(proyecto.etiqueta.es);
       expect(plano(hechosEn[0]?.textContent)).toBe(proyecto.etiqueta.en);
+    }
+  });
 
-      expect(hechosEs.slice(1).map((li) => plano(li.innerHTML))).toEqual(
-        proyecto.hechos.map((hecho) => hecho.es),
+  it("la escala y el stack de la ficha son los que nombra la tarjeta", () => {
+    const documentoEs = cargar(es);
+    const documentoEn = cargar(en);
+
+    for (const proyecto of proyectos) {
+      const hechosEs = plano(
+        [...tarjetaDe(proyecto, documentoEs).querySelectorAll(".project-facts li")]
+          .map((li) => li.textContent)
+          .join(" "),
       );
-      expect(hechosEn.slice(1).map((li) => plano(li.innerHTML))).toEqual(
-        proyecto.hechos.map((hecho) => hecho.en),
+      const hechosEn = plano(
+        [...tarjetaDe(proyecto, documentoEn).querySelectorAll(".project-facts li")]
+          .map((li) => li.textContent)
+          .join(" "),
       );
+
+      // ? La tarjeta junta la escala y el stack en una línea; la ficha los separa.
+      // ? Lo que tiene que coincidir es el contenido, no la frase.
+      expect(hechosEs).toContain(proyecto.escala.es);
+      expect(hechosEn).toContain(proyecto.escala.en);
+
+      // ? El stack se comprueba contra la tarjeta en español: la versión en inglés
+      // ? del autor es más corta y no nombra todas las tecnologías.
+      for (const tecnologia of proyecto.stack) {
+        expect(hechosEs).toContain(tecnologia);
+      }
     }
   });
 
@@ -164,6 +190,48 @@ describe("página de detalle (T10, S12)", () => {
     ).toEqual(["/en/#proyectos", "/en/#stack", "/en/#entorno", "/en/#sobre-mi"]);
   });
 
+  it("la ficha tiene su propia vuelta al inicio, con el icono de casa", () => {
+    const documentoEs = cargar(paginaProyecto(es, proyectos[0], "es"));
+    const volver = documentoEs.querySelector("#proyecto .volver");
+
+    expect(volver?.getAttribute("href")).toBe("/");
+    expect(volver?.querySelector("svg.solar-home-linear")).not.toBeNull();
+    expect(plano(volver?.textContent)).toBe("Volver al inicio");
+
+    const documentoEn = cargar(paginaProyecto(en, proyectos[0], "en"));
+    const volverEn = documentoEn.querySelector("#proyecto .volver");
+
+    expect(volverEn?.getAttribute("href")).toBe("/en/");
+    expect(plano(volverEn?.textContent)).toBe("Back home");
+  });
+
+  it("el stack va una sola vez: la ficha no repite la lista de la tarjeta", () => {
+    for (const proyecto of proyectos) {
+      const documento = cargar(paginaProyecto(es, proyecto, "es"));
+
+      // ? No hay un bloque con su propio encabezado: el stack vive en la línea de
+      // ? evidencia, junto al estado y la escala.
+      expect(documento.querySelector("#proyecto h3")).toBeNull();
+      expect(documento.querySelectorAll("#proyecto .proyecto-stack")).toHaveLength(1);
+      expect(plano(documento.querySelector("#proyecto .proyecto-stack")?.textContent)).toBe(
+        proyecto.stack.join(" · "),
+      );
+    }
+  });
+
+  it("los enlaces de la ficha llevan su icono, como los de las tarjetas", () => {
+    for (const proyecto of proyectos) {
+      const documento = cargar(paginaProyecto(es, proyecto, "es"));
+      const enlaces = [...documento.querySelectorAll("#proyecto .project-links a")];
+
+      expect(enlaces.length).toBeGreaterThan(0);
+
+      for (const enlace of enlaces) {
+        expect(enlace.querySelector("svg[class^='solar solar-']")).not.toBeNull();
+      }
+    }
+  });
+
   it("el selector de idioma lleva a la página equivalente del otro idioma", () => {
     for (const proyecto of proyectos) {
       const documentoEs = cargar(paginaProyecto(es, proyecto, "es"));
@@ -191,13 +259,13 @@ describe("página de detalle (T10, S12)", () => {
 
     const documentoEs = cargar(paginaProyecto(es, proyecto, "es"));
     expect(documentoEs.querySelector("#proyecto h2")?.textContent).toBe("OpenSIM");
-    expect(plano(documentoEs.querySelector("#proyecto .project-role")?.textContent)).toBe(
-      proyecto.rol.es,
+    expect(plano(documentoEs.querySelector("#proyecto .proyecto-lead")?.textContent)).toBe(
+      proyecto.descripcion.es,
     );
 
     const documentoEn = cargar(paginaProyecto(en, proyecto, "en"));
-    expect(plano(documentoEn.querySelector("#proyecto .project-role")?.textContent)).toBe(
-      proyecto.rol.en,
+    expect(plano(documentoEn.querySelector("#proyecto .proyecto-lead")?.textContent)).toBe(
+      proyecto.descripcion.en,
     );
     // ? El `alt` de la captura es el de la tarjeta: sale de ella, no se reescribe.
     const tarjetaEn = tarjetaDe(proyecto, cargar(en));
@@ -225,9 +293,11 @@ describe("página de detalle (T10, S12)", () => {
     for (const proyecto of proyectos) {
       const documento = cargar(paginaProyecto(es, proyecto, "es"));
 
-      // ? Solo el heading del stack: los otros dos bloques no se inventan.
-      expect(documento.querySelectorAll("#proyecto h3")).toHaveLength(1);
-      expect(plano(documento.querySelector("#proyecto h3")?.textContent)).toBe("Stack");
+      // ? Sin contenido no hay bloque: ni el problema ni las métricas se inventan.
+      expect(documento.querySelectorAll("#proyecto .proyecto-subtitulo")).toHaveLength(0);
+      expect(documento.querySelectorAll("#proyecto .proyecto-metricas")).toHaveLength(0);
+      expect(plano(documento.querySelector("#proyecto")?.textContent)).not.toContain("El problema");
+      expect(plano(documento.querySelector("#proyecto")?.textContent)).not.toContain("Métricas");
     }
   });
 });

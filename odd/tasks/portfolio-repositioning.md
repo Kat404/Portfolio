@@ -158,6 +158,59 @@ visual son 20 B gzip. El JS no se movió: **1 116 B gzip**.
 Casa Noria y Tranxfers salen con el marco lavanda y TallerAgentes y OpenSIM con el
 oscuro. La jerarquía se ve sin tocar el copy.
 
+### L23 — 2026-10-29 · WU-D: la página `/en/` real
+
+Ejecutada la work unit del idioma. `index.html` sigue siendo la única fuente (español en
+el markup, inglés en `data-i18n-en`) y el build deriva las dos páginas: `dist/index.html`
+(español, sin los atributos de traducción) y `dist/en/index.html` (inglés, con el texto
+ya aplicado).
+
+**El mecanismo**: `src/i18n-variants.ts` es una función pura (`variantes(html)`) con un
+escáner de etiquetas propio —comillas de los dos tipos, comentarios, elementos sin
+contenido— que no depende del DOM ni de dependencias nuevas. El plugin de
+`vite.config.ts` la usa: en build toma el `index.html` ya con las URLs de los assets
+resueltas, muta el asset a la variante española y emite `en/index.html` con `emitFile`. En
+desarrollo, un middleware sirve `/en/` con la misma transformación.
+
+**Un detalle que costó**: en el build de Vite+/Rolldown los marcadores
+`__VITE_PUBLIC_ASSET__` se resuelven **después** de los hooks de `transformIndexHtml`,
+así que calcular el inglés ahí lo dejaba con marcadores sin resolver. Por eso las dos
+variantes se calculan en `generateBundle`, sobre el documento final. En dev el camino es
+el otro (el middleware) y ahí los marcadores sí se resuelven.
+
+**El selector pasa a ser un enlace**: `ES` → `/` y `EN` → `/en/`, con `is-active` y
+`aria-current` decididos por la variante. Con eso desaparece el JS de traducción.
+
+**Los dos bugs heredados quedan resueltos**: el `data-i18n-en` del copyright lleva el
+mismo `<span id="copyright-year"></span>` (no el año literal), y el de las imágenes se
+aplica al atributo `alt`.
+
+**El residuo que la auditoría encontró**: quedaban en español los cuatro `alt` de las
+capturas, tres coletillas de etiqueta ("· con ingresos", "· en uso del curso", "·
+desplegada en Workers") y la frase del h1 ("Portafolio Personal"): la página inglesa los
+servía tal cual. Ahora los `alt` y las coletillas llevan traducción, el h1 dice
+"Personal Portfolio" en inglés, y la lista blanca del test de drift suma los nombres
+propios que aparecen en los dos idiomas (noria, casa, tranxfers, taller, agentes,
+opensim, panel, kardex, penguin, ubuntu). La cita de `#stack` se queda en español y se
+marca `lang="es"`: es una cita, y marcarla es la forma correcta de incluirla en una
+página en inglés. Si el autor prefiere la versión inglesa, se traduce.
+
+**Presupuesto**: el JS baja de **1 116 B a 629 B gzip** (−44 %), que era el requisito de
+S11. El CSS queda en 1 822 B gzip. La página española baja de 13 561 B a 11 113 B gzip y
+la inglesa pesa 10 927 B: ninguna de las dos lleva ya el otro idioma en el DOM.
+
+**Verificado**: 51/51 tests, `vp check` limpio y `vp build` en verde con
+`dist/en/index.html` emitido, 0 atributos de traducción en ninguna de las dos páginas y
+0 marcadores sin resolver. En pantalla, la página inglesa muestra el nav y el copy en
+inglés con el selector marcando EN. Auditoría de texto sobre las 160 líneas visibles de
+la página inglesa: lo único en español es la cita marcada con `lang="es"`.
+
+**El routing, comprobado con el runtime real**: con `wrangler dev` sobre el `dist`
+construido, `/` responde 200 (45 449 B), `/en/` responde 200 (43 536 B) con
+`<html lang="en">`, y `/en` sin slash responde 307 hacia `/en/`. Es el comportamiento por
+defecto de Workers Assets con el directorio de assets en `./dist`, así que la página
+inglesa queda servida sin configuración extra.
+
 ---
 
 ## Tasks
@@ -191,7 +244,7 @@ oscuro. La jerarquía se ve sin tocar el copy.
 | T24 | `#curiosidades` fusionada dentro de `#sobre-mi`                                 | S7       | inline | **hecha** (L21)                |
 | T25 | Verificación de tests, formato y presupuesto de JS tras el refactor             | S10      | inline | pendiente                      |
 | T26 | Fuentes: subset de Maple Mono, `font-family` real y atribución corregida        | S9,S10   | inline | **hecha** (L19)                |
-| T27 | Idioma: `hreflang` y `canonical` resueltos de verdad                            | S11      | inline | pendiente — decisión L17       |
+| T27 | Idioma: `hreflang` y `canonical` resueltos de verdad                            | S11      | inline | **hecha** (L23)                |
 | T28 | Test de drift i18n: paridad, longitud, palabras y snapshot de los pares         | S4       | inline | **hecha** (L20)                |
 
 Todas las tareas van **inline**: son de un solo archivo comprensible

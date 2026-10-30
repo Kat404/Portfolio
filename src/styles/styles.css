@@ -113,8 +113,8 @@ code {
   backdrop-filter: blur(12px);
   will-change: background-color, padding;
   transition:
-    background-color 0.4s ease,
-    padding 0.4s ease;
+    background-color 0.3s ease,
+    padding 0.3s ease;
 }
 
 /* ======================== ESTILOS DE ELEMENTOS ESPECÍFICOS Y CLASES ======================== */
@@ -304,6 +304,9 @@ code {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
+  /* ? El grid estira sus items a todo el ancho: sin esto el subrayado del enlace
+  ? ? cruzaba la columna entera en vez de quedarse bajo su texto. */
+  justify-self: start;
   color: var(--color-subtext);
   font-size: 0.9rem;
   text-decoration: none;

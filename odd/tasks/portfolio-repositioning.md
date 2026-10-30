@@ -321,6 +321,22 @@ palabras que no son suyas, así que queda anotado para que decida él.
 **Lo que sigue pendiente del autor**: las descripciones son mías, escritas con los datos
 verificados del repo: conviene que las lea y las ajuste a su voz.
 
+### L28 — 2026-10-29 · WU-K: el enlace de vuelta se queda en su sitio y el header acaba antes
+
+Dos ajustes finos que el autor vio en pantalla:
+
+1. **"Volver al inicio" se desbordaba**: la ficha es un `display: grid`, y el grid
+   estira sus items a todo el ancho de la columna, así que el subrayado del enlace cruzaba
+   la columna entera. Con `justify-self: start` el enlace se queda con su texto y su
+   subrayado, que es lo que significa "no salirse de su espacio personal".
+2. **La animación del header, un poco más rápida**: el título de la cabecera
+   (`.hidden-item`) tarda 0,8 s en aparecer y 2,4 s en terminar de subir (venía de 1 s y
+   3 s, y antes de eso de 1,5 s y 5 s), manteniendo la proporción. Y la transición de
+   scroll del header (fondo y padding) baja de 0,4 s a 0,3 s.
+
+**Verificado**: 68/68 tests, `vp check` limpio, build en verde y revisión en pantalla de
+la ficha (el enlace ya no cruza la columna).
+
 ### L22 — 2026-10-29 · WU-C: la jerarquía visual de las tarjetas y los cinco pilares
 
 Ejecutada. Dos tarjetas de `#proyectos` llevan ahora la clase `project-card--con-ingresos`

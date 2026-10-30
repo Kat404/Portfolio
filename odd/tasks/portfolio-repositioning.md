@@ -122,6 +122,32 @@ canonical, y el par ES/EN es recíproco. Un botón que reescribe el DOM no cumpl
 - **Presupuesto**: el JS tiene que **bajar** (referencia: 1 116 B gzip). El CSS y el
   HTML se miden y se reportan.
 
+**S12 — Cada proyecto tiene su página.** Un proyecto destacado tiene su propia URL
+(`/proyectos/casa-noria`) con su caso completo: rol, hechos verificables, stack, enlaces y
+captura. La página no duplica el `index.html`: se deriva de él, así que el header, el
+nav, el pie, el CSS y el JS son los mismos y no pueden quedar desincronizados. Los datos
+de cada proyecto viven en un solo módulo, con el copy en los dos idiomas.
+
+**Cómo se implementa S12** (diseño cerrado en L24):
+
+- **Los datos** viven en `src/proyectos.ts`: un `slug`, el título, el rol (es/en), la
+  etiqueta, la lista de hechos (es/en), el stack, la URL en vivo, el repositorio (solo si
+  es público), la captura y dos campos que hoy están vacíos: el **problema** y las
+  **métricas**. Esos dos no se inventan: la página los muestra solo cuando el autor los
+  carga, y el documento ODD va anotando lo que falta.
+- **La página se deriva** de `index.html`, igual que las variantes de idioma: una función
+  pura que toma el HTML y el proyecto, y devuelve la página del proyecto con el `<main>`
+  sustituido por el caso, el `<title>` y la descripción propios, el `canonical` de su URL
+  y los `hreflang` recíprocos (es → `/`, en → `/en/`, y la variante del proyecto).
+- **El nav de la página del proyecto** no puede apuntar a anclas que no existen ahí: sus
+  enlaces pasan a ser absolutos (`/#proyectos`, `/#stack`, `/#entorno`, `/#sobre-mi`).
+- **Páginas**: cuatro en español (`/proyectos/<slug>/`) y cuatro en inglés
+  (`/en/proyectos/<slug>/`), las dos de cada proyecto con el copy en su idioma.
+- **Las tarjetas de `#proyectos` enlazan su página** con un texto propio ("Ver el caso
+  completo" / "Read the full case").
+- **El presupuesto no crece**: las páginas de detalle no agregan JavaScript ni CSS; el
+  bundle sigue siendo el mismo para todos los archivos del sitio.
+
 ### L22 — 2026-10-29 · WU-C: la jerarquía visual de las tarjetas y los cinco pilares
 
 Ejecutada. Dos tarjetas de `#proyectos` llevan ahora la clase `project-card--con-ingresos`

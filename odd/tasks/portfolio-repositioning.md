@@ -1457,3 +1457,30 @@ párrafo). Ningún otro par cambió de texto.
 **Verificado**: 44/44 tests (40 previos + 4 nuevos), `vp check` limpio y build con
 **JS 1 116 B gzip**, CSS 1.78 kB gzip y HTML 13.64 kB gzip. El presupuesto de JS no se
 movió: el cambio no toca JavaScript.
+
+### L29 — 2026-10-30 · WU-L: la captura real de GNOME y el meme bajo la imagen
+
+El autor vio que la captura del escritorio era de XFCE y no de GNOME, y pidió la suya.
+La captura entra igual que la anterior: `mat2` sobre una **copia** (no sobre el
+original, que es un archivo personal) borra los `tEXt` que traía —`Creation Time` y
+`Software: gnome-screenshot`— e ImageMagick la baja a WebP. El archivo pesa **32 360 B**
+(antes 52 596 B) y solo lleva el chunk `VP8`: ni EXIF, ni XMP, ni perfil de color.
+
+El `alt` se reescribió en los dos idiomas porque la captura nueva muestra otra cosa: el
+resumen de actividades de GNOME con las terminales abiertas, no el explorador gráfico de
+XFCE. Las dimensiones (`width`, `height` y `og:image:height`) pasan a 1200x750, que es
+la relación 16:10 de la captura nueva; los 1200 px de ancho siguen la convención del
+repo.
+
+La cita "Todo aprendizaje lleva tiempo..." sale de #stack y baja bajo la imagen, como
+"I use arch btw!". Va con `lang="en"` y sin `data-i18n-en`: es la misma frase en las dos
+variantes, que es justo lo que el meme quiere decir.
+
+**Verificado**: 68/68 tests (snapshot de drift regenerado: un solo par de `alt`
+editado), `vp check` limpio, build en verde con **JS 647 B gzip** y revisión en
+pantalla de la sección con el bloque de datos.
+
+**Límite de la entrega**: la rama `feature/reposicionamiento` acumula 43 commits y
+~6 000 líneas authored desde `origin/main`, muy por encima del corte de ~400 líneas por
+work unit. El autor pidió que la rama entera se entregara en un solo PR y se borrara
+después: ese PR es el límite de la entrega, no un work unit más.

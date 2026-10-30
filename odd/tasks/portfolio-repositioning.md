@@ -94,6 +94,34 @@ no cientos.
 y sirve la variante que promete: la página en inglés se sirve en inglés, con su propio
 canonical, y el par ES/EN es recíproco. Un botón que reescribe el DOM no cumple esto.
 
+**Cómo se implementa S11** (diseño cerrado en L22, no es un requisito abierto):
+
+- **Una sola fuente.** `index.html` sigue teniendo los dos idiomas: el español en el
+  markup y el inglés en `data-i18n-en`. El autor edita los dos lados en el mismo
+  archivo; el build deriva las dos páginas de ahí.
+- **El build produce dos páginas.** `dist/index.html` (español, sin los atributos
+  `data-i18n-en`: el inglés ya no viaja en el DOM) y `dist/en/index.html` (inglés, con
+  el texto ya aplicado). Cada página sirve solo su idioma y pesa menos.
+- **El selector deja de ser un botón** y pasa a ser un enlace a la otra variante
+  (`/` ↔ `/en/`). Con eso desaparece el JS de traducción —la mayor parte del
+  presupuesto de JS— y se resuelven los dos bugs que destapó el test de drift: el año
+  del copyright y el `alt` de la imagen.
+- **Head recíproco.** Cada página lleva su `canonical` (`/` y `/en/`), sus `hreflang`
+  (`es`, `en`, `x-default`) y sus metadatos (title, description, Open Graph, Twitter) en
+  su idioma. El `hreflang` deja de apuntar a una URL que no existe.
+- **El año del copyright**: el `data-i18n-en` del pie lleva el mismo
+  `<span id="copyright-year"></span>` que el español, no el año literal. La página en
+  inglés hereda el relleno en runtime y no se queda vieja en 2027.
+- **El `alt` de las imágenes**: la transformación aplica el `data-i18n-en` al atributo
+  `alt`, no al contenido, porque una imagen no tiene hijos.
+- **Mecanismo**: un plugin de Vite en `vite.config.ts` hace la transformación. En
+  `transformIndexHtml` (orden `post`, cuando Vite ya reescribió las URLs de los assets)
+  calcula las dos variantes y devuelve la española; en `generateBundle` emite
+  `en/index.html` como asset. En desarrollo, un middleware sirve `/en/` con la misma
+  transformación, para que el autor no tenga que working con `vp preview`.
+- **Presupuesto**: el JS tiene que **bajar** (referencia: 1 116 B gzip). El CSS y el
+  HTML se miden y se reportan.
+
 ---
 
 ## Tasks

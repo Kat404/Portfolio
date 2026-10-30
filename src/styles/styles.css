@@ -216,6 +216,14 @@ code {
   background-color: var(--color-base-darker);
 }
 
+/* ? ↓ Jerarquía visual (T21, S2b): solo los dos proyectos que dan ingresos se destacan.
+   ? El borde toma el acento del sitio (lavanda) y el fondo se aclara un punto; el título
+   ? ya es lavanda y el resto de la tarjeta no cambia. */
+.project-card--con-ingresos {
+  border-color: var(--color-text-lavender);
+  background-color: var(--color-base);
+}
+
 /* ? ↓ Captura del proyecto: encabezado visual de la tarjeta, siempre 16:10 */
 .project-shot {
   width: 100%;

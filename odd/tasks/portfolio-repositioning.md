@@ -118,9 +118,45 @@ canonical, y el par ES/EN es recíproco. Un botón que reescribe el DOM no cumpl
   `transformIndexHtml` (orden `post`, cuando Vite ya reescribió las URLs de los assets)
   calcula las dos variantes y devuelve la española; en `generateBundle` emite
   `en/index.html` como asset. En desarrollo, un middleware sirve `/en/` con la misma
-  transformación, para que el autor no tenga que working con `vp preview`.
+  transformación, para que el autor no tenga que trabajar con `vp preview`.
 - **Presupuesto**: el JS tiene que **bajar** (referencia: 1 116 B gzip). El CSS y el
   HTML se miden y se reportan.
+
+### L22 — 2026-10-29 · WU-C: la jerarquía visual de las tarjetas y los cinco pilares
+
+Ejecutada. Dos tarjetas de `#proyectos` llevan ahora la clase `project-card--con-ingresos`
+(Casa Noria y Tranxfers) y las otras dos quedan con `project-card` a secas. La regla que
+las distingue toma el borde en lavanda (`--color-text-lavender`) y aclara el fondo un
+punto (`--color-base` en vez de `--color-base-darker`). El título ya era lavanda en las
+cuatro, así que no hizo falta una regla aparte: la jerarquía la da el marco.
+
+**T21 era jerarquía, no uniformidad**: el plan original pedía "protagonismo visual
+uniforme", que contradecía lo que el autor aclaró en L16 (solo dos proyectos aportan al
+CV y dan ingresos). Uniformar habría emparejado a TallerAgentes y OpenSIM con los dos
+que facturan.
+
+**T22, los cinco pilares ya existían** (Frameworks, Pagos y Datos, Infraestructura,
+Calidad, Base): lo que faltaba era que la entrada "Calidad" envolvía su descripción en
+un `span.descripcion` que contenía otro `span.descripcion` traducible, mientras las
+otras cuatro tienen la forma directa `strong` + `span.descripcion`. Normalizada a la
+misma forma, sin tocar copy ni traducciones.
+
+**Tests**: dos nuevos. Uno fija que exactamente dos tarjetas llevan la clase y que son
+las mismas cuyo texto dice "con ingresos" (la jerarquía queda en el DOM, no en la buena
+voluntad del copy). El otro fija que la lista de `#stack` tiene cinco entradas y que
+cada una tiene su `<strong>` y su `.descripcion` como hija directa, sin `.descripcion`
+anidada.
+
+**Snapshot de drift**: sin cambios. El test compara el `innerHTML` del nodo traducible,
+no su anidamiento, así que quitar el `span` envolvente no altera el par ES/EN.
+
+**Presupuesto**: CSS 1 834 B gzip con `gzip -c` (la línea base de Lighthouse era 1 786 B
+y con el mismo `gzip -c` daba 1 814 B: son gzipers distintos). El costo de la jerarquía
+visual son 20 B gzip. El JS no se movió: **1 116 B gzip**.
+
+**Verificado en pantalla**: con el CSS compilado y las cuatro tarjetas en un scratch,
+Casa Noria y Tranxfers salen con el marco lavanda y TallerAgentes y OpenSIM con el
+oscuro. La jerarquía se ve sin tocar el copy.
 
 ---
 
@@ -149,8 +185,8 @@ canonical, y el par ES/EN es recíproco. Un botón que reescribe el DOM no cumpl
 | T18 | T8: medición Lighthouse antes/después y corrección de sus hallazgos             | S10      | inline | **hecha** (L10-L11)            |
 | T19 | Licencia y procedencia de los iconos vendorizados (`THIRD-PARTY-NOTICES.md`)    | S10      | inline | **hecha** (L13)                |
 | T20 | Nav de 8 a 4 anclas y cierre de la sección "Bienvenido"                         | S1,S2    | inline | **hecha** (L14)                |
-| T21 | Jerarquía visual: los dos proyectos con ingresos destacan sobre los propios     | S2,S2b   | inline | pendiente — reescrita (L16)    |
-| T22 | `#stack` agrupada en cinco pilares                                              | S5,S6    | inline | pendiente — ya está en 5 (L8)  |
+| T21 | Jerarquía visual: los dos proyectos con ingresos destacan sobre los propios     | S2,S2b   | inline | **hecha** (L22)                |
+| T22 | `#stack` agrupada en cinco pilares                                              | S5,S6    | inline | **hecha** (L22)                |
 | T23 | `#entorno` como presentación de oficio, con el divisor donde corresponde        | S7       | inline | **hecha** (L21)                |
 | T24 | `#curiosidades` fusionada dentro de `#sobre-mi`                                 | S7       | inline | **hecha** (L21)                |
 | T25 | Verificación de tests, formato y presupuesto de JS tras el refactor             | S10      | inline | pendiente                      |

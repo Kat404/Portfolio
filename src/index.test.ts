@@ -169,6 +169,41 @@ describe("oferta y honestidad del copy (T12, S1)", () => {
   });
 });
 
+describe("jerarquía visual y pilares del stack (T21, T22, S2b, S6)", () => {
+  it("solo las dos tarjetas con ingresos llevan la clase de jerarquía visual", () => {
+    // ? T21 con S2b: la jerarquía no es uniformidad. Solo Casa Noria y Tranxfers
+    // ? facturan, así que solo ellas se destacan; las otras dos son trabajo propio.
+    const tarjetas = [...document.querySelectorAll("#proyectos .project-card")];
+    const destacadas = tarjetas.filter((c) => c.classList.contains("project-card--con-ingresos"));
+    const conIngresos = tarjetas.filter((c) => c.textContent?.includes("con ingresos"));
+
+    expect(conIngresos).toHaveLength(2);
+    expect(destacadas).toHaveLength(2);
+    expect(destacadas.map((c) => c.querySelector(".project-title")?.textContent?.trim())).toEqual(
+      conIngresos.map((c) => c.querySelector(".project-title")?.textContent?.trim()),
+    );
+  });
+
+  it("los cinco pilares de #stack tienen etiqueta y descripción propia", () => {
+    // ? T22: cinco entradas, cada una con su `<strong>` y su `.descripcion` traducible
+    // ? como hija directa. Ninguna envuelve la descripción en otro contenedor.
+    const entradas = [...document.querySelectorAll("#stack .stack-lista > li")];
+
+    expect(entradas).toHaveLength(5);
+
+    for (const entrada of entradas) {
+      const hijos = [...entrada.children];
+      const etiqueta = hijos.find((hijo) => hijo.tagName === "STRONG");
+      const descripcion = hijos.find((hijo) => hijo.classList.contains("descripcion"));
+
+      expect(etiqueta?.textContent?.trim().length, `pilar sin etiqueta`).toBeGreaterThan(0);
+      expect(descripcion, `pilar sin descripción`).toBeDefined();
+      expect(descripcion?.getAttribute("data-i18n-en")?.length).toBeGreaterThan(0);
+      expect(descripcion?.querySelector(".descripcion")).toBeNull();
+    }
+  });
+});
+
 describe("capturas de proyecto (S3)", () => {
   it("toda imagen del documento lleva dimensiones, carga diferida y texto alternativo", () => {
     const imagenes = document.querySelectorAll("main img");

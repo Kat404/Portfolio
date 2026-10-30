@@ -18,34 +18,37 @@
 }
 
 /* ======================== TIPOGRAFÍAS (FONT-FACES) ======================== */
-/* * Tipografía principal: Maple Mono NF.
+/* * Tipografía principal: Maple Mono.
   * Solo se declaran los pesos 400 y 700 (normal e itálica): son los únicos que
-  * pide el CSS. Cada peso extra son ~80 KB que el navegador descarga y nadie lee.
-  * Si agregas un peso nuevo, decláralo aquí Y úsalo en una regla. */
+  * pide el CSS. Cada peso extra son ~40 KB que el navegador descarga y nadie lee.
+  * Si agregas un peso nuevo, decláralo aquí Y úsalo en una regla.
+  * ? Las cuatro caras están recortadas al juego de caracteres del sitio
+  * ? (Latin-1 + los signos que el copy puede usar): 323 044 B -> 153 744 B.
+  * ? Se regeneran con `bash scripts/subset-fonts.sh`. */
 
 @font-face {
-  font-family: "Maple Mono NF";
+  font-family: "Maple Mono";
   src: url(/fonts/MapleMono-Regular.ttf.woff2) format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: "Maple Mono NF";
+  font-family: "Maple Mono";
   src: url(/fonts/MapleMono-Italic.ttf.woff2) format("woff2");
   font-weight: 400;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
-  font-family: "Maple Mono NF";
+  font-family: "Maple Mono";
   src: url(/fonts/MapleMono-Bold.ttf.woff2) format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: "Maple Mono NF";
+  font-family: "Maple Mono";
   src: url(/fonts/MapleMono-BoldItalic.ttf.woff2) format("woff2");
   font-weight: 700;
   font-style: italic;
@@ -64,7 +67,7 @@ html {
 body {
   background-color: var(--color-base);
   color: var(--color-text);
-  font-family: "Maple Mono NF", monospace;
+  font-family: "Maple Mono", monospace;
   text-align: left;
 }
 

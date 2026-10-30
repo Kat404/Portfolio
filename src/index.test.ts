@@ -57,23 +57,36 @@ describe("oferta y honestidad del copy (T12, S1)", () => {
     for (const meta of document.querySelectorAll("meta[data-i18n-en]")) {
       expect(meta.getAttribute("data-i18n-en")!.trim().length).toBeGreaterThan(10);
     }
-
-    const hreflang = [...document.querySelectorAll('link[rel="alternate"][hreflang]')].map((l) =>
-      l.getAttribute("hreflang"),
-    );
-    // ? Debe existir el alterno en inglés porque la traducción ya está en el documento
-    expect(hreflang).toContain("en");
-    expect(hreflang).toContain("x-default");
   });
 
-  it("el selector de idioma ofrece ES y EN, con ES activo", () => {
-    const botones = document.querySelectorAll("#selector-idioma .idioma-btn");
+  it("el head declara el canonical y los hreflang recíprocos de la variante española", () => {
+    // ? T27: el canonical es el de la variante española y los tres alternates
+    // ? apuntan a URLs que existen de verdad: `/` y `/en/`.
+    expect(document.querySelector('link[rel="canonical"]')?.getAttribute("href")).toBe(
+      "https://portfolio.jose-luis-rs.workers.dev/",
+    );
 
-    expect(botones).toHaveLength(2);
-    expect([...botones].map((b) => b.getAttribute("data-lang"))).toEqual(["es", "en"]);
-    expect(botones[0].classList.contains("is-active")).toBe(true);
-    expect(botones[0].getAttribute("aria-current")).toBe("true");
-    expect(botones[1].getAttribute("aria-current")).toBe("false");
+    const alternates = [...document.querySelectorAll('link[rel="alternate"][hreflang]')].map(
+      (link) => [link.getAttribute("hreflang"), link.getAttribute("href")],
+    );
+
+    expect(alternates).toEqual([
+      ["es", "https://portfolio.jose-luis-rs.workers.dev/"],
+      ["en", "https://portfolio.jose-luis-rs.workers.dev/en/"],
+      ["x-default", "https://portfolio.jose-luis-rs.workers.dev/"],
+    ]);
+  });
+
+  it("el selector de idioma son dos enlaces: ES a / y EN a /en/", () => {
+    // ? T27: el selector deja de ser un botón que reescribe el DOM y pasa a ser el
+    // ? enlace a la otra variante, que es una URL real y ya sirve su idioma.
+    const enlaces = document.querySelectorAll("#selector-idioma a.idioma-btn");
+
+    expect(enlaces).toHaveLength(2);
+    expect([...enlaces].map((e) => e.getAttribute("href"))).toEqual(["/", "/en/"]);
+    expect(enlaces[0].classList.contains("is-active")).toBe(true);
+    expect(enlaces[0].getAttribute("aria-current")).toBe("true");
+    expect(enlaces[1].getAttribute("aria-current")).toBe("false");
   });
 
   it("la sección de lo personal es la última y va tras un divisor", () => {

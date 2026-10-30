@@ -28,6 +28,20 @@ const LISTA_BLANCA = new Set([
   "viajes",
   "rumbox",
 
+  // ? Nombres de proyectos, productos y módulos: los `alt` de las capturas y las
+  // ? etiquetas de las tarjetas los nombran igual en los dos idiomas.
+  "noria",
+  // ? "Casa" es parte del nombre del hotel: es un nombre propio, no la palabra común.
+  "casa",
+  "tranxfers",
+  "taller",
+  "agentes",
+  "opensim",
+  "panel",
+  "kardex",
+  "penguin",
+  "ubuntu",
+
   // ? Marcas, proyectos, tecnologías y comandos
   "astro",
   "svelte",

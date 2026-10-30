@@ -69,7 +69,7 @@ Base: :: Base:
 Vite+ como toolchain unificada y pnpm en todos mis proyectos web: HTML semántico & accesible, CSS puro y TypeScript nativo. :: Vite+ as the unified toolchain and pnpm across all my web projects: semantic & accessible HTML, plain CSS and native TypeScript.
 Entorno & Filosofía de Desarrollo :: Environment & Development Philosophy
 Esto no es una maqueta: es mi escritorio. Arch Linux con la paleta Catppuccin, Nushell en Kitty, y las mismas herramientas con las que trabajo todos los días. :: This is not a mockup: it is my desktop. Arch Linux with the Catppuccin palette, Nushell in Kitty, and the same tools I work with every day.
-Escritorio de Arch Linux: neofetch con el logo de la distribución, una terminal con un listado de archivos, un explorador gráfico y dos ventanas con arte generado por la terminal :: Arch Linux desktop: neofetch with the distribution logo, a terminal listing files, a graphical file manager and two windows of terminal-generated art
+Escritorio de Arch Linux en GNOME: el resumen de actividades con las ventanas abiertas, una terminal con un listado de archivos, arte generado en la terminal y neofetch con el logo de la distribución :: Arch Linux desktop on GNOME: the activities overview with the open windows, a terminal listing files, terminal-generated art and neofetch with the distribution logo
 Sistema: :: System:
 Arch Linux sobre xfs, con GNOME :: Arch Linux on xfs, with GNOME
 Shell: :: Shell:

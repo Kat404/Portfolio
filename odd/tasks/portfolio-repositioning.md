@@ -1036,3 +1036,54 @@ es lícito mientras el aviso viaje con la fuente, que es lo que hace
 **Reproducible**: `scripts/subset-fonts.sh` regenera los cuatro archivos (descomprimir
 con `woff2_decompress`, recortar con `pyftsubset` vía `uvx`, recomprimir a woff2). Los
 subsets están commiteados: ni el build ni el CI de Cloudflare necesitan fonttools.
+
+### L20 — 2026-10-29 · WU-A: el test de drift i18n
+
+Ejecutada la work unit del drift. `src/i18n-drift.test.ts` (nuevo) con cinco tests y
+`src/__snapshots__/i18n-drift.test.ts.snap` con los **89 pares ES/EN** del documento
+real. **40 tests en verde** (35 previos + 5 nuevos) y `vp check` limpio.
+
+**Los cuatro niveles, como se pedían**: paridad de markup (misma secuencia de etiquetas
+en los dos idiomas), banda de longitud (inglés entre 0,6× y 2,0× del español) y
+palabras compartidas contra lista blanca; más el snapshot dorado de los pares, que es
+el único que ve el texto viejo de los dos lados.
+
+**RED observado**: con el detector en stub (`return []`), los tres tests de detección
+fallaron (`expected 0 to be greater than 0`, `expected [] to include 'markup'`,
+`expected [] to include 'palabras'`) y el snapshot no existía. El par desfasado usado
+es el caso real: el español reescrito a mano con el inglés viejo (razón 0,52, fuera de
+banda).
+
+**Diferencial contra el archivo real** (copia en `/tmp`, nunca el `index.html` del
+repo): quitar un `<strong>` del español → drift de markup; recortar el inglés a una
+frase → drift de longitud; dejar "dashboard" sin traducir en los dos idiomas → drift de
+palabras.
+
+**Tres desviaciones que hay que conocer**:
+
+1. La comparación es por _unidad_ (nodos traducibles que comparten el mismo padre), no
+   nodo por nodo: hay frases partidas en varios `<span>` para intercalar un `<code>`, y
+   por separado la banda daba razón 0,07.
+2. La banda de longitud solo se mide con texto español de **20 caracteres o más**: en un
+   rótulo corto ("Ver sitio en vivo" / "Live site", razón 0,53) la longitud depende de
+   la concisión del rótulo, no de la traducción.
+3. Los elementos con `id` se ignoran al comparar markup: son marcadores que `main.ts`
+   rellena en runtime.
+
+**La lista blanca** (empírica sobre los 89 nodos) tiene cuatro grupos: nombres propios;
+marcas, proyectos y tecnologías; vocabulario técnico que el español deja en inglés a
+propósito; y palabras que ambos idiomas escriben igual (`chocolate`, `color`, `hotel`,
+`internet`, `local`, `logo`, `mamey`, `original`, `personal`, `real`). El último grupo
+es el que le quita dientes al nivel 3: si se cae, el test falla en nueve unidades
+actuales. Los tres umbrales (lista, longitud mínima, agrupación) viven en un solo
+lugar del archivo.
+
+**Dos hallazgos preexistentes que el test destapó** (no se corrigen aquí):
+
+- El `data-i18n-en` del copyright fija "© 2026 ..." literal, mientras el español
+  inyecta el año en runtime: el inglés se queda viejo en 2027.
+- El `data-i18n-en` del `<img class="yo-shot">` nunca llega al `alt`: `main.ts`
+  sustituye hijos y una imagen no tiene. Es bug del mecanismo, no del HTML.
+
+Los dos los resuelve WU-D, que rehace el idioma: con la página `/en/` real, el texto
+inglés se sirve ya aplicado en el HTML y el copyright puede derivar el año en el build.

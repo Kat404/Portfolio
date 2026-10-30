@@ -1,0 +1,93 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`drift i18n (T28, S4) > el snapshot guarda los pares de español e inglés 1`] = `
+"Proyectos :: Projects
+Stack & Calidad :: Stack & Quality
+Entorno & Filosofía :: Environment & Philosophy
+Sobre Mí :: About Me
+Qué hago :: What I do
+Este es mi portafolio. Debajo vas a encontrar en qué trabajo, los proyectos que he construido, el stack con el que lo he hecho y, al final, algo más personal. Empieza por lo que necesitas saber. :: This is my portfolio. Below you will find what I work on, the projects I have built, the stack I built them with and, at the end, something more personal. Start with what you need to know.
+Construyo sitios web que solucionan problemas y entregan resultados: sistemas de reserva, cotizadores y plataformas internas que se usan a diario en entornos empresariales y de producción. Trabajo con Astro, Svelte y Cloudflare Workers. Todo listo para ser usado y probado desde el día 1. :: I build websites that solve problems and deliver results: booking systems, quote builders and internal platforms used daily in enterprise and production environments. I work with Astro, Svelte and Cloudflare Workers. Everything ready to be used and tested from day one.
+Mis Proyectos :: My Projects
+Dos sistemas en producción con ingresos, una plataforma docente en uso por un curso del IEEE Computer Society y un rediseño open source de un sistema académico. :: Two systems in production with revenue, a teaching platform in use by an IEEE Computer Society course and an open source redesign of an academic system.
+Sitio oficial de un hotel real en Acapulco: habitaciones, SEO local y reserva con pago en línea. :: Official site of a real hotel in Acapulco: rooms, local SEO and online booking with payment.
+En producción :: In production
+22 páginas · 232 commits · Astro 7.4 + Svelte 5.57 + Stripe 23 sobre Cloudflare Workers :: 22 pages · 232 commits · Astro 7.4 + Svelte 5.57 + Stripe 23 on Cloudflare Workers
+Mobile-first, accesible y con E2E potenciado por agentes de IA :: Mobile-first, accessible and covered by agent-driven E2E tests
+Ver sitio en vivo :: Live site
+Traslados privados cotizados de Viajes RumboX: el visitante arma su cotización en tres pasos y puede retomarla después. :: Quoted private transfers by Viajes RumboX: the visitor builds their quote in three steps and can pick it up later.
+En producción :: In production
+7 páginas · 97 commits · Astro 7.4 SSR + Svelte 5.57 + Vitest 5 sobre Cloudflare Workers :: 7 pages · 97 commits · Astro 7.4 SSR + Svelte 5.57 + Vitest 5
+Cotizador con autosave en localStorage :: Quote builder with autosave in localStorage
+Ver sitio en vivo :: Live site
+Plataforma del curso "Agentes de IA y Automatización" que doy en IEEE Computer Society ITM: inscripción, credenciales, asistencia y publicación de contenido. :: Platform for the "AI and Automation Agents" course I teach at IEEE Computer Society ITM: enrollment, credentials, attendance and content publishing.
+Plataforma propia :: Own platform
+325 commits :: 325 commits
+Cloudflare Workers en free tier + D1 + Durable Objects :: Cloudflare Workers on the free tier + D1 + Durable Objects
+Astro 7 + Tailwind, contenido en MDX y suite con Vitest, Playwright y axe-core :: Astro 7 + Tailwind, content in MDX and a suite with Vitest, Playwright and axe-core
+Ver sitio en vivo :: Live site
+Rediseño FOSS del sistema académico del TecNM Morelia, construido como demo funcional: horario, retícula, kardex, reinscripción, trámites y temario. Lo que el original no publica se declara pendiente en vez de inventarse. :: FOSS redesign of the TecNM Morelia academic system, built as a working demo: schedule, curriculum, transcript, re-enrolment, paperwork and syllabus. What the original does not publish is declared pending instead of invented.
+Demo pública :: Public demo
+248 commits :: 248 commits
+SvelteKit 3.1 + Svelte 5.57 · Drizzle ORM + Valibot + pdf-lib :: SvelteKit 3.1 + Svelte 5.57 · Drizzle ORM + Valibot + pdf-lib
+E2E con agentes de IA + Playwright y axe-core para accesibilidad :: Agent-driven E2E + Playwright and axe-core for accessibility
+Ver demo :: See the demo
+Otros proyectos :: Other projects
+: Configuración personal para sistemas operativos Linux y demás configuraciones para :: : Personal configuration for Linux operating systems, plus configuration for the many tools I use to develop and to live Linux
+mucho software que utilizo para desarrollar y vivir Linux de manera :: in an
+Awesome :: awesome
+way :: way
+: Harness de agentes de IA en la terminal, escrito en :: : Terminal-native AI agent harness written in
+con sandbox de mínimo privilegio (Landlock + Seccomp-BPF) y TDD estricto. :: with a least-privilege sandbox (Landlock + Seccomp-BPF) and strict TDD.
+: Emulador, ensamblador y depurador del Intel 8086/8088, escrito en :: : Clean-room emulator, assembler and debugger for the Intel 8086/8088, written in
+desde cero, sin código de terceros. :: from scratch, with no third-party code.
+Este es mi stack actual, cada uno complementando de manera funcional y esencial cada apartado dentro de la arquitectura de cualquier proyecto. Herramientas específicos a casos específicos. :: This is my current stack, each one complementing in a functional and essential way every area within the architecture of any project. Tools specific to specific cases.
+Frameworks: :: Frameworks:
+Astro 7 con Svelte 5. Estático donde no hace falta JavaScript, islas y componentes interactivos Svelte donde hace falta. SvelteKit cuando es necesaria una ingeniería de proyecto más compleja a nivel empresarial. :: Astro 7 with Svelte 5. Static where JavaScript is not needed, islands and interactive Svelte components where it is. SvelteKit when a more complex, enterprise-grade project engineering is required.
+Pagos y Datos: :: Payments and Data:
+Stripe para checkout, Drizzle ORM y Valibot para esquema y validación en el backend. La solidez y la ligereza pocas veces van de la mano. :: Stripe for checkout, Drizzle ORM and Valibot for schema and validation in the backend. Strength and lightness rarely go hand in hand.
+Infraestructura: :: Infrastructure:
+Cloudflare Workers, D1 y Durable Objects. wrangler para los tres. :: Cloudflare Workers, D1 and Durable Objects. wrangler for all three.
+Calidad: :: Quality:
+Vitest en tests unitarios, Playwright + axe-core en end-to-end y accesibilidad asegurando UI/UX, con E2E de agentes de IA apoyados de documentación y orquestación orgánica. :: Vitest in unit tests, Playwright + axe-core in end-to-end and accessibility ensuring UI/UX, with AI agent-driven E2E supported by documentation and organic orchestration.
+Base: :: Base:
+Vite+ como toolchain unificada y pnpm en todos mis proyectos web: HTML semántico & accesible, CSS puro y TypeScript nativo. :: Vite+ as the unified toolchain and pnpm across all my web projects: semantic & accessible HTML, plain CSS and native TypeScript.
+Curiosidades sobre Mí :: Trivia About Me
+¿Cuál es tu color favorito? :: What is your favorite color?
+Mi color favorito es el negro aunque también me encanta el color azul. Dentro de Internet, me encanta la paleta de colores de Catppuccin, se me hacen unos colores muy estéticos y bonitos. :: My favorite color is black, although I also love blue. On the Internet, I love the Catppuccin palette: they are beautiful, aesthetic colors.
+¿Qué navegador usas? :: Which browser do you use?
+Actualmente uso Firefox aunque con la polémica acerca de su nuevo CEO y la integración de la IA sobre Firefox me hace dudar sobre si seguir utilizándolo aunque sea mi navegador favorito. :: I currently use Firefox, although the controversy around its new CEO and the integration of AI into Firefox makes me doubt whether to keep using it, even though it is my favorite browser.
+¿Cuál es tu sabor de helado favorito? :: What is your favorite ice cream flavor?
+Soy muy variado, me gusta desde el chocolate y sus variantes, la vainilla, el café, mamey, coco, etc. Mientras sea helado sé que me gustará mucho. :: I am very varied: chocolate and its variants, vanilla, coffee, mamey, coconut, and so on. As long as it is ice cream I know I will like it.
+Esto es mío :: This is me
+Y para cerrar, esto no es una maqueta: es mi escritorio. Arch Linux con la paleta Catppuccin, Nushell en Kitty, y las mismas herramientas con las que trabajo todos los días. :: To close, this is not a mockup: it is my desktop. Arch Linux with the Catppuccin palette, Nushell in Kitty, and the same tools I work with every day.
+Escritorio de Arch Linux: neofetch con el logo de la distribución, una terminal con un listado de archivos, un explorador gráfico y dos ventanas con arte generado por la terminal :: Arch Linux desktop: neofetch with the distribution logo, a terminal listing files, a graphical file manager and two windows of terminal-generated art
+Sistema: :: System:
+Arch Linux sobre xfs, con GNOME :: Arch Linux on xfs, with GNOME
+Shell: :: Shell:
+Nushell, estructurada y type-safe, con Zsh y Fish documentados aparte en GitHub :: Nushell, structured and type-safe, with Zsh and Fish documented separately on GitHub
+Terminal: :: Terminal:
+Kitty, con el motor de renderizado propio :: Kitty, with its own rendering engine
+Editor: :: Editor:
+Helix, en modo modal y basado en selecciones :: Helix, in modal, selections-first mode
+Configuración: :: Configuration:
+dotfiles públicos, y la configuración de seguridad de Linux al aire :: public dotfiles, and my Linux hardening config out in the open
+Sobre mí :: About me
+Soy estudiante de Ingeniería en Sistemas Computacionales y llevo dos años construyendo software que se usa de verdad. Empecé con Linux y todavía es donde más cómodo me siento; de ahí vine al desarrollo web y a los sistemas distribuidos. :: I am a Computer Systems Engineering student and I have spent two years building software that actually gets used. I started with Linux and it is still where I feel most at home; from there I moved into web development and distributed systems.
+Aficiones y Enfoques :: Interests and Focus
+Sistemas Operativos: :: Operating Systems:
+Linux (Arch Linux), FreeBSD & próximamente OpenBSD. Configuro y Endurezco lo que uso. :: Linux (Arch Linux), FreeBSD and OpenBSD soon. I configure and harden what I use.
+Desarrollo Web: :: Web Development:
+Astro y Svelte sobre Cloudflare Workers. Es lo con lo que entrego a clientes y lo que uso para mis propios proyectos. :: Astro and Svelte on Cloudflare Workers. It is what I deliver to clients and what I use for my own projects.
+Seguridad & privacidad: :: Security & privacy:
+Hardening de sistemas y navegadores, cortafuegos, sandboxing y herramientas que no rastrean. :: Hardening systems and browsers, firewalls, sandboxing and tools that do not track.
+Mis Gustos :: Hobbies
+Dentro de mis gustos personales están: :: Some of my personal tastes:
+El helado de vainilla y café :: Vanilla and coffee ice cream
+Los gatos obviamente :: Cats obviously
+Programar y aprender cada día más y más :: Programming and learning more every day
+Hacer ejercicio de manera casual pero constante :: Exercising casually but consistently
+© José Luis Ramírez Sánchez. Todos los derechos reservados. :: © 2026 José Luis Ramírez Sánchez. All rights reserved.
+Envíame un correo :: Send me an email
+SimpleX :: SimpleX"
+`;

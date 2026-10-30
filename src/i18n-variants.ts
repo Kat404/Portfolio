@@ -31,7 +31,7 @@ const SIN_CONTENIDO = new Set([
   "wbr",
 ]);
 
-type Atributo = {
+export type Atributo = {
   nombre: string;
   valor: string | null;
   // ? Posiciones en el HTML original, para poder reescribir sin volver a parsear.
@@ -41,7 +41,7 @@ type Atributo = {
   valorFin: number;
 };
 
-type Etiqueta = {
+export type Etiqueta = {
   nombre: string;
   nombreFin: number;
   atributos: Atributo[];
@@ -50,12 +50,12 @@ type Etiqueta = {
   cierre: boolean;
 };
 
-type Edicion = { inicio: number; fin: number; texto: string };
+export type Edicion = { inicio: number; fin: number; texto: string };
 
 // ? Escáner de etiquetas: recorre el HTML recognizing los atributos con comillas de
 // ? cualquiera de los dos tipos, porque el copy traducido trae etiquetas dentro del
 // ? valor (`<strong>`, `<code>`) y comillas de los dos tipos.
-function escanearEtiquetas(html: string): Etiqueta[] {
+export function escanearEtiquetas(html: string): Etiqueta[] {
   const etiquetas: Etiqueta[] = [];
   let i = 0;
 
@@ -150,7 +150,7 @@ function escanearEtiquetas(html: string): Etiqueta[] {
 
 // ? Empareja cada etiqueta de apertura con su cierre, para saber dónde acaba el
 // ? contenido de cada elemento.
-function emparejar(etiquetas: Etiqueta[]): Map<number, number> {
+export function emparejar(etiquetas: Etiqueta[]): Map<number, number> {
   const pila: number[] = [];
   const pares = new Map<number, number>();
 
@@ -171,14 +171,19 @@ function emparejar(etiquetas: Etiqueta[]): Map<number, number> {
   return pares;
 }
 
-function valorDe(etiqueta: Etiqueta, nombre: string): string | null {
+export function valorDe(etiqueta: Etiqueta, nombre: string): string | null {
   return etiqueta.atributos.find((a) => a.nombre === nombre)?.valor ?? null;
 }
 
 // ? Reemplaza el valor de un atributo que ya existe. Si el atributo no existe, la
 // ? operación falla: el HTML de origen tiene que traerlo, y callar ese error
 // ? produciría una página con el copy a medias.
-function editarAtributo(ediciones: Edicion[], etiqueta: Etiqueta, nombre: string, valor: string) {
+export function editarAtributo(
+  ediciones: Edicion[],
+  etiqueta: Etiqueta,
+  nombre: string,
+  valor: string,
+) {
   const atributo = etiqueta.atributos.find((a) => a.nombre === nombre);
 
   if (!atributo || atributo.valor === null) {
@@ -208,7 +213,7 @@ function escaparValor(valor: string): string {
 
 // ? Aplica las ediciones sobre el HTML original, de atrás hacia adelante para que las
 // ? posiciones no se muevan bajo los pies.
-function aplicar(html: string, ediciones: Edicion[]): string {
+export function aplicar(html: string, ediciones: Edicion[]): string {
   const ordenadas = [...ediciones].sort((a, b) => a.inicio - b.inicio);
   let salida = "";
   let cursor = 0;

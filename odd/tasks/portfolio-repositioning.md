@@ -148,6 +148,49 @@ de cada proyecto viven en un solo módulo, con el copy en los dos idiomas.
 - **El presupuesto no crece**: las páginas de detalle no agregan JavaScript ni CSS; el
   bundle sigue siendo el mismo para todos los archivos del sitio.
 
+### L24 — 2026-10-29 · WU-H: la página de detalle de cada proyecto
+
+Ejecutada la work unit de T10. Ocho páginas: cuatro en español (`/proyectos/<slug>/`) y
+cuatro en inglés (`/en/proyectos/<slug>/`), derivadas del mismo `index.html` con el
+patrón que ya usaba las variantes de idioma.
+
+**Los datos** viven en `src/proyectos.ts`: el slug, el título, el rol, la etiqueta, los
+hechos, el stack, la URL en vivo, el repositorio (solo si es público: Casa Noria,
+Tranxfers y TallerAgentes son privados, y solo OpenSIM enlaza su código) y la captura.
+El copy está copiado de las tarjetas, no reescrito: las tarjetas siguen siendo donde el
+autor edita. El `alt`, las dimensiones de la imagen y los rótulos de los enlaces no están
+en el módulo: se extraen de la tarjeta del propio `index.html` al derivar la página, así
+que no pueden desviarse.
+
+**La página** la arma `src/proyecto-pagina.ts` (funciones puras sobre el mismo escáner de
+etiquetas): sustituye el `<main>` por el caso del proyecto, pone el `<title>` y la
+descripción propios, el `canonical` de su URL y los `hreflang` recíprocos (es → su
+página, en → la de inglés, x-default → la española). El nav pasa a enlaces absolutos
+(`/#proyectos`) porque esas anclas no existen en la página del proyecto, y el selector de
+idioma lleva a la página equivalente del otro idioma.
+
+**Lo que falta y no se inventó**: el `problema` y las `métricas` de cada proyecto están
+vacíos. Los rótulos ya están en el generador, pero la página no los renderiza sin
+contenido: el autor los carga cuando quiera.
+
+**El presupuesto no se movió**: el JS y el CSS son byte a byte los mismos (647 B y
+1 841 B gzip), porque las páginas de detalle no agregan JavaScript ni CSS: usan las
+mismas clases. La portada subió 94 B gzip por los cuatro enlaces nuevos ("Ver el caso
+completo" / "Read the full case") y las páginas nuevas pesan 6 645–6 824 B gzip.
+
+**Verificado**: 64/64 tests, `vp check` limpio y `vp build` en verde con las ocho
+páginas emitidas. Con `wrangler dev` sobre el `dist`: `/`, `/en/`,
+`/proyectos/casa-noria/`, `/en/proyectos/casa-noria/`, `/proyectos/opensim/` y
+`/en/proyectos/opensim/` responden 200, y `/proyectos/casa-noria` sin slash responde 307
+hacia la versión con slash. La página inglesa trae `lang="en"`, su canonical y sus
+hreflang recíprocos, y la auditoría de texto no encuentra residuo en español. En
+pantalla, la página se ve como una tarjeta grande con la captura real del proyecto:
+coherente con el resto del sitio.
+
+**Una característica, no un defecto**: el `h1` del sitio (la marca) sigue siendo el mismo
+en las páginas de detalle, y el nombre del proyecto va en el `h2`. El `<title>` y el
+`canonical` sí son los de cada proyecto, que es lo que pesa para un buscador.
+
 ### L22 — 2026-10-29 · WU-C: la jerarquía visual de las tarjetas y los cinco pilares
 
 Ejecutada. Dos tarjetas de `#proyectos` llevan ahora la clase `project-card--con-ingresos`
@@ -253,7 +296,7 @@ inglesa queda servida sin configuración extra.
 | T7  | Recortar `@font-face` a los pesos usados y medir delta                          | S9       | inline | **hecha** (L8)                 |
 | T8  | Medición antes/después: Lighthouse y peso de bundle                             | S10      | inline | **hecha** (L10-L11)            |
 | T9  | Responsive real — hoy no existe ningún `@media`                                 | todos    | inline | **hecha** (L7)                 |
-| T10 | Páginas de detalle por proyecto (`/proyectos/casa-noria`)                       | S2       | inline | pendiente — decisión L17       |
+| T10 | Páginas de detalle por proyecto (`/proyectos/casa-noria`)                       | S2       | inline | **hecha** (L24)                |
 | T11 | `<title>`, meta description, Open Graph y Twitter sin lenguaje de perfil junior | S1,S4    | inline | **hecha** (L6)                 |
 | T12 | Declarar qué resuelvo y para quién: para qué me contratan                       | S1,S2    | inline | **hecha** (L8)                 |
 | T13 | Quitar el enlace a código de los repos privados (Casa Noria, Tranxfers)         | S2       | inline | **hecha** (L11)                |

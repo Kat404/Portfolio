@@ -13,7 +13,15 @@ describe("oferta y honestidad del copy (T12, S1)", () => {
 
     expect(secciones.indexOf("servicios")).toBe(0);
     expect(secciones.indexOf("servicios")).toBeLessThan(secciones.indexOf("sobre-mi"));
-    expect(secciones.indexOf("proyectos")).toBeLessThan(secciones.indexOf("curiosidades"));
+    expect(secciones.indexOf("proyectos")).toBeLessThan(secciones.indexOf("sobre-mi"));
+  });
+
+  it("el orden de las secciones es trabajo primero y lo personal al final", () => {
+    // ? T23/T24: #entorno es trabajo (el entorno y la filosofía del oficio) y
+    // ? #curiosidades ya no es una sección de primer nivel: vive dentro de #sobre-mi.
+    const secciones = [...document.querySelectorAll("main > section")].map((s) => s.id);
+
+    expect(secciones).toEqual(["servicios", "proyectos", "stack", "entorno", "sobre-mi"]);
   });
 
   it("cada elemento traducible tiene inglés, y el español no sobrevive en inglés", () => {
@@ -75,6 +83,40 @@ describe("oferta y honestidad del copy (T12, S1)", () => {
     // ? documento y el divisor sigue separando la parte de trabajo de la personal.
     expect(secciones.at(-1)).toBe("sobre-mi");
     expect(document.querySelectorAll("main > .divisor")).toHaveLength(1);
+  });
+
+  it("el divisor cae entre #entorno y #sobre-mi, no antes de #entorno", () => {
+    // ? T23: #entorno es trabajo —el entorno y la filosofía del oficio—, así que el
+    // ? divisor que marca "aquí deja de hablar de trabajo" va después de ella.
+    const hijos = [...document.querySelector("main")!.children];
+    const pos = (selector: string) => hijos.findIndex((hijo) => hijo.matches(selector));
+
+    expect(pos("#entorno")).toBeLessThan(pos("hr.divisor"));
+    expect(pos("hr.divisor")).toBeLessThan(pos("#sobre-mi"));
+  });
+
+  it("#entorno se presenta como entorno y filosofía de desarrollo", () => {
+    // ? T23: la sección dejó de ser "Esto es mío" y pasó a hablar del oficio. El
+    // ? párrafo de apertura ya no cierra nada: no es la última sección del sitio.
+    const titulo = document.querySelector("#entorno h2");
+
+    expect(titulo?.textContent?.trim()).toBe("Entorno & Filosofía de Desarrollo");
+    expect(titulo?.getAttribute("data-i18n-en")).toBe("Environment & Development Philosophy");
+    expect(document.querySelector("#entorno p")?.textContent).not.toContain("Y para cerrar");
+    expect(document.querySelector("#entorno p")?.textContent).toContain("Esto no es una maqueta");
+  });
+
+  it("#curiosidades ya no es una sección: es un bloque dentro de #sobre-mi", () => {
+    // ? T24: las curiosidades se fusionan con "Sobre mí" conservando su id, para que
+    // ? ningún enlace externo se rompa.
+    expect(document.querySelector("main > section#curiosidades")).toBeNull();
+    expect(document.querySelector("#sobre-mi #curiosidades")).not.toBeNull();
+
+    const bloque = document.querySelector("#curiosidades")!;
+
+    expect(bloque.querySelector("h3")?.textContent?.trim()).toBe("Curiosidades sobre Mí");
+    expect(bloque.querySelector("h3")?.getAttribute("data-i18n-en")).toBe("Trivia About Me");
+    expect(bloque.querySelectorAll("details")).toHaveLength(3);
   });
 
   it("cada enlace del índice apunta a una sección que existe", () => {

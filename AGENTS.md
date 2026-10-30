@@ -47,7 +47,7 @@ no persona.
 **Stack:** Vite+ (Vite, Rolldown, Vitest, Oxlint, Oxfmt) · native TypeScript ·
 happy-dom · wrangler · pnpm · Codegraph.
 
-**Author's environment** (for the "Esto es mío" section and for writing examples
+**Author's environment** (for the "Entorno & Filosofía de Desarrollo" section and for writing examples
 that match how they actually work): Arch Linux on xfs · GNOME · Kitty terminal ·
 Nushell shell · Helix editor in modal, selections-first mode.
 

@@ -52,15 +52,8 @@ Calidad: :: Quality:
 Vitest en tests unitarios, Playwright + axe-core en end-to-end y accesibilidad asegurando UI/UX, con E2E de agentes de IA apoyados de documentación y orquestación orgánica. :: Vitest in unit tests, Playwright + axe-core in end-to-end and accessibility ensuring UI/UX, with AI agent-driven E2E supported by documentation and organic orchestration.
 Base: :: Base:
 Vite+ como toolchain unificada y pnpm en todos mis proyectos web: HTML semántico & accesible, CSS puro y TypeScript nativo. :: Vite+ as the unified toolchain and pnpm across all my web projects: semantic & accessible HTML, plain CSS and native TypeScript.
-Curiosidades sobre Mí :: Trivia About Me
-¿Cuál es tu color favorito? :: What is your favorite color?
-Mi color favorito es el negro aunque también me encanta el color azul. Dentro de Internet, me encanta la paleta de colores de Catppuccin, se me hacen unos colores muy estéticos y bonitos. :: My favorite color is black, although I also love blue. On the Internet, I love the Catppuccin palette: they are beautiful, aesthetic colors.
-¿Qué navegador usas? :: Which browser do you use?
-Actualmente uso Firefox aunque con la polémica acerca de su nuevo CEO y la integración de la IA sobre Firefox me hace dudar sobre si seguir utilizándolo aunque sea mi navegador favorito. :: I currently use Firefox, although the controversy around its new CEO and the integration of AI into Firefox makes me doubt whether to keep using it, even though it is my favorite browser.
-¿Cuál es tu sabor de helado favorito? :: What is your favorite ice cream flavor?
-Soy muy variado, me gusta desde el chocolate y sus variantes, la vainilla, el café, mamey, coco, etc. Mientras sea helado sé que me gustará mucho. :: I am very varied: chocolate and its variants, vanilla, coffee, mamey, coconut, and so on. As long as it is ice cream I know I will like it.
-Esto es mío :: This is me
-Y para cerrar, esto no es una maqueta: es mi escritorio. Arch Linux con la paleta Catppuccin, Nushell en Kitty, y las mismas herramientas con las que trabajo todos los días. :: To close, this is not a mockup: it is my desktop. Arch Linux with the Catppuccin palette, Nushell in Kitty, and the same tools I work with every day.
+Entorno & Filosofía de Desarrollo :: Environment & Development Philosophy
+Esto no es una maqueta: es mi escritorio. Arch Linux con la paleta Catppuccin, Nushell en Kitty, y las mismas herramientas con las que trabajo todos los días. :: This is not a mockup: it is my desktop. Arch Linux with the Catppuccin palette, Nushell in Kitty, and the same tools I work with every day.
 Escritorio de Arch Linux: neofetch con el logo de la distribución, una terminal con un listado de archivos, un explorador gráfico y dos ventanas con arte generado por la terminal :: Arch Linux desktop: neofetch with the distribution logo, a terminal listing files, a graphical file manager and two windows of terminal-generated art
 Sistema: :: System:
 Arch Linux sobre xfs, con GNOME :: Arch Linux on xfs, with GNOME
@@ -87,6 +80,13 @@ El helado de vainilla y café :: Vanilla and coffee ice cream
 Los gatos obviamente :: Cats obviously
 Programar y aprender cada día más y más :: Programming and learning more every day
 Hacer ejercicio de manera casual pero constante :: Exercising casually but consistently
+Curiosidades sobre Mí :: Trivia About Me
+¿Cuál es tu color favorito? :: What is your favorite color?
+Mi color favorito es el negro aunque también me encanta el color azul. Dentro de Internet, me encanta la paleta de colores de Catppuccin, se me hacen unos colores muy estéticos y bonitos. :: My favorite color is black, although I also love blue. On the Internet, I love the Catppuccin palette: they are beautiful, aesthetic colors.
+¿Qué navegador usas? :: Which browser do you use?
+Actualmente uso Firefox aunque con la polémica acerca de su nuevo CEO y la integración de la IA sobre Firefox me hace dudar sobre si seguir utilizándolo aunque sea mi navegador favorito. :: I currently use Firefox, although the controversy around its new CEO and the integration of AI into Firefox makes me doubt whether to keep using it, even though it is my favorite browser.
+¿Cuál es tu sabor de helado favorito? :: What is your favorite ice cream flavor?
+Soy muy variado, me gusta desde el chocolate y sus variantes, la vainilla, el café, mamey, coco, etc. Mientras sea helado sé que me gustará mucho. :: I am very varied: chocolate and its variants, vanilla, coffee, mamey, coconut, and so on. As long as it is ice cream I know I will like it.
 © José Luis Ramírez Sánchez. Todos los derechos reservados. :: © 2026 José Luis Ramírez Sánchez. All rights reserved.
 Envíame un correo :: Send me an email
 SimpleX :: SimpleX"

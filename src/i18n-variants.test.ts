@@ -107,7 +107,7 @@ describe("variante inglesa (S11)", () => {
     const imagen = doc.querySelector("img.yo-shot")!;
 
     expect(imagen.getAttribute("alt")).toBe(
-      "Arch Linux desktop: neofetch with the distribution logo, a terminal listing files, a graphical file manager and two windows of terminal-generated art",
+      "Arch Linux desktop on GNOME: the activities overview with the open windows, a terminal listing files, terminal-generated art and neofetch with the distribution logo",
     );
     expect(imagen.getAttribute("alt")).not.toContain("Escritorio");
   });

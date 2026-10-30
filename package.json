@@ -7,7 +7,8 @@
     "dev": "vp dev",
     "build": "tsc && vp build",
     "preview": "vp build && wrangler dev",
-    "deploy": "vp build && wrangler deploy"
+    "deploy": "vp build && wrangler deploy",
+    "fonts:subset": "bash scripts/subset-fonts.sh"
   },
   "devDependencies": {
     "happy-dom": "^21.0.4",

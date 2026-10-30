@@ -76,26 +76,39 @@ SOFTWARE.
 
 ---
 
-## Maple Mono NF (fuentes)
+## Maple Mono (fuentes)
 
 | Campo     | Valor                                                                         |
 | :-------- | :---------------------------------------------------------------------------- |
-| Paquete   | `Maple Mono NF` — Maple Mono parcheada con Nerd Fonts                         |
+| Paquete   | `Maple Mono` — Maple Mono v7.9, sin parche de Nerd Fonts                      |
 | Ubicación | `public/fonts/MapleMono-{Regular,Italic,Bold,BoldItalic}.ttf.woff2`           |
 | Autoría   | The Maple Mono Project Authors — <https://github.com/subframe7536/maple-font> |
-| Parches   | Nerd Fonts — Ryan L McIntyre — <https://github.com/ryanoasis/nerd-fonts>      |
 | Licencia  | SIL Open Font License 1.1 (OFL-1.1)                                           |
 
 **Copyright**:
 
 ```
 Copyright 2022 The Maple Mono Project Authors (https://github.com/subframe7536/maple-font)
-Copyright (c) 2014, Ryan L McIntyre (https://ryanlmcintyre.com)
 ```
 
-Estas cuatro `.woff2` son 324 KB y son el mayor peso del sitio. La licencia OFL
-pide que el aviso viaje con la fuente; aquí vive en este archivo, y ese es el
-motivo de que exista esta sección y no solo la de los iconos.
+Estas cuatro `.woff2` son **153 744 B** y son el mayor peso del sitio. La licencia OFL
+pide que el aviso viaje con la fuente; aquí vive en este archivo, y ese es el motivo
+de que exista esta sección y no solo la de los iconos.
+
+> **Corrección (L19)**: el aviso anterior acreditaba un parche de Nerd Fonts (Ryan L
+> McIntyre) sobre estas fuentes. **No lo tienen.** La `name` table de los cuatro
+> archivos dice family `Maple Mono`, versión 7.900, sin una sola mención de Nerd Fonts,
+> y sus únicos codepoints de uso privado son los powerline del propio Maple Mono
+> (`U+E0A0`–`E0B7`, `EE00`–`EE0B`): el `MapleMono-TTF.zip` de upstream v7.9 tiene los
+> mismos 1 935 glifos. La atribución y el `font-family` del CSS se corrigieron para
+> decir lo que los archivos son.
+
+**Recorte**: las cuatro caras se subconjuntan al juego de caracteres del sitio (Latin-1
+completo más los signos que el copy puede usar) porque cada una traía 1 935–2 060
+glifos para 95 caracteres en uso: **323 044 B → 153 744 B** (−52 %). La OFL-1.1 de
+Maple Mono **no declara Reserved Font Name**, así que el recorte es lícito siempre que
+este aviso viaje con la fuente. Se regeneran con `bash scripts/subset-fonts.sh`: los
+archivos recortados están commiteados y ni el build ni el CI necesitan fonttools.
 
 Texto completo de la OFL-1.1: <https://scripts.sil.org/OFL>.
 

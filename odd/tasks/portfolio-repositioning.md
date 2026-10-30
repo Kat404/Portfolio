@@ -1011,3 +1011,28 @@ uno revisado por su cuenta, no un PR único de 3 119 líneas.
 pasar al siguiente; el push final (WU-G) ocurre con todas las rebanadas revisadas. El
 drift i18n (WU-A) va primero justamente porque es el único que puede fallar en
 silencio: los tests pasan y el copy está viejo.
+
+### L19 — 2026-10-29 · WU-E: las fuentes recortadas y la atribución corregida
+
+Ejecutada la primera work unit del ciclo. Las cuatro caras de Maple Mono pasan de
+**323 044 B a 153 744 B** (−52 %) con el set medido: Latin-1 completo más los signos
+que el copy puede usar (guiones, comillas, flechas), 239 caracteres. Cada cara traía
+1 935–2 060 glifos para 95 en uso.
+
+Verificado con fontTools sobre los archivos **ya recortados**: las cuatro cubren los
+**89 caracteres** que el documento dibuja (texto visible más los valores de
+`data-i18n-en` y `alt`), con cero faltantes.
+
+**El nombre real de la familia**: la `name` table dice family `Maple Mono`, versión
+7.900. El CSS declaraba `font-family: "Maple Mono NF"` y `THIRD-PARTY-NOTICES.md`
+acreditaba un parche de Nerd Fonts que los archivos no tienen. Las dos cosas se
+corrigen: el CSS usa "Maple Mono" y el aviso solo acredita lo que hay, con la
+corrección anotada en el propio archivo.
+
+**Legal**: la OFL-1.1 de Maple Mono no declara Reserved Font Name, así que el recorte
+es lícito mientras el aviso viaje con la fuente, que es lo que hace
+`THIRD-PARTY-NOTICES.md`.
+
+**Reproducible**: `scripts/subset-fonts.sh` regenera los cuatro archivos (descomprimir
+con `woff2_decompress`, recortar con `pyftsubset` vía `uvx`, recomprimir a woff2). Los
+subsets están commiteados: ni el build ni el CI de Cloudflare necesitan fonttools.

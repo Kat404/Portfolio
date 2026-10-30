@@ -316,15 +316,23 @@ describe("stack declarado y toolchain (S5)", () => {
 });
 
 describe("iconografía (T17)", () => {
-  it("todos los iconos son Solar Icons en línea y ninguno es de Lucide", () => {
+  it("todos los iconos son Solar Icons y ninguno es de Lucide", () => {
     expect(html).not.toContain("lucide");
 
     const iconos = [...document.querySelectorAll("svg")];
     expect(iconos.length).toBeGreaterThan(0);
     for (const icono of iconos) {
-      expect(icono.getAttribute("class")).toMatch(/^solar solar-[a-z0-9-]+-linear$/);
+      // ? Hay dos estilos: los lineales (contorno) y el duotone de la ficha de
+      // ? proyecto (relleno con un plano secundario). Los lineales dibujan con
+      // ? `stroke`, el duotone con `fill`: los dos toman el color del texto.
+      const clase = icono.getAttribute("class") ?? "";
+      const duotone = clase.includes("-bold-duotone");
+
+      expect(clase).toMatch(/^solar solar-[a-z0-9-]+-(linear|bold-duotone)( [a-z0-9-]+)?$/);
       expect(icono.getAttribute("aria-hidden")).toBe("true");
-      expect(icono.getAttribute("stroke")).toBe("currentColor");
+      expect(duotone ? icono.getAttribute("fill") : icono.getAttribute("stroke")).toBe(
+        "currentColor",
+      );
     }
   });
 });

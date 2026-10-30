@@ -238,6 +238,40 @@ páginas emitidas (portada, `/en/` y las ocho de proyecto), y el routing comprob
 **Lo que queda en manos del autor**: las métricas y el relato de cada proyecto (el campo
 `problema` de `src/proyectos.ts`), y la revisión del resultado antes del push.
 
+### L26 — 2026-10-29 · WU-I: los seis ajustes que pidió el autor sobre el resultado
+
+Seis correcciones sobre lo entregado, con el criterio del autor y no con el del plan:
+
+1. **Los iconos, más finos y un poco más grandes**. Los catorce iconos de Solar bajaron de
+   `stroke-width="3"` a `2` y crecieron un punto (13→15, 14→16, 15→17 px); las dos flechas
+   del título, que iban con `stroke-width="10"`, bajaron a `5` y pasaron a 22 px. El motivo
+   del autor: con tanto grosor no se aprecian los detalles pequeños.
+2. **El icono del idioma, en azul**. Estaba en el gris del nav; ahora lleva la clase
+   `idioma-icono` y toma `--color-text-blue`, el mismo acento del texto activo.
+3. **La distinción de los proyectos, explícita**. El autor volvió a aclarar que solo Casa
+   Noria y Tranxfers están en producción real y dan ingresos, y que los otros dos son
+   proyectos personales o de propósito estudiantil. El copy lo dice sin rodeos: la
+   introducción ahora habla de "dos sistemas en producción con ingresos, usados por
+   clientes reales; un proyecto estudiantil en uso por un curso del IEEE Computer Society y
+   un rediseño open source de un sistema académico", y las etiquetas de las otras dos
+   tarjetas son "Proyecto estudiantil · en uso del curso" (TallerAgentes) y "Proyecto
+   personal · demo pública en Workers" (OpenSIM). Las meta descriptions, en los dos
+   idiomas, dicen lo mismo.
+4. **La captura de Casa Noria**, reemplazada por la que envió el autor (la portada real
+   del sitio, 3072×1850), recortada a 1200 px de ancho en WebP: 26 KB → 53 KB.
+5. **"Ver más detalles"** en vez de "Ver el caso completo", con el icono
+   `presentation-graph-bold-duotone` de Solar vendorizado en línea (16 px). La traducción
+   va en el `span` del texto y no en el enlace: con el atributo en el `<a>`, la variante
+   inglesa se comería el icono.
+6. **El divisor, más cerca**. El `margin: 4rem auto` dejaba un vacío de media pantalla
+   entre "Entorno & Filosofía" y "Sobre mí"; ahora es `2rem auto`.
+
+**Verificado**: 64/64 tests, `vp check` limpio y revisión **en pantalla** de los seis
+cambios (el header con los iconos finos y el del idioma en azul, las tarjetas con las
+etiquetas nuevas y el enlace con su icono, la captura nueva de Casa Noria y el divisor sin
+el vacío). El CSS sube 45 B gzip (1 841 → 1 886) y el JS no se toca: 647 B. La página
+inglesa conserva su icono y su texto propio ("See more details").
+
 ### L22 — 2026-10-29 · WU-C: la jerarquía visual de las tarjetas y los cinco pilares
 
 Ejecutada. Dos tarjetas de `#proyectos` llevan ahora la clase `project-card--con-ingresos`

@@ -1,111 +1,86 @@
 # Portafolio Personal — José Luis
 
-Frontend Developer JR | Estudiante de Ingeniería en Sistemas Computacionales.
+Desarrollador web y de sistemas.
 
 ## 📋 Descripción
 
-Este proyecto es un portafolio personal minimalista construido con **Vite+**. Su objetivo es servir como base de aprendizaje en desarrollo web modular, manteniendo un enfoque en HTML semántico y CSS puro.
+Portafolio personal estático: **HTML semántico, CSS puro y TypeScript nativo**, sin framework de UI, sin animación de scroll y sin dependencias de runtime. El español vive en el markup y el inglés en los atributos `data-i18n-en`; el build aplica el inglés y reparte el resultado en tres rutas: `/`, `/en/` y la ficha de cada proyecto. En producción lo sirve Cloudflare Workers Assets.
 
-## 🛠️ Tecnologías Usadas
+## 🛠️ Stack actual
 
-- **Vite+ 1.3** — Toolchain unificado: runtime, dev server, build, lint, formato y tests.
-- **Vite 7** — Bundler (Rolldown) y dev server.
-- **HTML5** — Estructura semántica avanzada.
-- **CSS3** — Diseño visual.
-- **TypeScript** — Único entry de cliente (`src/main.ts`) para animaciones y header.
-- **pnpm** — Gestor de paquetes de NodeJS.
-- **Wrangler** — Plataforma de Desarrollo para Cloudflare
-- **Lucide** — Íconos SVG, inlinados en `index.html` en tiempo de build.
+| Pieza                  | Versión        | Para qué                                                               |
+| :--------------------- | :------------- | :--------------------------------------------------------------------- |
+| **Vite+**              | 1.4.0          | Toolchain unificado: runtime, dev server, build, lint, formato y tests |
+| **Vite + Rolldown**    | 8.3.5 / 1.2.15 | Bundler y dev server                                                   |
+| **TypeScript**         | 7.0.2          | Tipos y el único entry de cliente (`src/main.ts`)                      |
+| **Vitest + happy-dom** | 5.0.5 / 21     | 68 tests sobre el `index.html` real                                    |
+| **Oxlint + Oxfmt**     | 1.89.0 / 0.74  | Lint y formato (`vp check`)                                            |
+| **HTML5 + CSS3**       | —              | Sin framework: un documento y dos hojas de estilo                      |
+| **Solar Icons**        | 2.3.3          | Íconos SVG en línea dentro del `index.html`                            |
+| **Maple Mono**         | 7.9            | Única tipografía, recortada a 4 pesos (153 744 B en WOFF2)             |
+| **pnpm**               | 12.14.0        | Gestor de paquetes                                                     |
+| **Wrangler**           | 4.154.0        | Despliegue estático en Cloudflare Workers Assets                       |
+| **Codegraph**          | —              | Indexado local del código                                              |
 
-## 🗂️ Estructura del Proyecto
+**Presupuesto de JavaScript: 1.1 kB gzip.** El bundle actual mide **647 B**, y la página en español ocupa 11.6 kB gzip. El único JavaScript del sitio es `src/main.ts`: revelado por `IntersectionObserver`, header con histéresis y el año del copyright en runtime. El idioma no pasa por el navegador: cada página se sirve ya traducida desde el build.
+
+## 🗂️ Estructura del proyecto
 
 ```text
-Portfolio-VP/
-├── public/              # Recursos estáticos (imágenes, iconos)
-│   ├── fonts/           # Fuentes tipográficas web (WOFF2)
-│   ├── images/          # Imágenes
-│   └── icons/           # Íconos & Logos
+Portfolio/
+├── public/
+│   ├── fonts/             # Maple Mono recortada: 4 pesos en WOFF2
+│   ├── icons/             # Favicon
+│   ├── images/            # Capturas en WebP (escritorio y proyectos)
+│   └── _headers           # Política de caché de Cloudflare Assets
 ├── src/
-│   ├── main.ts          # Entry de cliente: revelado, header y copyright
-│   ├── main.test.ts     # Pruebas de humo del entry
-│   └── styles/          # Hojas de estilo globales (CSS)
-├── index.html           # Documento completo (estructura + metadatos + íconos)
-├── vite.config.ts       # Configuración de Vite+ (lint, fmt, test)
-├── wrangler.jsonc       # Despliegue estático en Cloudflare Workers
-├── README.md            # Documentación general
-└── NOTES.md             # Apuntes y retroalimentación
+│   ├── main.ts            # Entry de cliente: revelado, header y copyright
+│   ├── i18n-variants.ts   # Deriva las dos variantes (ES/EN) del index.html
+│   ├── proyectos.ts       # Datos de los cuatro proyectos
+│   ├── proyecto-pagina.ts # Plantilla de la ficha de proyecto
+│   ├── styles/            # styles.css + animations.css
+│   └── *.test.ts          # 68 tests (Vitest + happy-dom)
+├── index.html             # Documento único: de aquí salen ES, EN y las fichas
+├── vite.config.ts         # Plugin de páginas + ajustes de lint, formato y test
+├── wrangler.jsonc         # Cloudflare Workers Assets
+├── scripts/               # Recorte de fuentes (subset-fonts.sh)
+├── odd/                   # Tracker ODD: protocolo y plan del proyecto
+├── AGENTS.md              # Contexto para los agentes que tocan el repo
+├── NOTES.md               # Bitácora de decisiones técnicas
+└── THIRD-PARTY-NOTICES.md # Licencias y procedencia de fuentes e iconos
 ```
 
-## 🚀 Inicio Rápido
+## 🚀 Inicio rápido
 
 ```bash
-# Instalar dependencias
-vp install
-
-# Iniciar servidor de desarrollo
-vp dev
-
-# Validar (formato + lint + tipos) y probar
-vp check
-vp test
-
-# Build de producción
-vp build
-
-# Previsualizar y desplegar
-vp run preview
-vp run deploy
+vp install        # dependencias
+vp dev            # servidor de desarrollo
+vp check          # formato + lint + tipos
+vp test           # 68 tests
+vp build          # bundle de producción
+vp run preview    # build + servidor de Wrangler
+vp run deploy     # build + despliegue (requiere autorización del autor)
 ```
 
----
+## 🗺️ Estado del proyecto
 
-## 🗺️ Roadmap & Estado del Proyecto
+Última revisión: **30/10/2026**.
 
-Análisis de accesibilidad, semántica y SEO.
-Última gran revisión: **30/03/2026**.
+- [x] **Internacionalización** — `/en/` real con canonical y `hreflang` recíprocos, derivado del mismo `index.html`.
+- [x] **Ficha por proyecto** — cuatro proyectos, cada uno con su página en los dos idiomas.
+- [x] **Tarjetas de proyecto** — con rol, datos y capturas en WebP.
+- [x] **Diseño responsivo** — ancho de lectura de 60rem y compactación a ≤ 40rem.
+- [x] **Micro-interacciones** — scroll suave, transiciones en enlaces y revelado de secciones al entrar en pantalla.
+- [x] **Tipografía** — Maple Mono recortada al juego de caracteres del sitio (323 KB → 154 KB).
+- [x] **Assets** — capturas en WebP y caché de una semana para `/images/*`.
+- [ ] **Personalización de los acordeones** — los `<details>` de "Curiosidades" conservan el marcador nativo del navegador.
 
-### 🌟 Mejoras Implementadas
+### Accesibilidad y SEO
 
-| Categoría            | Mejora Realizada                                        | Impacto              |
-| :------------------- | :------------------------------------------------------ | :------------------- |
-| **Arquitectura**     | Modularización en Layouts y Componentes                 | Mantenibilidad       |
-| **Semántica**        | Corrección de jerarquía de encabezados (H1-H2)          | SEO / Accesibilidad  |
-| **Accesibilidad**    | Uso de `aria-labelledby` y `aria-hidden`                | Lectores de pantalla |
-| **SEO**              | Metaetiquetas Open Graph y Twitter Cards                | Presencia en redes   |
-| **Buenas Prácticas** | Limpieza de atributos de presentación y lógica dinámica | Código limpio        |
-
----
-
-### ⏳ Pendientes & Futuras Mejoras
-
-- [x] **Sistema de Tipografía Mejorado** — Ajustar alturas de línea (line-height), jerarquía visual de tamaños (clamp/rem) e interlineado para legibilidad en fuentes monospace. (Implementado vía `@font-face` y WOFF2).
-- [ ] **Diseño Responsivo & Layout Base** — Limitar el ancho de lectura (max-width), centrar el contenido y asegurar espaciados (paddings/margins) consistentes.
-- [ ] **Refactorización de Navegación (Header UI/UX Avanzado)** — Evolucionar el menú estático hacia una experiencia interactiva premium:
-  - [x] **Arquitectura de Contención:** Implementar un _wrapper_ lógico con `max-width` para evitar desbordamientos en resoluciones ultrawide y centrar la estructura de lectura.
-  - [x] **Flujo y Persistencia (Flexbox & Sticky):** Migrar el layout usando `display: flex` (`justify-content: center`) y anclarlo dinámicamente con `position: sticky; top: 0; z-index: 50;` para acceso continuo.
-  - [x] **Estética de Renderizado (Glassmorphism):** Usar variables de entorno (Mocha Base/Mantle) con canal Alpha (transparencia, ej. `color-mix`) y delegar el desenfoque de fondo al motor de renderizado mediante `backdrop-filter: blur(12px);`.
-  - [ ] **Micro-interacciones & Feedback Visual:** Orquestar animaciones con `transition: all 0.3s ease;`. Aplicar en estados `:hover` mutaciones de color a acentos (Mocha Mauve/Sapphire) y traslaciones espaciales (`transform: translateY(-2px)`).
-  - [ ] **Ingeniería Responsiva (Mobile-First/Graceful Degradation):** Gestionar el desbordamiento en dispositivos móviles mediante Media Queries (`@media`). Estudiar la conversión a `flex-direction: column`, uso de menú tipo "Hamburguesa", o desbordamiento controlado con `overflow-x: auto;`.
-- [ ] **Tarjetas de Proyectos (Cards)** — Transformar las listas de proyectos en tarjetas interactivas con efectos de hover (elevación/transición).
-- [ ] **Micro-interacciones y Animaciones** — Scroll suave (smooth scrolling), transiciones sutiles en botones/enlaces, y personalización de los acordeones (`<details>`).
-- [ ] **Internacionalización** — Activar la versión en Inglés (`hreflang`).
-- [ ] **Optimización de Assets** — Asegurar que `/public/images/` contenga todas las assets locales.
+- Jerarquía de encabezados corregida: un `h1` y un `h2` por sección.
+- `aria-hidden` en los iconos decorativos, `aria-label` en los enlaces con solo icono y `aria-current` en el selector de idioma.
+- Metaetiquetas Open Graph y Twitter Cards, con imagen y dimensiones.
 
 ---
 
-### 📜 Historial de Versiones
-
-- **v2.0.0 (16/10/26):** Migración de Astro a Vite+. Layout, componentes y páginas se aplanan en `index.html`; los scripts de `.astro` pasan a `src/main.ts`; Prettier pasa a Oxfmt; los iconos Lucide se inlinean en el HTML.
-- **v1.7.0 (02/05/26):** Correción de semántica, mejora visual y de animaciones. Preparando animaciones extras.
-- **v1.6.0 (02/04/26):** Integración inicial de animaciones, transiciones y apariciones usando CSS & JS.
-- **v1.5.0 (01/04/26):** Modularización revertida, añadición de íconos Lucide, ajustes al CSS.
-- **v1.4.0 (30/03/26):** Refactor CSS integral (variables `:root`, colores `oklch`, arquitectura Modular) y optimización de fuentes auto-alojadas.
-- **v1.3.1 (30/03/26):** Correción mínima dentro del README.md.
-- **v1.3.0 (30/03/26):** Implementación básica de CSS (con colores tipo Catppucin y fuente NF).
-- **v1.2.0 (29/03/26):** Implementación de metadatos sociales (Twitter Cards/OG) y corrección de accesibilidad en emojis.
-- **v1.1.0 (29/03/26):** Reestructuración semántica global. Se aplicó `aria-labelledby` y se corrigió la jerarquía de títulos.
-- **v1.0.0 (28/03/26):** Migración exitosa de HTML puro a estructura modular en Astro con Layouts.
-
----
-
-_Para detalles técnicos sobre por qué se hicieron estos cambios, consulta el archivo [NOTES.md](./NOTES.md)._
+_Para el detalle de por qué se hicieron estos cambios, consulta [`NOTES.md`](./NOTES.md) y el tracker [`odd/`](./odd/README.md)._

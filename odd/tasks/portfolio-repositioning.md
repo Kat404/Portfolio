@@ -1,8 +1,8 @@
 # ODD Tracker — `portfolio-repositioning`
 
-> **Cycle**: 2026-10-16 → 2026-10-27 · **Branch**: `feature/reposicionamiento`
-> **Route**: ODD-direct (inline) · **Status**: 🛠 EN EJECUCIÓN — 17 de 19 tasks cerradas
-> **Runner**: `vp check` · `vp test` · `vp build` · Lighthouse vía `pnpm dlx` (efímero)
+> **Cycle**: 2026-10-16 → 2026-10-29 · **Branch**: `feature/reposicionamiento`
+> **Route**: ODD-direct (inline) · **Status**: 🛠 EN EJECUCIÓN — 19 de 29 tasks cerradas
+> **Runner**: `vp check` · `vp test` · `vp build` · Lighthouse vía `pnpm dlx` (efímero) · `pyftsubset` vía `uvx` (efímero)
 
 ## Objective
 
@@ -90,6 +90,10 @@ es **1.1 KB gzip** (2.4 KB sin comprimir), porque el selector de idioma añadió
 también cubre el peso total de la página: el favicon solo puede pesar kilobytes,
 no cientos.
 
+**S11 — El idioma se declara de verdad.** El alternate que el documento anuncia existe
+y sirve la variante que promete: la página en inglés se sirve en inglés, con su propio
+canonical, y el par ES/EN es recíproco. Un botón que reescribe el DOM no cumple esto.
+
 ---
 
 ## Tasks
@@ -106,7 +110,7 @@ no cientos.
 | T7  | Recortar `@font-face` a los pesos usados y medir delta                          | S9       | inline | **hecha** (L8)                 |
 | T8  | Medición antes/después: Lighthouse y peso de bundle                             | S10      | inline | **hecha** (L10-L11)            |
 | T9  | Responsive real — hoy no existe ningún `@media`                                 | todos    | inline | **hecha** (L7)                 |
-| T10 | Páginas de detalle por proyecto (`/proyectos/casa-noria`)                       | S2       | inline | pendiente                      |
+| T10 | Páginas de detalle por proyecto (`/proyectos/casa-noria`)                       | S2       | inline | pendiente — decisión L17       |
 | T11 | `<title>`, meta description, Open Graph y Twitter sin lenguaje de perfil junior | S1,S4    | inline | **hecha** (L6)                 |
 | T12 | Declarar qué resuelvo y para quién: para qué me contratan                       | S1,S2    | inline | **hecha** (L8)                 |
 | T13 | Quitar el enlace a código de los repos privados (Casa Noria, Tranxfers)         | S2       | inline | **hecha** (L11)                |
@@ -117,11 +121,14 @@ no cientos.
 | T18 | T8: medición Lighthouse antes/después y corrección de sus hallazgos             | S10      | inline | **hecha** (L10-L11)            |
 | T19 | Licencia y procedencia de los iconos vendorizados (`THIRD-PARTY-NOTICES.md`)    | S10      | inline | **hecha** (L13)                |
 | T20 | Nav de 8 a 4 anclas y cierre de la sección "Bienvenido"                         | S1,S2    | inline | **hecha** (L14)                |
-| T21 | Protagonismo visual uniforme en las tarjetas de proyecto                        | S2       | inline | pendiente                      |
-| T22 | `#tecnologias-de-interes` → `#stack`, agrupada en cinco pilares                 | S5,S6    | inline | pendiente                      |
-| T23 | `#yo` → `#entorno`: el entorno como presentación de oficio                      | S7       | inline | pendiente                      |
-| T24 | `#mi-vida` + `#aficiones` + `#mis-gustos` + `#curiosidades` → `#sobre-mi`       | S7       | inline | pendiente                      |
+| T21 | Jerarquía visual: los dos proyectos con ingresos destacan sobre los propios     | S2,S2b   | inline | pendiente — reescrita (L16)    |
+| T22 | `#stack` agrupada en cinco pilares                                              | S5,S6    | inline | pendiente — ya está en 5 (L8)  |
+| T23 | `#entorno` como presentación de oficio, con el divisor donde corresponde        | S7       | inline | pendiente                      |
+| T24 | `#curiosidades` fusionada dentro de `#sobre-mi`                                 | S7       | inline | pendiente                      |
 | T25 | Verificación de tests, formato y presupuesto de JS tras el refactor             | S10      | inline | pendiente                      |
+| T26 | Fuentes: subset de Maple Mono, `font-family` real y atribución corregida        | S9,S10   | inline | pendiente — decisión L17       |
+| T27 | Idioma: `hreflang` y `canonical` resueltos de verdad                            | S11      | inline | pendiente — decisión L17       |
+| T28 | Test de drift i18n: paridad, longitud, palabras y snapshot de los pares         | S4       | inline | pendiente — decisión L17       |
 
 Todas las tareas van **inline**: son de un solo archivo comprensible
 (`index.html`, `src/styles/*.css`) y ninguna toca lógica con rama o riesgo.
@@ -882,3 +889,100 @@ la descripción y no en el cuerpo de la página. Ahora los dos sitios coinciden.
 tarjetas. Eso contradice lo que el autor acaba de aclarar: si solo dos proyectos
 aportan al CV, esos dos deberían destacar más que los otros dos, no lo mismo.
 T21 queda pendiente de reescribirse con esa jerarquía.
+
+### L17 — 2026-10-29 · Ciclo de cierre: fuentes, idioma y drift i18n
+
+El autor pide planificar la resolución de las tareas pendientes (T0, T10, T21–T25) y
+verificar tres puntos concretos: qué pesos de Maple Mono se usan de verdad, cómo
+resolver el `hreflang` "en" y cómo crear el test de drift i18n. El `push` queda
+autorizado por el autor, pero solo después de que el resultado le guste.
+
+#### 1. Fuentes: la medición
+
+| Pregunta                         | Respuesta medida                                                                                                                                                                                          |
+| :------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ¿Qué caras se usan?              | Las cuatro: Regular 400 (cuerpo), Italic 400 (`a`, `.subrayado`, `.copyright`, `.idioma-nota`), Bold 700 (`h1`–`h4`) y BoldItalic 700 (`.titulo-principal`, `.quote`). No se puede borrar ningún archivo. |
+| ¿Otro formato?                   | WOFF2 ya es el formato mínimo: WOFF pesa más y TTF mucho más. No hay formato mejor; la palanca es el set de glifos.                                                                                       |
+| ¿Cuánto pesa ese set?            | Cada cara trae 1 935–2 060 glifos; la página usa **95 caracteres**.                                                                                                                                       |
+| Subset a los caracteres actuales | 323 044 B → **107 916 B** (−67 %)                                                                                                                                                                         |
+| Subset a Latin-1 + extras        | 323 044 B → **153 744 B** (−52 %)                                                                                                                                                                         |
+| Legal                            | OFL-1.1 **sin Reserved Font Name**: el subset es lícito si el aviso viaja con la fuente, y ya vive en `THIRD-PARTY-NOTICES.md`.                                                                           |
+| Tooling                          | `pyftsubset` vía `uvx` (efímero) + `woff2_decompress` del sistema. Los subsets se commitean: el CI de Cloudflare no necesita fonttools.                                                                   |
+
+**Hallazgo que corrige a T19**: los cuatro archivos vendorizados **no son "Maple Mono
+NF"**. Su `name` table dice family `Maple Mono`, versión 7.900, sin una sola mención de
+Nerd Fonts, y sus únicos codepoints de uso privado son los powerline de Maple Mono
+(`U+E0A0`–`E0B7`, `EE00`–`EE0B`). El `MapleMono-TTF.zip` de upstream v7.9 trae los
+mismos 1 935 glifos. O sea: `THIRD-PARTY-NOTICES.md` acredita un parche de Nerd Fonts
+(Ryan L McIntyre) que **no está en los archivos**, y el CSS declara
+`font-family: "Maple Mono NF"`. Las dos cosas se corrigen: la atribución y el nombre
+real.
+
+#### 2. Idioma: qué está mal con el `hreflang`
+
+- El `canonical` es `https://portfolio.jose-luis-rs.workers.dev` (sin slash final y sin
+  `?lang=en`) y se aplica a las dos variantes.
+- El `hreflang="en"` apunta a `.../?lang=en` (con slash final); `es` y `x-default` a
+  `.../`.
+
+Tres defectos, ninguno cosmético: el canonical de la variante EN apunta a la URL ES
+(conflito que hace que Google descarte los alternates), las URLs no coinciden entre sí,
+y el HTML crudo de `?lang=en` sigue siendo español hasta que corre el JS — el alternate
+no sirve la variante que promete.
+
+#### 3. El drift i18n que falta
+
+El contrato actual es **estructural**: comprueba que la traducción exista, no tenga
+español suelto y no rompa el markup. Eso no detecta el caso que mordió —el autor
+reescribió el español a mano y el inglés quedó viejo— porque ninguna regla sabe si dos
+textos se corresponden. El test nuevo tiene cuatro niveles:
+
+1. **Paridad de markup**: el mismo número de `<strong>`, `<em>` y `<code>` en los dos
+   idiomas del nodo.
+2. **Banda de longitud**: el inglés entre 0,6× y 2× la longitud del español.
+3. **Palabras compartidas**: ninguna palabra significativa (4+ letras) aparece en los
+   dos idiomas, salvo la lista blanca de nombres propios y tecnología.
+4. **Snapshot dorado** de los pares ES/EN: si cambia un lado, el test falla y hay que
+   revisar el par. Se actualiza con `vp test -u`.
+
+Los niveles 1–3 atrapan solos los errores de markup y las traducciones sin hacer. El
+nivel 4 es el único que atrapa el caso real, y es el que cuesta fricción.
+
+#### 4. Decisiones del autor (L17)
+
+| #   | Decisión                                                   | Alcance                                                                                                                                                                                                                                                                                      |
+| :-- | :--------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | **Idioma: página `/en/` real, generada en build**          | Un script deriva `/en/index.html` del mismo `index.html`: canonical propio por variante, alternates recíprocos, cada página sirve solo su idioma y el selector ES/EN pasa a ser un enlace (el JS de traducción desaparece). A verificar: que Workers Assets sirva `/en/` → `/en/index.html`. |
+| 2   | **Fuentes: subset a Latin-1 + extras**                     | 323 044 B → **153 744 B** (−52 %), medido sobre los archivos reales. Se corrigen también el `font-family` (el real es "Maple Mono", no NF) y la atribución de `THIRD-PARTY-NOTICES.md`.                                                                                                      |
+| 3   | **T10: cuatro páginas de detalle con templating en build** | Un objeto de datos por proyecto + un template mínimo que genera las páginas. Es el único trabajo que cambia el routing.                                                                                                                                                                      |
+| 4   | **Drift i18n: los cuatro niveles, con snapshot dorado**    | Paridad de markup, banda de longitud, palabras compartidas contra lista blanca y snapshot de los pares ES/EN.                                                                                                                                                                                |
+
+#### 5. Plan del ciclo (orden por dependencia; cada rebanada es una work unit)
+
+| #    | Work unit                                                                         | Tareas   | Riesgo                                |
+| :--- | :-------------------------------------------------------------------------------- | :------- | :------------------------------------ |
+| WU-A | Test de drift i18n, RED primero: hoy no existe nada que lo atrape                 | T28      | ninguno                               |
+| WU-B | Reordenación: `#entorno` antes del divisor, `#curiosidades` dentro de `#sobre-mi` | T23, T24 | item 3 (contrato de anclas)           |
+| WU-C | Jerarquía visual de las tarjetas + cinco pilares de `#stack`                      | T21, T22 | ninguno                               |
+| WU-D | Idioma: `/en/` real en build, selector como enlace, `hreflang` recíproco          | T27      | item 3 (URLs públicas)                |
+| WU-E | Subset de las fuentes + `font-family` real + atribución corregida                 | T26      | item 3 (binarios y aviso de licencia) |
+| WU-H | Páginas de detalle: datos por proyecto, template y routing                        | T10      | item 5 (routing y deploy)             |
+| WU-F | Verificación final: `vp check`, `vp test`, `vp build`, Lighthouse, budget         | T25, T0  | ninguno                               |
+| WU-G | `git push --set-upstream origin feature/reposicionamiento`                        | —        | decisión del autor                    |
+
+El orden no es caprichoso: el drift va primero para que el copy que viene después esté
+protegido; la reordenación antes que las tarjetas porque cambia el orden del documento;
+el idioma antes que las páginas de detalle porque las nuevas URLs heredan el mecanismo
+de `/en/`; y el push al final, cuando el autor ya vio el resultado.
+
+**Lo que falta y solo el autor tiene**: las páginas de detalle (WU-H) piden por cada
+proyecto la métrica verificable, el relato del problema y la captura. El mecanismo, el
+template y el routing se pueden construir con lo que ya está en el repo (el inventario
+T0 y el copy de las tarjetas), pero los datos que solo él puede confirmar quedan
+marcados como pendientes dentro de la propia página.
+
+**Nota de entrega**: la rama lleva **3 119 líneas authored en 28 commits** desde
+`origin/main`: es más de una rebanada revisable. Cuando llegue el push, la forma de
+entrega es decisión del autor (PR encadenado por work unit, o un PR único revisado
+commit por commit). WU-D (URLs públicas) y WU-H (routing) son las dos rebanadas que no
+conviene revisar mezcladas con las demás.

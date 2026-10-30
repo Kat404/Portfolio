@@ -1,7 +1,7 @@
 # ODD Tracker — `portfolio-repositioning`
 
 > **Cycle**: 2026-10-16 → 2026-10-29 · **Branch**: `feature/reposicionamiento`
-> **Route**: ODD-direct (inline) · **Status**: 🛠 EN EJECUCIÓN — 19 de 29 tasks cerradas
+> **Route**: ODD-direct (inline) · **Status**: 🛠 EN EJECUCIÓN — 25 de 29 tasks cerradas
 > **Runner**: `vp check` · `vp test` · `vp build` · Lighthouse vía `pnpm dlx` (efímero) · `pyftsubset` vía `uvx` (efímero)
 
 ## Objective
@@ -190,9 +190,9 @@ oscuro. La jerarquía se ve sin tocar el copy.
 | T23 | `#entorno` como presentación de oficio, con el divisor donde corresponde        | S7       | inline | **hecha** (L21)                |
 | T24 | `#curiosidades` fusionada dentro de `#sobre-mi`                                 | S7       | inline | **hecha** (L21)                |
 | T25 | Verificación de tests, formato y presupuesto de JS tras el refactor             | S10      | inline | pendiente                      |
-| T26 | Fuentes: subset de Maple Mono, `font-family` real y atribución corregida        | S9,S10   | inline | pendiente — decisión L17       |
+| T26 | Fuentes: subset de Maple Mono, `font-family` real y atribución corregida        | S9,S10   | inline | **hecha** (L19)                |
 | T27 | Idioma: `hreflang` y `canonical` resueltos de verdad                            | S11      | inline | pendiente — decisión L17       |
-| T28 | Test de drift i18n: paridad, longitud, palabras y snapshot de los pares         | S4       | inline | pendiente — decisión L17       |
+| T28 | Test de drift i18n: paridad, longitud, palabras y snapshot de los pares         | S4       | inline | **hecha** (L20)                |
 
 Todas las tareas van **inline**: son de un solo archivo comprensible
 (`index.html`, `src/styles/*.css`) y ninguna toca lógica con rama o riesgo.

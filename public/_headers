@@ -1,0 +1,20 @@
+# ? Cache de los assets estáticos en Cloudflare Workers Assets.
+# ? Por defecto Workers Assets responde `max-age=0, must-revalidate`: cada visita
+# ? revalida las fuentes, las capturas y el bundle. Esto fija la política.
+
+# ? Los assets con hash en el nombre (el bundle) nunca cambian de contenido con la
+# ? misma URL: se cachean un año y no se revalidan.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# ? Las fuentes y las imágenes tienen nombre estable, así que una corrección tiene
+# ? que llegar a los visitantes. Una semana alcanza: se revalida una vez por semana
+# ? y no en cada visita.
+/fonts/*
+  Cache-Control: public, max-age=604800
+
+/images/*
+  Cache-Control: public, max-age=604800
+
+/icons/*
+  Cache-Control: public, max-age=604800

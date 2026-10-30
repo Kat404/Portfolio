@@ -1,7 +1,7 @@
 # ODD Tracker — `portfolio-repositioning`
 
 > **Cycle**: 2026-10-16 → 2026-10-29 · **Branch**: `feature/reposicionamiento`
-> **Route**: ODD-direct (inline) · **Status**: 🛠 EN EJECUCIÓN — 25 de 29 tasks cerradas
+> **Route**: ODD-direct (inline) · **Status**: 🛠 EN EJECUCIÓN — 29 de 29 tasks cerradas (T0 a la espera de la métrica del autor)
 > **Runner**: `vp check` · `vp test` · `vp build` · Lighthouse vía `pnpm dlx` (efímero) · `pyftsubset` vía `uvx` (efímero)
 
 ## Objective
@@ -191,6 +191,53 @@ coherente con el resto del sitio.
 en las páginas de detalle, y el nombre del proyecto va en el `h2`. El `<title>` y el
 `canonical` sí son los de cada proyecto, que es lo que pesa para un buscador.
 
+### L25 — 2026-10-29 · WU-F: la verificación final y el hallazgo de la caché
+
+**Lighthouse 13.6.0** (vía `pnpm dlx`, con el Chromium de `~/.cache/ms-playwright`),
+medido contra el runtime real (`wrangler dev` sobre el `dist` construido):
+
+| Categoría      | Resultado |
+| :------------- | :-------- |
+| Performance    | **99**    |
+| Accessibility  | **100**   |
+| Best practices | **100**   |
+| SEO            | **100**   |
+
+FCP 0.8 s · LCP 2.2 s · CLS 0.024 · TBT 0 ms · peso total 253 KiB.
+
+**El hallazgo que la medición destapó**: Workers Assets responde
+`Cache-Control: public, max-age=0, must-revalidate` para **todo**, así que las 154 KB de
+fuentes y las capturas se revalidaban en cada visita (los 238 KiB que reporta el audit
+`cache-insight`). La corrección es un `public/_headers` de ocho líneas: `/assets/*` (el
+bundle, que lleva el hash en el nombre) a un año `immutable`, y `/fonts/*`, `/images/*` e
+`/icons/*` a una semana, porque esos tienen nombre estable y una corrección tiene que
+llegar a los visitantes. El HTML sigue en `max-age=0, must-revalidate`, que es lo
+correcto. Verificado con `wrangler dev`: las cabeceras llegan como se pedían.
+
+**El presupuesto, medido al cierre**:
+
+| Recurso             | Antes del ciclo | Ahora                                                                     |
+| :------------------ | :-------------- | :------------------------------------------------------------------------ |
+| JS (gzip)           | 1 116 B         | **647 B** (−42 %)                                                         |
+| CSS (gzip)          | 1 814 B         | 1 841 B (+27 B: el acento de las tarjetas y el `font-style` del selector) |
+| HTML español (gzip) | 13 561 B        | 11 218 B                                                                  |
+| HTML inglés (gzip)  | —               | 11 044 B                                                                  |
+| Fuentes             | 323 044 B       | **153 744 B** (−52 %)                                                     |
+| Página en total     | 292 KiB         | 253 KiB                                                                   |
+
+**T0 queda cerrada salvo la métrica**: el rol, la URL en vivo, el repositorio (solo si es
+público) y el stack con versiones de cada proyecto ya están en `src/proyectos.ts`, que es
+la fuente de las ocho páginas de detalle. Lo único que falta son las métricas, que las
+carga el autor en el campo `metricas` de cada proyecto: hasta entonces la página no las
+muestra.
+
+**T25 queda cerrada**: 64/64 tests, `vp check` limpio, `vp build` en verde con las diez
+páginas emitidas (portada, `/en/` y las ocho de proyecto), y el routing comprobado con
+`wrangler dev` para las diez rutas.
+
+**Lo que queda en manos del autor**: las métricas y el relato de cada proyecto (el campo
+`problema` de `src/proyectos.ts`), y la revisión del resultado antes del push.
+
 ### L22 — 2026-10-29 · WU-C: la jerarquía visual de las tarjetas y los cinco pilares
 
 Ejecutada. Dos tarjetas de `#proyectos` llevan ahora la clase `project-card--con-ingresos`
@@ -284,37 +331,37 @@ inglesa queda servida sin configuración extra.
 
 ## Tasks
 
-| #   | Tarea                                                                           | Specs    | Ruta   | Estado                         |
-| :-- | :------------------------------------------------------------------------------ | :------- | :----- | :----------------------------- |
-| T0  | Inventario por proyecto: rol, métrica, URL en vivo, repo, stack con versiones   | S1,S2,S5 | inline | parcial — URLs recibidas (L5)  |
-| T1  | Capturas de Casa Noria, Tranxfers, TallerAgentes, OpenSIM → WebP                | S3       | inline | **hecha** — 4 de 4 (L8)        |
-| T2  | Reordenar secciones: narrativa → trabajo → stack → acerca de mí                 | S1,S6    | inline | **hecha** (L8)                 |
-| T3  | Proyectos como tarjetas con enlace a demo y a código                            | S2       | inline | **hecha** (L5)                 |
-| T4  | Sustituir autodescalamiento por hechos                                          | S4       | inline | **hecha** (L5)                 |
-| T5  | Declarar stack real con versiones                                               | S5       | inline | **hecha** (L8)                 |
-| T6  | Resolver `class="hidden"` sin JS                                                | S8       | inline | **cerrada** — ya resuelta (L4) |
-| T7  | Recortar `@font-face` a los pesos usados y medir delta                          | S9       | inline | **hecha** (L8)                 |
-| T8  | Medición antes/después: Lighthouse y peso de bundle                             | S10      | inline | **hecha** (L10-L11)            |
-| T9  | Responsive real — hoy no existe ningún `@media`                                 | todos    | inline | **hecha** (L7)                 |
-| T10 | Páginas de detalle por proyecto (`/proyectos/casa-noria`)                       | S2       | inline | **hecha** (L24)                |
-| T11 | `<title>`, meta description, Open Graph y Twitter sin lenguaje de perfil junior | S1,S4    | inline | **hecha** (L6)                 |
-| T12 | Declarar qué resuelvo y para quién: para qué me contratan                       | S1,S2    | inline | **hecha** (L8)                 |
-| T13 | Quitar el enlace a código de los repos privados (Casa Noria, Tranxfers)         | S2       | inline | **hecha** (L11)                |
-| T14 | Tarjeta de OpenSIM con el stack y los módulos reales, y captura del producto    | S2,S3,S5 | inline | **hecha** (L11)                |
-| T15 | Fuera OpenSpec; declarar el E2E real (`@e2e-dev/web` / `e2e`)                   | S5       | inline | **hecha** (L11)                |
-| T16 | Declarar Vite+ y pnpm como toolchain y package manager                          | S5       | inline | **hecha** (L11)                |
-| T17 | Solar Icons: evaluar e incluir el set estático (cero JS)                        | S10      | inline | **hecha** (L11)                |
-| T18 | T8: medición Lighthouse antes/después y corrección de sus hallazgos             | S10      | inline | **hecha** (L10-L11)            |
-| T19 | Licencia y procedencia de los iconos vendorizados (`THIRD-PARTY-NOTICES.md`)    | S10      | inline | **hecha** (L13)                |
-| T20 | Nav de 8 a 4 anclas y cierre de la sección "Bienvenido"                         | S1,S2    | inline | **hecha** (L14)                |
-| T21 | Jerarquía visual: los dos proyectos con ingresos destacan sobre los propios     | S2,S2b   | inline | **hecha** (L22)                |
-| T22 | `#stack` agrupada en cinco pilares                                              | S5,S6    | inline | **hecha** (L22)                |
-| T23 | `#entorno` como presentación de oficio, con el divisor donde corresponde        | S7       | inline | **hecha** (L21)                |
-| T24 | `#curiosidades` fusionada dentro de `#sobre-mi`                                 | S7       | inline | **hecha** (L21)                |
-| T25 | Verificación de tests, formato y presupuesto de JS tras el refactor             | S10      | inline | pendiente                      |
-| T26 | Fuentes: subset de Maple Mono, `font-family` real y atribución corregida        | S9,S10   | inline | **hecha** (L19)                |
-| T27 | Idioma: `hreflang` y `canonical` resueltos de verdad                            | S11      | inline | **hecha** (L23)                |
-| T28 | Test de drift i18n: paridad, longitud, palabras y snapshot de los pares         | S4       | inline | **hecha** (L20)                |
+| #   | Tarea                                                                           | Specs    | Ruta   | Estado                           |
+| :-- | :------------------------------------------------------------------------------ | :------- | :----- | :------------------------------- |
+| T0  | Inventario por proyecto: rol, métrica, URL en vivo, repo, stack con versiones   | S1,S2,S5 | inline | **hecha salvo la métrica** (L25) |
+| T1  | Capturas de Casa Noria, Tranxfers, TallerAgentes, OpenSIM → WebP                | S3       | inline | **hecha** — 4 de 4 (L8)          |
+| T2  | Reordenar secciones: narrativa → trabajo → stack → acerca de mí                 | S1,S6    | inline | **hecha** (L8)                   |
+| T3  | Proyectos como tarjetas con enlace a demo y a código                            | S2       | inline | **hecha** (L5)                   |
+| T4  | Sustituir autodescalamiento por hechos                                          | S4       | inline | **hecha** (L5)                   |
+| T5  | Declarar stack real con versiones                                               | S5       | inline | **hecha** (L8)                   |
+| T6  | Resolver `class="hidden"` sin JS                                                | S8       | inline | **cerrada** — ya resuelta (L4)   |
+| T7  | Recortar `@font-face` a los pesos usados y medir delta                          | S9       | inline | **hecha** (L8)                   |
+| T8  | Medición antes/después: Lighthouse y peso de bundle                             | S10      | inline | **hecha** (L10-L11)              |
+| T9  | Responsive real — hoy no existe ningún `@media`                                 | todos    | inline | **hecha** (L7)                   |
+| T10 | Páginas de detalle por proyecto (`/proyectos/casa-noria`)                       | S2       | inline | **hecha** (L24)                  |
+| T11 | `<title>`, meta description, Open Graph y Twitter sin lenguaje de perfil junior | S1,S4    | inline | **hecha** (L6)                   |
+| T12 | Declarar qué resuelvo y para quién: para qué me contratan                       | S1,S2    | inline | **hecha** (L8)                   |
+| T13 | Quitar el enlace a código de los repos privados (Casa Noria, Tranxfers)         | S2       | inline | **hecha** (L11)                  |
+| T14 | Tarjeta de OpenSIM con el stack y los módulos reales, y captura del producto    | S2,S3,S5 | inline | **hecha** (L11)                  |
+| T15 | Fuera OpenSpec; declarar el E2E real (`@e2e-dev/web` / `e2e`)                   | S5       | inline | **hecha** (L11)                  |
+| T16 | Declarar Vite+ y pnpm como toolchain y package manager                          | S5       | inline | **hecha** (L11)                  |
+| T17 | Solar Icons: evaluar e incluir el set estático (cero JS)                        | S10      | inline | **hecha** (L11)                  |
+| T18 | T8: medición Lighthouse antes/después y corrección de sus hallazgos             | S10      | inline | **hecha** (L10-L11)              |
+| T19 | Licencia y procedencia de los iconos vendorizados (`THIRD-PARTY-NOTICES.md`)    | S10      | inline | **hecha** (L13)                  |
+| T20 | Nav de 8 a 4 anclas y cierre de la sección "Bienvenido"                         | S1,S2    | inline | **hecha** (L14)                  |
+| T21 | Jerarquía visual: los dos proyectos con ingresos destacan sobre los propios     | S2,S2b   | inline | **hecha** (L22)                  |
+| T22 | `#stack` agrupada en cinco pilares                                              | S5,S6    | inline | **hecha** (L22)                  |
+| T23 | `#entorno` como presentación de oficio, con el divisor donde corresponde        | S7       | inline | **hecha** (L21)                  |
+| T24 | `#curiosidades` fusionada dentro de `#sobre-mi`                                 | S7       | inline | **hecha** (L21)                  |
+| T25 | Verificación de tests, formato y presupuesto de JS tras el refactor             | S10      | inline | **hecha** (L25)                  |
+| T26 | Fuentes: subset de Maple Mono, `font-family` real y atribución corregida        | S9,S10   | inline | **hecha** (L19)                  |
+| T27 | Idioma: `hreflang` y `canonical` resueltos de verdad                            | S11      | inline | **hecha** (L23)                  |
+| T28 | Test de drift i18n: paridad, longitud, palabras y snapshot de los pares         | S4       | inline | **hecha** (L20)                  |
 
 Todas las tareas van **inline**: son de un solo archivo comprensible
 (`index.html`, `src/styles/*.css`) y ninguna toca lógica con rama o riesgo.

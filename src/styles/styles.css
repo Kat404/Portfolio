@@ -319,6 +319,10 @@ address {
   background: none;
   color: var(--color-subtext-zero);
   font: inherit;
+  /* ? La regla global de `a` pone cursiva y color de enlace: los botones no la
+     ? traían, así que el selector (que ahora son enlaces) la neutraliza aquí. */
+  font-style: normal;
+  text-decoration: none;
   cursor: pointer;
   transition:
     color 0.2s ease,

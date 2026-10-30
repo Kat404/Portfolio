@@ -15,7 +15,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- ? Viewport Width: Adapta la página web según el ancho del dispositivo en cuestión -->
 
-    <title>José Luis Ramírez Sánchez — Desarrollador web y de sistemas</title>
+    <title data-i18n-en="José Luis Ramírez Sánchez — Web and Systems Developer">
+      José Luis Ramírez Sánchez — Desarrollador web y de sistemas
+    </title>
     <!-- * Title: Es el título que aparecerá en nuestra página en la pestaña del navegador -->
 
     <meta
@@ -36,20 +38,17 @@
     <link rel="icon" type="image/png" href="/icons/linux_maletin.png" />
     <!-- * Link: En este caso, nos encargamos de poner el favicon de nuestra página web; el logo que aparecerá en la pestaña del navegador -->
 
-    <link rel="canonical" href="https://portfolio.jose-luis-rs.workers.dev" />
+    <!-- ? Cada variante se anuncia a sí misma: `/` es el español y `/en/` el inglés.
+    ? El build deriva las dos páginas de este mismo archivo, así que el alternate
+    ? apunta a una URL que existe de verdad y se sirve en el idioma que promete. -->
+    <link rel="canonical" href="https://portfolio.jose-luis-rs.workers.dev/" />
     <!-- * Canonical: Señala a los motores de búsqueda cuál es la versión principal del sitio web para evitar duplicados -->
 
-    <!-- ? La traducción vive en esta misma página, no en /en/: no hay URL separada que anunciar -->
-    <link
-      rel="alternate"
-      href="https://portfolio.jose-luis-rs.workers.dev/?lang=en"
-      hreflang="en"
-    />
-    <!-- * Alternate: Enlace a la misma página con la variante en inglés.
-      ? Se declara porque el idioma es una opción real del documento, no una promesa vacía:
-      ? el selector ES/EN está en el DOM y ambos textos existen. -->
     <link rel="alternate" href="https://portfolio.jose-luis-rs.workers.dev/" hreflang="es" />
+    <link rel="alternate" href="https://portfolio.jose-luis-rs.workers.dev/en/" hreflang="en" />
     <link rel="alternate" href="https://portfolio.jose-luis-rs.workers.dev/" hreflang="x-default" />
+    <!-- * Alternate: El par ES/EN es recíproco: cada página declara las dos variantes
+      ? y la suya es la que responde con ese idioma. -->
 
     <!-- ======================== OPEN GRAPH ======================== -->
     <!-- ! Open Graph: Modelo que permite la buena visualización de nuestro contenido en redes sociales -->
@@ -69,6 +68,7 @@
     <meta
       property="og:title"
       content="José Luis Ramírez Sánchez — Desarrollador web y de sistemas"
+      data-i18n-en="José Luis Ramírez Sánchez — Web and Systems Developer"
     />
     <meta
       property="og:description"
@@ -84,8 +84,9 @@
     <meta
       property="og:image:alt"
       content="Escritorio Arch Linux con Catppuccin, neofetch y mis herramientas: así trabajo"
+      data-i18n-en="Arch Linux desktop with the Catppuccin palette, neofetch and my tools: this is how I work"
     />
-    <meta property="og:url" content="https://portfolio.jose-luis-rs.workers.dev" />
+    <meta property="og:url" content="https://portfolio.jose-luis-rs.workers.dev/" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_MX" />
     <meta property="og:site_name" content="Portafolio — José Luis" />
@@ -102,6 +103,7 @@
     <meta
       name="twitter:title"
       content="José Luis Ramírez Sánchez — Desarrollador web y de sistemas"
+      data-i18n-en="José Luis Ramírez Sánchez — Web and Systems Developer"
     />
     <meta
       name="twitter:description"
@@ -130,7 +132,8 @@
     <header class="header-site">
       <!-- * Header: Representa el encabezado del documento HTML, usualmente suele ser replicable y genérico dentro del abanico de la página web -->
       <div class="header-wrapper">
-        <!-- ? Selector de idioma: ES por defecto, EN carga la traducción si existe -->
+        <!-- ? Selector de idioma: un enlace a la otra variante. Cada página se sirve
+        ? en su idioma y el build deriva las dos del mismo `index.html`. -->
         <nav id="selector-idioma" class="idioma" aria-label="Idioma" data-i18n-en-aria="Language">
           <!-- ? Procedencia y licencia: THIRD-PARTY-NOTICES.md -->
           <svg
@@ -154,10 +157,10 @@
             ></path>
             <circle cx="12" cy="12" r="2"></circle>
           </svg>
-          <button type="button" class="idioma-btn is-active" data-lang="es" aria-current="true">
+          <a class="idioma-btn is-active" href="/" hreflang="es" lang="es" aria-current="true">
             ES
-          </button>
-          <button type="button" class="idioma-btn" data-lang="en" aria-current="false">EN</button>
+          </a>
+          <a class="idioma-btn" href="/en/" hreflang="en" lang="en" aria-current="false">EN</a>
         </nav>
 
         <h1 class="titulo-principal hidden-item">
@@ -176,7 +179,7 @@
           >
             <path d="M4 12H20M14 18L20 12L14 6"></path>
           </svg>
-          Portafolio Personal
+          <span data-i18n-en="Personal Portfolio">Portafolio Personal</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -422,6 +425,7 @@
               class="project-shot"
               src="/images/proyectos/casa-noria.webp"
               alt="Portada del sitio del Hotel Casa Noria: fotografía del acceso con el logo del hotel y el botón Reservar en línea"
+              data-i18n-en="Cover of the Hotel Casa Noria website: a photo of the entrance with the hotel logo and the Book online button"
               width="720"
               height="450"
               loading="lazy"
@@ -436,7 +440,10 @@
               en línea.
             </p>
             <ul class="project-facts">
-              <li><strong data-i18n-en="In production">En producción</strong> · con ingresos</li>
+              <li>
+                <strong data-i18n-en="In production">En producción</strong>
+                <span data-i18n-en=" · with revenue"> · con ingresos</span>
+              </li>
               <li
                 data-i18n-en="22 pages · 232 commits · Astro 7.4 + Svelte 5.57 + Stripe 23 on Cloudflare Workers"
               >
@@ -481,6 +488,7 @@
               class="project-shot"
               src="/images/proyectos/tranxfers.webp"
               alt="Portada de Tranxfers: lema Cada destino, un nuevo rumbo sobre una foto de van, con la calificación 4.9 y el botón Cotizar ahora"
+              data-i18n-en="Cover of Tranxfers: the Every destination, a new route slogan over a van photo, with the 4.9 rating and the Get a quote button"
               width="720"
               height="450"
               loading="lazy"
@@ -495,7 +503,10 @@
               pasos y puede retomarla después.
             </p>
             <ul class="project-facts">
-              <li><strong data-i18n-en="In production">En producción</strong> · con ingresos</li>
+              <li>
+                <strong data-i18n-en="In production">En producción</strong>
+                <span data-i18n-en=" · with revenue"> · con ingresos</span>
+              </li>
               <li data-i18n-en="7 pages · 97 commits · Astro 7.4 SSR + Svelte 5.57 + Vitest 5">
                 7 páginas · 97 commits · Astro 7.4 SSR + Svelte 5.57 + Vitest 5 sobre Cloudflare
                 Workers
@@ -537,6 +548,7 @@
               class="project-shot"
               src="/images/proyectos/talleragentes.webp"
               alt="Portada de Taller Agentes: título del taller, botones de iniciar sesión y registrarse, y la mascota penguin de Ubuntu"
+              data-i18n-en="Cover of Taller Agentes: the workshop title, sign-in and sign-up buttons, and the Ubuntu penguin mascot"
               width="720"
               height="450"
               loading="lazy"
@@ -553,7 +565,7 @@
             <ul class="project-facts">
               <li>
                 <strong data-i18n-en="Own platform">Plataforma propia</strong>
-                · en uso del curso
+                <span data-i18n-en=" · in use by the course"> · en uso del curso</span>
               </li>
               <li data-i18n-en="325 commits">325 commits</li>
               <li data-i18n-en="Cloudflare Workers on the free tier + D1 + Durable Objects">
@@ -600,6 +612,7 @@
               class="project-shot"
               src="/images/proyectos/opensim.webp"
               alt="Panel de OpenSIM: menú lateral con Panel, Horario, Retícula, Kardex, Reinscripción, Trámites y Temario, y tarjetas de promedio, créditos y avance del estudiante"
+              data-i18n-en="OpenSIM panel: side menu with Panel, Schedule, Transcripts, Kardex, Re-enrollment, Procedures and Syllabus, plus average, credits and student progress cards"
               width="720"
               height="450"
               loading="lazy"
@@ -617,7 +630,7 @@
             <ul class="project-facts">
               <li>
                 <strong data-i18n-en="Public demo">Demo pública</strong>
-                · desplegada en Workers
+                <span data-i18n-en=" · deployed on Workers"> · desplegada en Workers</span>
               </li>
               <li data-i18n-en="248 commits">248 commits</li>
               <li data-i18n-en="SvelteKit 3.1 + Svelte 5.57 · Drizzle ORM + Valibot + pdf-lib">
@@ -675,7 +688,7 @@
                   <path
                     d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                   ></path></svg
-                >Código</a
+                ><span data-i18n-en="Code">Código</span></a
               >
             </p>
           </article>
@@ -790,7 +803,7 @@
             >
           </li>
         </ul>
-        <blockquote class="quote">
+        <blockquote class="quote" lang="es">
           "Todo aprendizaje lleva tiempo, sudor y esfuerzo. Es un largo camino pero no imposible de
           cursar"
         </blockquote>
@@ -971,7 +984,12 @@
     <footer>
       <!-- * Footer: Nos permite tener un pie de página en nuestra web -->
       <!-- ? Suele ser común el derecho de copyright en las páginas webs, especialmente en empresas -->
-      <p class="copyright" data-i18n-en="© 2026 José Luis Ramírez Sánchez. All rights reserved.">
+      <!-- ? El año va en un `span` vacío en los dos idiomas: lo rellena el runtime,
+      ? así la página en inglés no se queda vieja en 2027. -->
+      <p
+        class="copyright"
+        data-i18n-en='© <span id="copyright-year"></span> José Luis Ramírez Sánchez. All rights reserved.'
+      >
         © <span id="copyright-year"></span>
         José Luis Ramírez Sánchez. Todos los derechos reservados.
       </p>

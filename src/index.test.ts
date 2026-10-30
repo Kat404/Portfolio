@@ -322,17 +322,13 @@ describe("iconografía (T17)", () => {
     const iconos = [...document.querySelectorAll("svg")];
     expect(iconos.length).toBeGreaterThan(0);
     for (const icono of iconos) {
-      // ? Hay dos estilos: los lineales (contorno) y el duotone de la ficha de
-      // ? proyecto (relleno con un plano secundario). Los lineales dibujan con
-      // ? `stroke`, el duotone con `fill`: los dos toman el color del texto.
+      // ? Todos los iconos del sitio son lineales: el trazo lo pone el `svg`,
+      // ? no cada `path`.
       const clase = icono.getAttribute("class") ?? "";
-      const duotone = clase.includes("-bold-duotone");
 
-      expect(clase).toMatch(/^solar solar-[a-z0-9-]+-(linear|bold-duotone)( [a-z0-9-]+)?$/);
+      expect(clase).toMatch(/^solar solar-[a-z0-9-]+-linear( [a-z0-9-]+)?$/);
       expect(icono.getAttribute("aria-hidden")).toBe("true");
-      expect(duotone ? icono.getAttribute("fill") : icono.getAttribute("stroke")).toBe(
-        "currentColor",
-      );
+      expect(icono.getAttribute("stroke")).toBe("currentColor");
     }
   });
 });

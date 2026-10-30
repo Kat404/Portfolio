@@ -296,11 +296,109 @@ code {
   gap: 0.35rem;
 }
 
+/* ======================== FICHA DE PROYECTO ======================== */
+/* ? La ficha es una página, no una tarjeta: el caso manda y la interfaz se aparta.
+? ? Por eso no reutiliza `.project-card`, que es un contenedor para el índice. */
+
+.volver {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--color-subtext);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.volver:hover {
+  color: var(--color-text-blue);
+}
+
+.proyecto {
+  display: grid;
+  gap: 1.1rem;
+}
+
+.proyecto-titulo {
+  margin: 0;
+  color: var(--color-text-lavender);
+  font-size: 1.9rem;
+  text-align: left;
+}
+
+/* ? El texto principal: el que lee el visitante. El ancho de línea, medido. */
+.proyecto-lead {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--color-text);
+}
+
+.proyecto-captura {
+  margin: 0.4rem 0 0;
+}
+
+.proyecto-captura img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--color-base-darkest);
+  border-radius: 0.75rem;
+}
+
+/* ? La evidencia en una sola línea: el estado, la escala y el stack. El stack va
+? ? una vez: ni la tarjeta ni la ficha lo repiten. */
+.proyecto-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 1.5rem;
+  margin: 0;
+  padding-top: 0.9rem;
+  border-top: 1px dashed var(--color-base-darkest);
+  color: var(--color-subtext);
+  font-size: 0.92rem;
+}
+
+.proyecto-estado {
+  color: var(--color-text-mauve);
+  font-weight: 700;
+}
+
+.proyecto-nota {
+  margin: 0;
+  color: var(--color-subtext);
+}
+
+.proyecto-subtitulo {
+  margin: 0.6rem 0 0;
+  color: var(--color-text-sky);
+  font-size: 1.1rem;
+  text-align: left;
+}
+
+.proyecto-metricas {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--color-subtext);
+}
+
 /* ======================== ESTILOS DEL FOOTER ======================== */
 /* ? ↓ Centrado de textos y alineación de enlaces del Footer */
 footer p,
 address {
   text-align: center;
+}
+
+/* ? ↓ Los iconos del pie van centrados con su texto, no apoyados en la línea base */
+footer address p {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+footer address a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 /* ======================== SELECTOR DE IDIOMA ======================== */

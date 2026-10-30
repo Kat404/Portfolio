@@ -5,10 +5,10 @@
   opacity: 0;
   translate: 0 20px;
   /* ? El titulo tardaba 1.5 s en aparecer y 5 s en terminar de subir: era la
-     ? ? animacion mas lenta del sitio. Ahora 1 s y 3 s, con la misma proporcion. */
+     ? ? animacion mas lenta del sitio. Ahora 0.8 s y 2.4 s, con la misma proporcion. */
   transition:
-    opacity 1s ease-out,
-    translate 3s ease-out;
+    opacity 0.8s ease-out,
+    translate 2.4s ease-out;
 }
 
 /* ? ↓ Al revelar, reaparece el elemento individual a su estado normal */

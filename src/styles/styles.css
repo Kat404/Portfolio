@@ -312,6 +312,16 @@ address {
   color: var(--color-subtext);
 }
 
+/* ? El icono del selector es el acento del sitio: azul, como el texto activo */
+.idioma-icono {
+  color: var(--color-text-blue);
+}
+
+/* ? El icono duotone de Solar trae dos planos: el segundo es el color secundario */
+.solar-presentation-graph-bold-duotone path:first-child {
+  opacity: 0.5;
+}
+
 .idioma-btn {
   padding: 0.1rem 0.45rem;
   border: 1px solid transparent;

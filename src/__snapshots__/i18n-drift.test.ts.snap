@@ -11,7 +11,7 @@ Qué hago :: What I do
 Este es mi portafolio. Debajo vas a encontrar en qué trabajo, los proyectos que he construido, el stack con el que lo he hecho y, al final, algo más personal. Empieza por lo que necesitas saber. :: This is my portfolio. Below you will find what I work on, the projects I have built, the stack I built them with and, at the end, something more personal. Start with what you need to know.
 Construyo sitios web que solucionan problemas y entregan resultados: sistemas de reserva, cotizadores y plataformas internas que se usan a diario en entornos empresariales y de producción. Trabajo con Astro, Svelte y Cloudflare Workers. Todo listo para ser usado y probado desde el día 1. :: I build websites that solve problems and deliver results: booking systems, quote builders and internal platforms used daily in enterprise and production environments. I work with Astro, Svelte and Cloudflare Workers. Everything ready to be used and tested from day one.
 Mis Proyectos :: My Projects
-Dos sistemas en producción con ingresos, una plataforma docente en uso por un curso del IEEE Computer Society y un rediseño open source de un sistema académico. :: Two systems in production with revenue, a teaching platform in use by an IEEE Computer Society course and an open source redesign of an academic system.
+Dos sistemas en producción con ingresos, usados por clientes reales; un proyecto estudiantil en uso por un curso del IEEE Computer Society y un rediseño open source de un sistema académico. :: Two systems in production with revenue, used by real clients; a student project in use by an IEEE Computer Society course and an open source redesign of an academic system.
 Portada del sitio del Hotel Casa Noria: fotografía del acceso con el logo del hotel y el botón Reservar en línea :: Cover of the Hotel Casa Noria website: a photo of the entrance with the hotel logo and the Book online button
 Sitio oficial de un hotel real en Acapulco: habitaciones, SEO local y reserva con pago en línea. :: Official site of a real hotel in Acapulco: rooms, local SEO and online booking with payment.
 En producción :: In production
@@ -19,7 +19,7 @@ En producción :: In production
 22 páginas · 232 commits · Astro 7.4 + Svelte 5.57 + Stripe 23 sobre Cloudflare Workers :: 22 pages · 232 commits · Astro 7.4 + Svelte 5.57 + Stripe 23 on Cloudflare Workers
 Mobile-first, accesible y con E2E potenciado por agentes de IA :: Mobile-first, accessible and covered by agent-driven E2E tests
 Ver sitio en vivo :: Live site
-Ver el caso completo :: Read the full case
+Ver más detalles :: See more details
 Portada de Tranxfers: lema Cada destino, un nuevo rumbo sobre una foto de van, con la calificación 4.9 y el botón Cotizar ahora :: Cover of Tranxfers: the Every destination, a new route slogan over a van photo, with the 4.9 rating and the Get a quote button
 Traslados privados cotizados de Viajes RumboX: el visitante arma su cotización en tres pasos y puede retomarla después. :: Quoted private transfers by Viajes RumboX: the visitor builds their quote in three steps and can pick it up later.
 En producción :: In production
@@ -27,26 +27,26 @@ En producción :: In production
 7 páginas · 97 commits · Astro 7.4 SSR + Svelte 5.57 + Vitest 5 sobre Cloudflare Workers :: 7 pages · 97 commits · Astro 7.4 SSR + Svelte 5.57 + Vitest 5
 Cotizador con autosave en localStorage :: Quote builder with autosave in localStorage
 Ver sitio en vivo :: Live site
-Ver el caso completo :: Read the full case
+Ver más detalles :: See more details
 Portada de Taller Agentes: título del taller, botones de iniciar sesión y registrarse, y la mascota penguin de Ubuntu :: Cover of Taller Agentes: the workshop title, sign-in and sign-up buttons, and the Ubuntu penguin mascot
 Plataforma del curso "Agentes de IA y Automatización" que doy en IEEE Computer Society ITM: inscripción, credenciales, asistencia y publicación de contenido. :: Platform for the "AI and Automation Agents" course I teach at IEEE Computer Society ITM: enrollment, credentials, attendance and content publishing.
-Plataforma propia :: Own platform
+Proyecto estudiantil :: Student project
 · en uso del curso :: · in use by the course
 325 commits :: 325 commits
 Cloudflare Workers en free tier + D1 + Durable Objects :: Cloudflare Workers on the free tier + D1 + Durable Objects
 Astro 7 + Tailwind, contenido en MDX y suite con Vitest, Playwright y axe-core :: Astro 7 + Tailwind, content in MDX and a suite with Vitest, Playwright and axe-core
 Ver sitio en vivo :: Live site
-Ver el caso completo :: Read the full case
+Ver más detalles :: See more details
 Panel de OpenSIM: menú lateral con Panel, Horario, Retícula, Kardex, Reinscripción, Trámites y Temario, y tarjetas de promedio, créditos y avance del estudiante :: OpenSIM panel: side menu with Panel, Schedule, Transcripts, Kardex, Re-enrollment, Procedures and Syllabus, plus average, credits and student progress cards
 Rediseño FOSS del sistema académico del TecNM Morelia, construido como demo funcional: horario, retícula, kardex, reinscripción, trámites y temario. Lo que el original no publica se declara pendiente en vez de inventarse. :: FOSS redesign of the TecNM Morelia academic system, built as a working demo: schedule, curriculum, transcript, re-enrolment, paperwork and syllabus. What the original does not publish is declared pending instead of invented.
-Demo pública :: Public demo
-· desplegada en Workers :: · deployed on Workers
+Proyecto personal :: Personal project
+· demo pública en Workers :: · public demo on Workers
 248 commits :: 248 commits
 SvelteKit 3.1 + Svelte 5.57 · Drizzle ORM + Valibot + pdf-lib :: SvelteKit 3.1 + Svelte 5.57 · Drizzle ORM + Valibot + pdf-lib
 E2E con agentes de IA + Playwright y axe-core para accesibilidad :: Agent-driven E2E + Playwright and axe-core for accessibility
 Ver demo :: See the demo
 Código :: Code
-Ver el caso completo :: Read the full case
+Ver más detalles :: See more details
 Otros proyectos :: Other projects
 : Configuración personal para sistemas operativos Linux y demás configuraciones para :: : Personal configuration for Linux operating systems, plus configuration for the many tools I use to develop and to live Linux
 mucho software que utilizo para desarrollar y vivir Linux de manera :: in an

@@ -123,8 +123,8 @@ canonical, y el par ES/EN es recíproco. Un botón que reescribe el DOM no cumpl
 | T20 | Nav de 8 a 4 anclas y cierre de la sección "Bienvenido"                         | S1,S2    | inline | **hecha** (L14)                |
 | T21 | Jerarquía visual: los dos proyectos con ingresos destacan sobre los propios     | S2,S2b   | inline | pendiente — reescrita (L16)    |
 | T22 | `#stack` agrupada en cinco pilares                                              | S5,S6    | inline | pendiente — ya está en 5 (L8)  |
-| T23 | `#entorno` como presentación de oficio, con el divisor donde corresponde        | S7       | inline | pendiente                      |
-| T24 | `#curiosidades` fusionada dentro de `#sobre-mi`                                 | S7       | inline | pendiente                      |
+| T23 | `#entorno` como presentación de oficio, con el divisor donde corresponde        | S7       | inline | **hecha** (L21)                |
+| T24 | `#curiosidades` fusionada dentro de `#sobre-mi`                                 | S7       | inline | **hecha** (L21)                |
 | T25 | Verificación de tests, formato y presupuesto de JS tras el refactor             | S10      | inline | pendiente                      |
 | T26 | Fuentes: subset de Maple Mono, `font-family` real y atribución corregida        | S9,S10   | inline | pendiente — decisión L17       |
 | T27 | Idioma: `hreflang` y `canonical` resueltos de verdad                            | S11      | inline | pendiente — decisión L17       |
@@ -1087,3 +1087,41 @@ lugar del archivo.
 
 Los dos los resuelve WU-D, que rehace el idioma: con la página `/en/` real, el texto
 inglés se sirve ya aplicado en el HTML y el copyright puede derivar el año en el build.
+
+### L21 — 2026-10-29 · WU-B: la reordenación y la fusión de las curiosidades
+
+Ejecutada la work unit de la arquitectura de la información. El orden de las secciones
+pasa de `servicios · proyectos · stack · curiosidades · [divisor] · entorno · sobre-mi` a
+`servicios · proyectos · stack · entorno · [divisor] · sobre-mi`.
+
+**El divisor se movió** después de #entorno y antes de #sobre-mi. El comentario que lo
+acompaña ("a partir de aquí el sitio deja de hablar de trabajo") sigue siendo cierto en
+la posición nueva, porque #entorno es trabajo: el entorno y la filosofía del oficio.
+#sobre-mi es lo personal y cierra el documento.
+
+**#curiosidades se funde dentro de #sobre-mi**: deja de ser `<section>` y pasa a ser un
+`<aside id="curiosidades">` al final de #sobre-mi, junto a "Aficiones y Enfoques" y a
+"Mis Gustos". Conserva el id (no se rompe ningún enlace externo) y su `<h2>` pasa a
+`<h3>` con su `data-i18n-en` intacto. El copy de las tres preguntas no se tocó: es la voz
+del autor (S7).
+
+**T23, el rebranding de #entorno**: el `<h2>` "Esto es mío" pasa a "Entorno &
+Filosofía de Desarrollo" y su inglés a "Environment & Development Philosophy" — el nav
+ya decía "Entorno & Filosofía". Del párrafo de apertura solo se quitó la locución "Y
+para cerrar," (y la palabra siguiente pasó a mayúscula por empezar la frase): ya no
+correspondía, porque la sección dejó de ser la última. El resto de la prosa, intacta. El
+inglés lleva el mismo corte.
+
+**Tests**: cuatro nuevos en `src/index.test.ts` (el orden exacto de las secciones, el
+divisor entre #entorno y #sobre-mi, el título y la prosa de #entorno, y #curiosidades
+como bloque dentro de #sobre-mi con sus tres `<details>`) y uno modificado: la aserción
+que comparaba contra `indexOf("curiosidades")` pasó a comparar contra `sobre-mi`,
+porque #curiosidades ya no es una sección de primer nivel y el `indexOf` devolvía -1.
+
+**Snapshot de drift**: regenerado. El diff son nueve pares movidos (los siete de las
+curiosidades, que cambian de posición) y dos pares editados (el título de #entorno y su
+párrafo). Ningún otro par cambió de texto.
+
+**Verificado**: 44/44 tests (40 previos + 4 nuevos), `vp check` limpio y build con
+**JS 1 116 B gzip**, CSS 1.78 kB gzip y HTML 13.64 kB gzip. El presupuesto de JS no se
+movió: el cambio no toca JavaScript.

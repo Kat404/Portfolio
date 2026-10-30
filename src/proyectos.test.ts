@@ -243,8 +243,12 @@ describe("tarjetas y enlaces al caso (T10, S12)", () => {
       const enlace = tarjeta.querySelector(`a[href="${rutaProyecto(proyecto, "es")}"]`);
 
       expect(enlace, `${proyecto.titulo} no enlaza su página`).not.toBeNull();
-      expect(plano(enlace?.textContent)).toBe("Ver el caso completo");
-      expect(enlace?.getAttribute("data-i18n-en")).toBe("Read the full case");
+      expect(plano(enlace?.textContent)).toBe("Ver más detalles");
+      // ? La traducción va en el `span` del texto, no en el enlace: el icono del
+      // ? enlace es un hijo más y se quedaría sin él si el atributo estuviera arriba.
+      expect(enlace?.querySelector("[data-i18n-en]")?.getAttribute("data-i18n-en")).toBe(
+        "See more details",
+      );
     }
   });
 

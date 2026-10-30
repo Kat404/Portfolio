@@ -101,8 +101,8 @@ export const proyectos: Proyecto[] = [
       en: 'Platform for the "AI and Automation Agents" course I teach at IEEE Computer Society ITM: enrollment, credentials, attendance and content publishing.',
     },
     etiqueta: {
-      es: "Plataforma propia · en uso del curso",
-      en: "Own platform · in use by the course",
+      es: "Proyecto estudiantil · en uso del curso",
+      en: "Student project · in use by the course",
     },
     hechos: [
       { es: "325 commits", en: "325 commits" },
@@ -140,8 +140,8 @@ export const proyectos: Proyecto[] = [
       en: "FOSS redesign of the TecNM Morelia academic system, built as a working demo: schedule, curriculum, transcript, re-enrolment, paperwork and syllabus. What the original does not publish is declared pending instead of invented.",
     },
     etiqueta: {
-      es: "Demo pública · desplegada en Workers",
-      en: "Public demo · deployed on Workers",
+      es: "Proyecto personal · demo pública en Workers",
+      en: "Personal project · public demo on Workers",
     },
     hechos: [
       { es: "248 commits", en: "248 commits" },
